@@ -18,7 +18,7 @@
 			</div>
 			
 			<div class="content-wrap">
-				<h1>Акции</h1>
+				<div class="title"><h1>Акции</h1></div> 
 				<div class="stock">
 					<div class="stock-image">
 						<img src="../image/stock-popcorn.png" alt="">
