@@ -111,7 +111,6 @@
   justify-content: center;
   width: 85vw;
   align-items: center;
-  flex-wrap: wrap;
 }
 .stock-image
 {
@@ -139,6 +138,18 @@
 .stock-content
 {
   font-size: 18px;
+}
+
+/*.stock-content p
+{
+  padding-bottom: 10px;
+}*/
+
+.title 
+{
+  display: flex;
+  width: 85%;
+  justify-content: flex-start;
 }
 
 h1
