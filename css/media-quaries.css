@@ -40,6 +40,110 @@
   {
     font-size: 40px;
   }
+  header nav .nav-logo {
+    width: 150px;
+  }
+  #hamburger-1 {
+    display: block;
+    position: absolute;
+    margin: -80px 0 0 40px;
+    z-index: 11;
+  }
+  header nav .nav-logo {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  header nav .nav-content {
+    position: absolute;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 200px;
+    height: 100vh;
+    padding: 80px 0 0 40px;
+    margin: -20px 0 0 -270px;
+  }
+  header nav .nav-content .nav-list {
+    margin-top: 500px;
+  }
+  header nav .nav-content .nav-list ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  header nav .nav-content .nav-list ul li {
+    margin: 17px 0 0 0;
+  }
+  header nav .nav-content .nav-list ul li a:after {
+    top: -1px;
+  }
+  header nav .nav-signIn {
+    margin-top: 17px;
+  }
+  header nav .nav-signIn a {
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    position: relative;
+  }
+  header nav .nav-signIn a:before, header nav .nav-signIn a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  header nav .nav-signIn a:before {
+    bottom: -13px;
+    display: block;
+    height: 3px;
+    width: 0%;
+    content: "";
+    background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
+    background: linear-gradient(0.25turn, #764098, #21409A);
+  }
+  header nav .nav-signIn a:after {
+    left: 0;
+    top: -1px;
+    padding: 0 0;
+    position: absolute;
+    content: attr(data-hover);
+    color: #ffffff;
+    white-space: nowrap;
+    max-width: 0%;
+    overflow: hidden;
+  }
+  header nav .nav-signIn a:hover:before {
+    opacity: 1;
+    width: 100%;
+  }
+  header nav .nav-signIn a .pater_text {
+    display: none;
+  }
+  header nav .nav-signIn .current a:before {
+    opacity: 1;
+    width: 100%;
+  }
+  header nav .nav-signIn a:hover:after, header nav .nav-signIn .current a:after {
+    max-width: 100%;
+  }
+  .pater__deco {
+    display: none;
+  }
+  .pater__desc {
+    display: none;
+  }
 }
 
 @media (max-width: 576px)
@@ -63,5 +167,11 @@
       .title h1
   {
     font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  #hamburger-1 {
+    margin: -80px 0 0 30px;
   }
 }

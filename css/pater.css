@@ -15,12 +15,13 @@
 
 .pater_text{
 	z-index: 10000;
-	color: #fff
+	color: rgba(255, 255, 255, 0.5);
+	margin-top: 8px
 }
 
 .pater,
 .pater:hover {
-	color: #fff;
+	color: rgba(255, 255, 255, 0.5)
 }
 
 .pater::after {
@@ -52,7 +53,6 @@
 	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	text-indent: -0.05em;
 	margin: 0;
 	position: relative;
 	margin: 0.75em 0 0;
@@ -86,7 +86,7 @@
 	.pater__desc {
 		display: block;
 		color: #fff;
-		margin: 0;
+		margin: -20px 0 0 0;
 		position: relative;
 		width: 100%;
 		max-width: 260px;
