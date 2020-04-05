@@ -87,6 +87,6 @@
 
 	</div>
 		<hr class="line" size="1" align="center">
-		<div class="footer-create"><p>© 2019 Create by SHAPLYK</p></div>
+		<div class="footer-create"><p>© 2019 Create by SHAPLYKO</p></div>
 		
 </footer>
