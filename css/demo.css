@@ -1,0 +1,79 @@
+@font-face {
+  font-family: Gilroy;
+  src: url(../font/Gilroy-Light.ttf);
+}
+
+@font-face {
+  font-family: Gilroy-Bold;
+  src: url(../font/Gilroy-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: Gilroy-Heavy;
+  src: url(../font/Gilroy-Heavy.ttf);
+}
+
+body {
+  background-color: #000 !important;
+  color: #C7CEEB !important;
+  overflow-x: hidden;
+  font-family: Gilroy;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+/* SVG Morph */
+.morph-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+}
+
+.morph {
+	position: relative;
+	height: 100%;
+	fill: var(--background-color-2);
+	flex: none;
+}
+
+.content-wrap {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+	min-height: 600px;
+	pointer-events: none;
+}
+
+.content {
+	position: relative;
+	display: grid;
+}
+
+.content--related {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+	min-height: 600px;
+	pointer-events: none;
+}
