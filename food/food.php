@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-
 <head>
   <meta charset="UTF-8" />
   <title>OpenSpace</title>
@@ -40,23 +39,22 @@
       </form>
     </div>
     <div id='food-content'></div>
-    <?php include '../food/popcorn.php'; ?>
   </main>
   <?php
   include '../footer/footer.php';
   ?>
   <script type="text/javascript">
     $(document).ready(() => {
-      $('#food-content').load('../stock/stock.php');
+      $('#food-content').load('../food/popcorn.php');
     });
     $('#popcorn').click(() => {
-      $('#food-content').load('../stock/stock.php');
+      $('#food-content').load('../food/popcorn.php');
     });
     $('#dessert').click(() => {
-      $('#food-content').load('../footer/footer.php');
+      $('#food-content').load('../food/dessert.php');
     });
     $('#drink').click(() => {
-      $('#food-content').load('../menu/menu.php');
+      $('#food-content').load('../food/drink.php');
     });
   </script>
 </body>
