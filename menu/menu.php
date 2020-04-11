@@ -1,6 +1,8 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../css/pater.css">
+	<link rel="stylesheet" href="../css/header.css">
+	<link rel="stylesheet" href="../css/media-quaries.css">
 	<title>OpenSpace</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -14,8 +16,8 @@
                     <ul>
                         <li><a href="#" data-hover="Главная">Главная</a></li>
                         <li><a href="#" data-hover="Афиша">Афиша</a></li>
-                        <li><a href="#" data-hover="Акции">Акции</a></li>
-                        <li><a href="#" data-hover="Еда и напитки">Еда и напитки</a></li>
+                        <li id="stock"><a href="#" data-hover="Акции">Акции</a></li>
+                        <li id="food"><a href="#" data-hover="Еда и напитки">Еда и напитки</a></li>
                         <li><a href="#" data-hover="Контакты">Контакты</a></li>
                     </ul>
                 </div>
@@ -39,3 +41,5 @@
             <span class="line"></span>
         </div>
     </header>
+    <script src="../js/hamburger.js"></script>
+    <script src="../js/header.js"></script>

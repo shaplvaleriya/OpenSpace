@@ -1,0 +1,92 @@
+.stock
+{
+  display: flex;
+  justify-content: center;
+  width: 85vw;
+  align-items: center;
+}
+.stock-image
+{
+  flex-basis: 50%;
+}
+
+.stock-image img
+{
+  width: 100%;
+}
+
+.stock-text
+{
+  flex-basis: 50%;
+  padding: 0 15px;
+}
+
+.stock-title
+{
+   font-family:  Gilroy-Bold;
+   font-size: 40px;
+   padding-bottom: 15px;
+}
+
+.stock-content
+{
+  font-size: 18px;
+}
+
+.title 
+{
+  display: flex;
+  width: 85%;
+  justify-content: flex-start;
+}
+
+h1
+{
+  font-family: Gilroy-Heavy;
+  font-size: 60px;
+  text-align: right;  
+}
+
+
+/*ОСТАЛОСЬ ПОСЛЕ АКЦИЙ*/
+.content-food {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+form
+{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  width: 85vw;
+}
+.input
+{
+  display: flex;
+  justify-content: flex-start;
+}
+.inputGroup
+{
+  padding-right: 15px;
+  font-size: 20px;
+}
+.inputGroup input
+{
+  display: none;
+}
+
+.inputGroup input:checked ~ label 
+{
+  color: #fff;
+  border-bottom:4px solid #5562eb;
+  padding-bottom: 5px;
+}
+.form-line
+{
+  color: #707070;
+  width: 260px;
+}

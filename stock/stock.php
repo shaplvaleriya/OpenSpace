@@ -5,7 +5,6 @@
 		<title>OpenSpace</title>
 		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="../css/stock.css" />
-		<link rel="stylesheet" href="../css/media-quaries.css">
 	</head>
 	<body>		
 		<?php
