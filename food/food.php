@@ -20,7 +20,7 @@
       <form method="POST">
         <div class="input">
           <div class="inputGroup">
-            <input type="radio" name="food" id="popcorn" value="popcorn" checked />
+            <input type="radio" name="food" id="popcorn" value="popcorn"/>
             <label for="popcorn">Попкорн</label>
           </div>
 
@@ -44,16 +44,33 @@
   include '../footer/footer.php';
   ?>
   <script type="text/javascript">
-    $(document).ready(() => {
+    $('html').keydown(function(e){
+      if (e.keyCode == 116) {
+        e.preventDefault();
+      }
+    });
+    $(() => {
+      $('#dessert').removeAttr('checked');
+      $('#drink').removeAttr('checked');
+      $('#popcorn').attr('checked', true);
       $('#food-content').load('../food/popcorn.php');
     });
     $('#popcorn').click(() => {
+      $('#dessert').removeAttr('checked');
+      $('#drink').removeAttr('checked');
+      $('#popcorn').attr('checked', true);
       $('#food-content').load('../food/popcorn.php');
     });
     $('#dessert').click(() => {
+      $('#popcorn').removeAttr('checked');
+      $('#drink').removeAttr('checked');
+      $('#dessert').attr('checked', true);
       $('#food-content').load('../food/dessert.php');
     });
     $('#drink').click(() => {
+      $('#dessert').removeAttr('checked');
+      $('#popcorn').removeAttr('checked');
+      $('#drink').attr('checked', true);
       $('#food-content').load('../food/drink.php');
     });
   </script>
