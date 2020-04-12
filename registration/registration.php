@@ -11,11 +11,30 @@
 		?>
 		<main>
 		<div class="content">
+      <form action="" method="POST">
+  
+          <div class="input">
+          <div class="inputGroup">
+            <input type="radio" name="f" id="reg" value="popcorn" onchange="changeSignUp(this)"/>
+            <label for="re"g>registr</label>
+          </div>
+          <div class="inputGroup">
+            <input type="radio" name="f" id="aut" value="dessert" onchange="changeLogin(this)"/>
+            <label for="aut">autoris</label>
+          </div>
+        </div>
+        <div class="form-line">
+          <hr size="1" align="center">
+        </div>
+</form>
       <div class="content-registration">
+
         <form action="register.php" method="post" class="left-part">
             <div class="form-logo">
               <img src="../image/logo.png" alt="">
             </div>
+
+
             <div>
               <input type="text" name="username" required placeholder="Логин">
               <input type="text" name="email" required placeholder="E-mail">
@@ -23,7 +42,6 @@
               <input type="password" name="passw" placeholder="Подтверждение пароля">
             </div>
               <input type="submit" name="submit" class="button" value="Зарегистрироваться">
-              <input type="range" class="regOuth" min="1" max="2" onchange="changeLogin(this)" value="2">
         </form>
         <div class="right-part">
             <h2>
@@ -33,8 +51,6 @@
               напитки, особые акции и предложения,
               эксклюзивные презентации и даже
               подарки ко дню Рождения!</p>
-            
-            <!-- <p class="podpis">Регистрация</p> -->
 
         </div>
       </div>
@@ -47,9 +63,9 @@
               <input type="text" name="username" placeholder="Логин">
               <input type="password" name="pass" placeholder="Пароль">
             </div>
-            <input type="submit" name="submit" class="button" value="Войти"> 
-            <input type="range" class="regOuth" min="1" max="2" onchange="changeSignUp(this)" value="1">
+            <input type="submit" name="submit" class="button" value="Войти">
           </form>
+          
         <div class="right-part">          
           <h2>
               Присоединяйтесь
@@ -58,11 +74,7 @@
             <p>Получайте скидки на билеты, попкорн и
               напитки, особые акции и предложения,
               эксклюзивные презентации и даже
-              подарки ко дню Рождения!</p>
-
-           
-            <p class="podpis">Вход</p>
-        
+              подарки ко дню Рождения!</p>        
         </div>
       </div>
       </div>
