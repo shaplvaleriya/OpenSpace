@@ -23,7 +23,7 @@
         $url = explode('?', $url);
         $url = $url[1];
         $_SESSION['idf']=$url;
-			        $select="SELECT films.title, films.rating, DATE_FORMAT(films.premiere, '%d.%m.%Y'), films.duration, films.age_limit, films.poster, films.description, group_concat(distinct genres.genre separator ', '), group_concat(distinct countries.country separator ', ') from films inner join film_genre on films.ID_film=film_genre.ID_film inner join genres on film_genre.ID_genre=genres.ID_genre inner join film_country on films.ID_film=film_country.ID_film inner join countries on film_country.ID_country=countries.ID_country WHERE films.ID_film ='$url' group by films.ID_film";
+		$select="SELECT films.title, films.rating, DATE_FORMAT(films.premiere, '%d.%m.%Y'), films.duration, films.age_limit, films.poster, films.description, group_concat(distinct genres.genre separator ', '), group_concat(distinct countries.country separator ', ') from films inner join film_genre on films.ID_film=film_genre.ID_film inner join genres on film_genre.ID_genre=genres.ID_genre inner join film_country on films.ID_film=film_country.ID_film inner join countries on film_country.ID_country=countries.ID_country WHERE films.ID_film ='$url' group by films.ID_film";
         $result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
             $row = mysqli_fetch_row($result1);
             echo "<div class='film-page'>";
@@ -51,7 +51,33 @@
 			 ?>
 </div>
 <section class="content content--related">
-				</section>
+<?php 
+	$querySession = "SELECT `date_session`, `ID_session` FROM `sessions` WHERE sessions.ID_film='$url'";
+			$requestSession = mysqli_query($link, $querySession) or die("Ошибка " . mysqli_error($link));
+			$rows = mysqli_num_rows($requestSession);
+			echo "<div class='session'>";
+			for ($i = 0; $i < $rows; ++$i) {
+				$row = mysqli_fetch_row($requestSession);
+				echo "<div class='session-block'>";
+				echo "<a  href=../sessionPage/sessionPage.php?" . $row[1] . ">";
+				$date=explode(' ', $row[0]);
+				echo "<div class='session-date'>";
+				echo "<p>";
+				echo $date[0];
+				echo "</p>";
+				echo "</div>";
+				echo "<div class='session-time'>";
+				echo "<p>";
+				echo $date[1];
+				echo "</p>";
+				echo "</div>";
+				echo "</a>";
+				echo "</div>";
+			}
+		echo "</div>";
+ ?>
+</section>
+	<a href=""></a>
 		</main>
 		<?php
 		include '../footer/footer.php';
