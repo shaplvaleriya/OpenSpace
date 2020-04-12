@@ -12,6 +12,19 @@
   {
     font-size: 50px;
   }
+  .film-page-name
+  {
+    font-size: 23px;
+  }
+  .film-page-category p
+  {
+    padding: 3px 0;
+    font-size: 12px;
+  }
+  .film-page-description
+  {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 768px)
@@ -40,6 +53,23 @@
   {
     font-size: 40px;
   }
+
+  .film-page
+  {
+    flex-wrap: wrap;
+  }
+
+  .film-page-photo
+  {
+    flex-basis: 35%;
+  }
+  
+  .film-page-about
+  {
+    margin-top: 20px;
+    flex-basis: 100%;
+  }
+
   header nav .nav-logo {
     width: 150px;
   }
@@ -144,6 +174,8 @@
   .pater__desc {
     display: none;
   }
+
+
 }
 
 @media (max-width: 576px)
