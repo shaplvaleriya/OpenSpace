@@ -14,18 +14,18 @@
                 <br>
                 <input type="date" name="premiere">
                 <br>
-                <input type="text" name="duration" placeholder="Длительность">
+                <input type="text" name="duration" placeholder="Длительность" pattern="[0-9]{,3}">
                 <br>
-                <input type="text" name="age_limit" placeholder="Возрастное ограничение">
+                <input type="text" name="age_limit" placeholder="Возрастное ограничение" pattern="^[0-9]{1,2}+$/">
                 <br>
-                <input type="file">
+                <input type="file" name="poster">
                 <br>
                 <textarea name="description" id="" cols="20" rows="5"></textarea>
                 <br>
                 <input type="radio" name="voting" value="1">
-                <input type="radio" name="voting" value="0">
+                <input type="radio" name="voting" value="0" checked>
                 <br>
-                <input type="submit" value="Добавить фильм">
+                <input type="submit" value="Добавить фильм" name="addFilm">
             </form>
         </main>
     </body>
@@ -42,85 +42,88 @@ if (isset($_POST['premiere'])) { $premiere=$_POST['premiere']; if ($premiere =='
 
 if (isset($_POST['duration'])) { $duration=$_POST['duration']; if ($duration =='') { unset($duration);} }
 
-if (isset($_POST['voting'])) 
-// function clean($value) {
-//     $value = trim($value);
-//     $value = stripslashes($value);
-//     $value = strip_tags($value);
-//     $value = htmlspecialchars($value);
-//     return $value;
-// }
+if (isset($_POST['age_limit'])) { $age_limit=$_POST['age_limit']; if ($age_limit =='') { unset($age_limit);} }
 
-// $email = clean($email);
-// $username = clean($username);
-// $password = clean($password);
-// $confirmPassword = clean($confirmPassword);
+if (isset($_POST['description'])) { $description=$_POST['description']; if ($description =='') { unset($description);} }
 
-// if(empty($email) || empty($username) || empty($password) || empty($confirmPassword)) {
-//     echo "<script>;alert('Все поля должны быть заполнены'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>;";
-//     mysqli_close($link);
-// }
-//     elseif(!preg_match("~[a-zA-Z\d]{5,}~", $username)) {
-//         echo "<script>alert('Некорректный логин.'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>";
-//         mysqli_close($link);
-//     }
-//     elseif(!preg_match("~[a-zA-Z\d]{6,}~", $password)) {
-//         echo "<script>alert('Некорректный пароль.'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>";
-//         mysqli_close($link);
-//     }
-//     elseif(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i", $email)) {
-//         echo "<script>alert('Некорректный E-mail.'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>";
-//         mysqli_close($link);
-//     }
-//     elseif ($password == $confirmPassword) {
+if (isset($_POST['voting'])) { $voting=$_POST['voting']; if ($voting =='') { unset($voting);} }
 
-//     include ('../connection.php');
 
-// $queryName ="SELECT ID_user FROM users WHERE name='$username'";
-// $resultName = mysqli_query($link, $queryName) or die("Ошибка " . mysqli_error($link));
-// $rowName = mysqli_fetch_row($resultName);
 
-// $queryEmail ="SELECT ID_user FROM users WHERE email='$email'";
-// $resultEmail = mysqli_query($link, $queryEmail) or die("Ошибка " . mysqli_error($link));
-// $rowEmail = mysqli_fetch_row($resultEmail);
+if(isset($_POST['addFilm']))
+{
 
-//     if (!empty($rowName[0]))
-//     {
-//         echo "<script>alert('Такой логин уже существует'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>";
-//         mysqli_close($link);
-//     }
-//     elseif (!empty($rowEmail[0])) {
-//         echo "<script>alert('Такой email уже существует'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>";
-//         mysqli_close($link);
-//     }
-//     else
-//     {
-//         $password=md5($password);
 
-// $queryReg ="INSERT INTO users (name, email, password) VALUES('$username','$email', '$password')";
-// $resultReg = mysqli_query($link, $queryReg) or die("Ошибка " . mysqli_error($link));
+if ($_FILES['poster']['name']) {
+if ($_FILES['poster']['type']!= 'image/jpeg') MessageSend(2, 'Не верный тип изображения'); 
+if ($_FILES['poster']['size']> 500000) MessageSend(2, 'Размер изображения слишком большой'); 
+$Image=imagecreatefromjpeg($_FILES['poster']['tmp_name']);
+$Size = getimagesize($_FILES['poster']['tmp_name']);
+$Tmp = imagecreatetruecolor(ширина, высота);
+imagecopyresampled($Tmp, $Image, 0, 0, 0, 0, ширина, высота, $Size[0], $Size[1]);
 
-// $query ="SELECT ID_user, name, role FROM users WHERE name='$username'";
-// $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+ $l="SELECT max(ID_film) FROM films";
+            $result3 = mysqli_query($link, $l) or die("Ошибка " . mysqli_error($link));
+             $rows = mysqli_num_rows($result3);
+    for ($i = 0; $i < $rows; ++$i) {
+        $row = mysqli_fetch_row($result3);
+        $id_new_post=$row[0];
+    }
 
-//     if ($resultReg)
-//     {             
-//         $row = mysqli_fetch_row($result);
-//         $_SESSION['ID_user']=$row[0];
-//         $_SESSION['username']=$row[1];
-//         $_SESSION['role']=$row[2];
+    $files=glob('../image/poster*', GLOB_ONLYDIR);
+    foreach ($files as $num => $Dir) {
+        $Num++;
+        $Count=sizeof(glob($Dir.'/*.*'));
+        if ($Count<250) {
+            $Download = $Dir.'/'.$id_new_post;
+            break;
+        }
+    }
 
-//         include('result_auth.php');
-//     }
-//     else {
-//         echo "<script>alert('Ошибка, вы не зарегистрированы'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>";
-//         mysqli_close($link);
-//         }   
-//     }
-// }
-// else{
-//     echo "<script>alert('Пароли не совпадают'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>";
-//     mysqli_close($link);
-// }
+imagejpeg($Tmp, $Download.'.jpg');
+imagedestroy($Image);
+imagedestroy($Tmp);
+}
+
+
+if(empty($title) || empty($rating) || empty($premiere) || empty($duration || empty($age_limit) || empty($description) || empty($poster)) {
+    echo "<script>;alert('Все поля должны быть заполнены'); location.href='http://localhost:83/OpenSpace/registration/registration.php';</script>;";
+    mysqli_close($link);
+    }
+    elseif(!preg_match("~[0-9]{,3}~", $duration)) {
+        echo "<script>alert('Некорректная длительность.'); location.href='http://localhost:83/OpenSpace/registration/registration.php';</script>";
+        mysqli_close($link);
+    }
+        elseif(!preg_match("/^[0-9]{1,2}+$/", $age_limit)) {
+        echo "<script>alert('Некорректное возрастное ограничение.'); location.href='http://localhost:83/OpenSpace/registration/registration.php';</script>";
+        mysqli_close($link);
+    }
+    else
+    {
+        $queryTitle ="SELECT ID_film FROM films WHERE title='$title'";
+        $resultTitle = mysqli_query($link, $queryTitle) or die("Ошибка " . mysqli_error($link));
+        $rowTitle = mysqli_fetch_row($resultTitle);
+        if (!empty($rowTitle[0]))
+        {
+            echo "<script>alert('Такой фильм уже существует'); location.href='http://localhost:83/OpenSpace/registration/registration.php';</script>";
+            mysqli_close($link);
+        }
+        else
+        {
+            $queryAdd ="INSERT INTO films (title, rating, premiere, duration, age_limit, poster, description, voting) VALUES('$title', '$rating', '$premiere', '$duration', '$age_limit', '$id_new_post', '$description', '$voting')";
+            $resultAdd = mysqli_query($link, $queryAdd) or die("Ошибка " . mysqli_error($link));
+                if ($resultAdd)
+                {             
+                echo "<script>alert('Ошибка, фильм добавлен'); location.href='http://localhost:83/OpenSpace/registration/registration.php';</script>";
+                mysqli_close($link);
+                }
+                else {
+                echo "<script>alert('Ошибка, фильм не добавлен'); location.href='http://localhost:83/OpenSpace/registration/registration.php';</script>";
+                mysqli_close($link);
+                } 
+        }
+    }
+
+}
 
 ?>
