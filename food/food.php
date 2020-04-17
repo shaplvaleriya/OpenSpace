@@ -74,6 +74,7 @@
       $('#food-content').load('../food/drink.php');
     });
   </script>
+  
 </body>
 
 </html>

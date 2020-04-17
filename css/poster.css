@@ -64,6 +64,13 @@ main {
   justify-content: flex-start;
 }
 
+.content-filter
+{
+  display: flex;
+  width: 85%;
+  justify-content: flex-start;
+}
+
 h1
 {
   font-family: Gilroy-Heavy;

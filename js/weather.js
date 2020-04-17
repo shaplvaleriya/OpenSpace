@@ -5,25 +5,25 @@ async function getWeather(sessionTime){
         if(filterApi[0] && filterApi[0].weather[0] && filterApi[0].weather[0].main){
             switch (filterApi[0].weather[0].main) {
                 case 'Clouds':
-                    return "../image/logo.png"
+                    return "../image/weather/cloudly1.jpg"
                     break;
                 case 'Clear':
-                    return "../image/stock-popcorn.png"
+                    return "../image/weather/clear.jpg"
                     break;
                 case 'Atmosphere':
-                    return "../image/stock-popcorn.png"
+                    return "../image/weather/atmosphere.jpg"
                     break;
                 case 'Snow':
-                    return "../image/stock-popcorn.png"
+                    return "../image/weather/rain.jpg"
                     break;
                 case 'Rain':
-                    return "../image/stock-popcorn.png"
+                    return "../image/weather/rain.jpg"
                     break;
                 case 'Drizzle':
-                    return "../image/stock-popcorn.png"
+                    return "../image/weather/rain.jpg"
                     break;
                 case 'Thunderstorm':
-                    return "../image/stock-popcorn.png"
+                    return "../image/weather/thundershtorm.jpg"
                     break;
                 default:
                     break;

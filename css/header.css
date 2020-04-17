@@ -145,3 +145,71 @@ header nav .nav-content .nav-signIn a {
   transform: translateY(-13px) rotate(-45deg);
 }
 /*# sourceMappingURL=index.css.map */
+
+.search-box {
+  background: lightgrey;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 33px;
+  height: 20px;
+  border-radius: 40px;
+  padding: 5px;
+  width: 20px;
+  -webkit-transition: 0.6s all ease;
+  transition: 0.6s all ease;
+}
+
+.search-box:hover {
+  width: 173px;
+}
+
+.search-box:hover > .search-txt {
+  width: 140px;
+  padding: 0 6px;
+}
+
+.search-box:hover > .search-btn {
+  background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
+  background: linear-gradient(0.25turn, #764098, #21409A);
+}
+
+.search-txt {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: black;
+  -webkit-transition: 0.65s all ease;
+  transition: 0.65s all ease;
+  width: 0;
+}
+.search-btn {
+  color: white;
+  float: right;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 0.6s all ease;
+  transition: 0.6s all ease;
+}
+
+.search-btn img {
+  width: auto;
+  height: 60%;
+}

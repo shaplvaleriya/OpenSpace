@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-	<head>
-		<meta charset="UTF-8" />
-		<title>OpenSpace</title>
-		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="../css/food.css" />
-	</head>
 	<body>		
 		<main>
 			<div class="morph-wrap" style="z-index: -1;">
@@ -59,4 +51,3 @@
 		<script src="../js/scrollMonitor.js"></script>
 		<script src="../js/background.js"></script>
 	</body>
-</html>

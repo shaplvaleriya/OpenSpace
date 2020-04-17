@@ -11,61 +11,49 @@
 		?>
 		<main>
 		<div class="content">
-      <form action="" method="POST">
+      <div class="left-part"> 
+            <div class="form-logo">
+              <img src="../image/logo.png" alt="">
+            </div>
+        <form action="" method="POST">
   
           <div class="input">
           <div class="inputGroup">
-            <input type="radio" name="f" id="reg" value="popcorn" onchange="changeSignUp(this)"/>
-            <label for="re"g>registr</label>
+            <input type="radio" name="f" id="registration" value="registration" onchange="changeSignUp(this)"/>
+            <label for="registration">Регистрация</label>
           </div>
           <div class="inputGroup">
-            <input type="radio" name="f" id="aut" value="dessert" onchange="changeLogin(this)"/>
-            <label for="aut">autoris</label>
+            <input type="radio" name="f" id="authorization" value="authorization" checked onchange="changeLogin(this)"/>
+            <label for="authorization">Вход</label>
           </div>
         </div>
         <div class="form-line">
           <hr size="1" align="center">
         </div>
 </form>
-      <div class="content-registration">
 
-        <form action="register.php" method="post" class="left-part">
-            <div class="form-logo">
-              <img src="../image/logo.png" alt="">
-            </div>
-
-
-            <div>
-              <input type="text" name="username" required placeholder="Логин">
-              <input type="text" name="email" required placeholder="E-mail">
-              <input type="password" name="pass" placeholder="Пароль">
-              <input type="password" name="passw" placeholder="Подтверждение пароля">
-            </div>
-              <input type="submit" name="submit" class="button" value="Зарегистрироваться">
-        </form>
-        <div class="right-part">
-            <h2>
-              Присоединяйтесь к OpenSpace
-            </h2>
-            <p>Получайте скидки на билеты, попкорн и
-              напитки, особые акции и предложения,
-              эксклюзивные презентации и даже
-              подарки ко дню Рождения!</p>
-
-        </div>
-      </div>
       <div class="content-authorization content-authorization-open">
-          <form action="auth_in.php" method="post" class="left-part">
-            <div class="form-logo">
-              <img src="../image/logo.png" alt="">
-            </div>
-            <div>
+          <form action="auth_in.php" method="post">
+            <div class="input-data">
               <input type="text" name="username" placeholder="Логин">
-              <input type="password" name="pass" placeholder="Пароль">
+              <input type="password" name="password" placeholder="Пароль">
             </div>
             <input type="submit" name="submit" class="button" value="Войти">
           </form>
-          
+ </div>
+
+       <div class="content-registration">
+        <form action="register.php" method="post">
+            <div class="input-data">
+              <input type="text" name="username" required placeholder="Логин">
+              <input type="text" name="email" required placeholder="E-mail">
+              <input type="password" name="password" placeholder="Пароль">
+              <input type="password" name="confirmPassword" placeholder="Подтверждение пароля">
+            </div>
+              <input type="submit" name="submit" class="button" value="Зарегистрироваться">
+        </form>
+      </div>
+      </div>
         <div class="right-part">          
           <h2>
               Присоединяйтесь
@@ -76,13 +64,10 @@
               эксклюзивные презентации и даже
               подарки ко дню Рождения!</p>        
         </div>
-      </div>
+     
       </div>
     </div>
 		</main>
-		<?php
-		// include '../footer/footer.php';
-		?>
 	</body>
     <script>
     var sing = document.querySelector('.content-authorization');

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-
+<?php
+include '../menu/menu.php';
+include '../connection.php';
+?>
 <head>
-	<meta charset="UTF-8" />
+	<meta charset="UTF-8 without BOM" />
 	<title>OpenSpace</title>
 	<link rel="stylesheet" href="../css/animate.css">
 	<link rel="stylesheet" type="text/css" href="../css/poster.css" />
@@ -10,10 +13,6 @@
 </head>
 
 <body>
-	<?php
-	include '../menu/menu.php';
-	include '../connection.php';
-	?>
 	<main>
 		<div class="morph-wrap" style="z-index: -1;">
 			<svg class="morph" width="1400" height="770" viewBox="0 0 1400 770">
@@ -24,12 +23,12 @@
 			<div class="title">
 				<h1>Афиша</h1>
 			</div>
-			<form id="search-form">
+<!-- 			<form id="search-form">
 				<div>
 					<input type="text" id="search-input" />
 				</div>
-			</form>
-
+			</form> -->
+<div class="content-filter">
 			<select id="genre-filter">
 			<option value="" selected disabled hidden>Choose genre</option>
 			<option value="">All</option>
@@ -57,7 +56,7 @@
 				}
 				?>
 			</select>
-
+</div>
 			<div id='film_list' class="film_list">
 				<?php
 				$select = "SELECT `title`, `age_limit`, `rating`, `poster`, `ID_film`  FROM `films`";
@@ -65,7 +64,7 @@
 
 				echo "<div class='film_list'>";
 				$rows = mysqli_num_rows($result1);
-				echo $rows;
+			
 				for ($i = 0; $i < $rows; ++$i) {
 					$row = mysqli_fetch_row($result1);
 					echo "<div class='film_item wow fadeInUp' data-wow-delay='" . $i * 0.1 . "s'>";
