@@ -1,0 +1,142 @@
+/*.checkbox-image
+{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: block;
+  background-size: contain;  
+}
+
+.checkbox-image-picnic-disabled {
+  background: url("../sessionPage/picnic-disabled.png") no-repeat;
+}
+
+.checkbox-image-car-disabled {
+  background: url("../sessionPage/car-disabled.png") no-repeat;
+}
+
+.checkbox-image-picnic {
+  cursor: pointer;
+  background: url("../sessionPage/picnic-unchecked.png") no-repeat;
+}
+
+.checkbox-image-picnic:before {
+  content: " ";
+  background: url("../sessionPage/picnic-checked.png") no-repeat;
+  opacity: 0;
+}
+
+.checkbox-image-car {
+  cursor: pointer;
+  background: url("../sessionPage/car-unchecked.png") no-repeat;
+}
+
+.checkbox-image-car:before {
+  content: " ";
+  background: url("../sessionPage/car-checked.png") no-repeat;
+  opacity: 0;
+}*/
+.seats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.hall {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 650px;
+  margin-left: 0px;
+}
+
+.checkbox-outer {
+  width: 60px;
+  height: 95px;
+  display: block;
+  position: relative;
+  float: left;
+}
+
+.checkbox-outer input[type="checkbox"] {
+  visibility: hidden;
+}
+
+
+.checkbox-image-picnic-dis {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: block;
+  background: url("../sessionPage/picnic-disabled.png") no-repeat;
+  background-size: 30px 30px;
+}
+
+.checkbox-image-picnic {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: block;
+  background: url("../sessionPage/picnic-unchecked.png") no-repeat;
+  background-size: 30px 30px;
+}
+
+.checkbox-image-picnic:before {
+  content: " ";
+  width: 30px;
+  height: 30px;
+  display: block;
+  position: absolute;
+  background: url("../sessionPage/picnic-checked.png") no-repeat;
+  background-size: 30px 30px;
+  opacity: 0;
+}
+
+.checkbox-outer input[type="checkbox"]:checked + .checkbox-image-picnic:before {
+  opacity: 1;
+}
+
+.checkbox-image-car-dis {
+  position: absolute;
+  width: 45px;
+  height: 95px;
+  display: block;
+  background: url("../sessionPage/car-disabled.png") no-repeat;
+  background-size: contain;
+}
+
+.checkbox-image-car {
+  position: absolute;
+  width: 45px;
+  height: 95px;
+  cursor: pointer;
+  display: block;
+  background: url("../sessionPage/car-unchecked.png") no-repeat;
+  background-size: contain;
+}
+
+.checkbox-image-car:before {
+  content: " ";
+  width: 45px;
+  height: 95px;
+  display: block;
+  position: absolute;
+  background: url("../sessionPage/car-checked.png") no-repeat;
+  background-size: contain;
+  opacity: 0;
+}
+
+.checkbox-outer input[type="checkbox"]:checked + .checkbox-image-car:before {
+  opacity: 1;
+}

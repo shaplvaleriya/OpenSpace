@@ -1,3 +1,7 @@
+<?php
+include '../menu/menu.php';
+include '../connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -13,28 +17,82 @@
 				</svg>
 			</div>
 			<div class="content-wrap">
+<div id="modal">
+	<form action="" id="voting-form" method="POST">
+		<?php 
+	$select = "SELECT ID_film from voting";
+	$result = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
+	$row = mysqli_fetch_row($result);
+	$ro = explode(',', $row[0]);
+	$count = count($ro);
 
-			</div>
-			<div class="content-wrap">
+    $selectFilm = "SELECT ID_film, title from films";
+	$resultFilm = mysqli_query($link, $selectFilm) or die("Ошибка " . mysqli_error($link));
+    $rowsFilm = mysqli_num_rows($resultFilm);
+	for ($i = 0; $i < $rowsFilm; ++$i) {
+    $rowFilm = mysqli_fetch_row($resultFilm);
 
-			</div>
-			<div class="content-wrap">
+    for ($p = 0; $p < $count - 1; $p++) {
 
-			</div>
-			<div class="content-wrap">
+    	if ($rowFilm[0]==$ro[$p]) {
+    	echo "<input type='radio'name='voting' class='radio-voting' id='radio-voting' value=".$rowFilm[0].">".$rowFilm[1];
+    	echo "<br>";
+    }
+	}
+}	
+		 ?>
+		 <input type="submit" id="voting" value="Проголосовать" name="voting-btn">
+	</form>
 
-			</div>
-			<div class="content-wrap">
-
+</div>
 			</div>
 			<!-- Related demos -->
 			<section class="content content--related">
 
 			</section>
 		</main>
+		<script>
+		$(document).ready(function() {
+		  $.ajax({
+		    url: 'voting.php',
+		    success: function(data) {
+		      $('#modal').addClass(data);
+		    }
+		  });
+		});
+
+		document.getElementById('voting').addEventListener('click',(e)=>{
+			e.preventDefault();
+			const radio = document.getElementsByClassName('radio-voting');
+			console.log(radio);
+			let checkCount = 0;
+			for (var i = 0; i < radio.length; i++) {
+			console.log(radio[i]);
+			console.log(radio[i].value);
+			console.log(radio[i].checked);
+
+			if(radio[i].checked==true)
+			{
+				const votingValue = radio[i].value;
+				$.post('addVoting.php', {votingValue})
+				 .done(res => {
+        document.getElementById("modal").innerHTML = res;
+    		})
+				checkCount++;
+			}
+			}
+			if (checkCount) {
+			$('#voting-form').css('display', 'none');
+			}
+		
+    
+
+		})
+		</script>
 		<script src="../js/imagesloaded.pkgd.min.js"></script>
 		<script src="../js/anime.min.js"></script>
 		<script src="../js/scrollMonitor.js"></script>
 		<script src="../js/demo2.js"></script>
 	</body>
 </html>
+

@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+  include '../menu/menu.php';
+  ?>
+  <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
 		<meta charset="UTF-8" />
@@ -7,9 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/stock.css" />
 	</head>
 	<body>		
-<?php
-  include '../menu/menu.php';
-  ?>
+
 		<main>
 			<div class="morph-wrap">
 				<svg class="morph" width="1400" height="770" viewBox="0 0 1400 770">

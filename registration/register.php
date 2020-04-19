@@ -75,8 +75,12 @@ $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($lin
         $_SESSION['ID_user']=$row[0];
         $_SESSION['username']=$row[1];
         $_SESSION['role']=$row[2];
-
-        include('result_auth.php');
+if ($row[2]=='admin') {
+    include('adminMain.php');
+}
+else
+{include('result_auth.php');}
+        
     }
     else {
         echo "<script>alert('Ошибка, вы не зарегистрированы'); location.href='http://localhost:83/OpenSpace/registration/registration.php'; $('#registration').attr('checked', true);</script>";

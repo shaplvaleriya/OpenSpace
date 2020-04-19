@@ -54,6 +54,7 @@
 {
   border-radius: 35px;
   background-image: url(../image/stock-popcorn.png);
+  background-size: contain;
   width: 200px;
   height: 120px;
   cursor: pointer;

@@ -1,3 +1,6 @@
+<?php
+include '../menu/menu.php';
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -8,9 +11,7 @@
 </head>
 
 <body>
-  <?php
-  include '../menu/menu.php';
-  ?>
+
   <main>
     <div class="content-food">
       <div class="title">

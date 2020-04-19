@@ -7,6 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
+    <link rel="stylesheet" href="../css/sessionPage.css">
     <title>Сеанс</title>
 </head>
 
@@ -49,7 +50,7 @@ session_start();
             $weather = $value['weather'][0]['main'];
         }
     }
-    echo $weather;
+    // echo $weather;
     ?>
 
 
@@ -93,17 +94,37 @@ session_start();
                     if (in_array($seat[2], $purchase, true)) {
                         echo '<label class="checkbox-outer">';
                         echo '<input type="checkbox" disabled="disabled" >';
-                        echo '<span class="checkbox-pic1"></span></label>';
+                         if ($seat[1]=='picnic') {
+                        echo '<span class="checkbox-image-picnic-dis"></span></label>';
+                        }
+                        else
+                        {
+                            echo '<span class="checkbox-image-car-dis"></span></label>';
+                        }
+
                     }
-                    // elseif (погода==дождь && $seat[1]='picnic') {
-                    //     echo '<label class="checkbox-outer">';
-                    //     echo '<input type="checkbox" disabled="disabled" >';
-                    //     echo '<span class="checkbox-pic1"></span></label>';
-                    // }
+                    elseif ($weather=='Snow' || $weather=='Rain' || $weather=='Drizzle' || $weather=='Thunderstorm' && $seat[1]=='picnic') {
+                        echo '<label class="checkbox-outer">';
+                        echo '<input type="checkbox" disabled="disabled" >';
+                        if ($seat[1]=='picnic') {
+                        echo '<span class="checkbox-image-picnic-dis"></span></label>';
+                        }
+                        else
+                        {
+                            echo '<span class="checkbox-image-car-dis"></span></label>';
+                        }
+                    }
                     else {
                         echo '<label class="checkbox-outer">';
                         echo '<input type="checkbox" name="tickets[]" value=' . $seat[2] . '>';
-                        echo '<span class="checkbox-pic"></span></label>';
+                        if ($seat[1]=='picnic') {
+                            echo '<span class="checkbox-image-picnic"></span></label>';
+                        }
+                        else
+                        {
+                            echo '<span class="checkbox-image-car"></span></label>';
+                        }
+                        
                     }
                 }
                 echo "<p class='numr'>$r</p>";
@@ -115,6 +136,32 @@ session_start();
 
 
 
+                    //    if (in_array($seat[2], $purchase, true)) {
+                    //     echo '<label class="checkbox-outer">';
+                    //     echo '<input type="checkbox" disabled="disabled" >';
+                    //     if ($seat[1]=='picnic') {
+                    //         echo '<span class="checkbox-image checkbox-image-picnic-disabled"></span></label>';
+                    //     }
+                    //     elseif ($seat[1]=='car') {
+                    //     echo '<span class="checkbox-image checkbox-image-car-disabled"></span></label>';
+                    //     }
+                    // }
+                    // elseif ($weather=='Snow' || $weather=='Rain' || $weather=='Drizzle' || $weather=='Thunderstorm' && $seat[1]=='picnic') {
+                    //     echo '<label class="checkbox-outer">';
+                    //     echo '<input type="checkbox" disabled="disabled" >';
+                    //     echo '<span class="checkbox-image checkbox-image-picnic-disabled"></span></label>';
+                    // }
+                    // else {
+                    //     echo '<label class="checkbox-outer">';
+                    //     echo '<input type="checkbox" name="tickets[]" value=' . $seat[2] . '>';
+                    //     if ($seat[1]=='picnic') {
+                    //         echo '<span class="checkbox-image checkbox-image-picnic"></span></label>';
+                    //     }
+                    //     elseif ($seat[1]=='car') {
+                    //         echo '<span class="checkbox-image checkbox-image-car"></span></label>';
+                    //     }
+                        
+                    // }
             // $selpr="SELECT seances.price from seances where seances.IDS='$url'";
             // $respr = mysqli_query($link, $selpr) or die("Ошибка " . mysqli_error($link));
             // $price = mysqli_fetch_row($respr);
@@ -186,20 +233,20 @@ session_start();
             ?>
 
 
-            <script type="text/javascript">
-                var expanded = false;
+     <script type="text/javascript">
+    var expanded = false;
 
-                function showCheckboxes() {
-                    var checkboxes = document.getElementById("checkboxes");
-                    if (!expanded) {
-                        checkboxes.style.display = "block";
-                        expanded = true;
-                    } else {
-                        checkboxes.style.display = "none";
-                        expanded = false;
-                    }
-                }
-            </script>
+    function showCheckboxes() {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+    } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+    }
+    }
+    </script>
 </body>
 
 </html>

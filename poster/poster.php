@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" class="no-js">
 <?php
 include '../menu/menu.php';
 include '../connection.php';
 ?>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
 <head>
 	<meta charset="UTF-8 without BOM" />
 	<title>OpenSpace</title>

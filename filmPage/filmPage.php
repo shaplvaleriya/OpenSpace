@@ -1,3 +1,7 @@
+<?php
+include '../menu/menu.php';
+include '../connection.php';
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -9,10 +13,7 @@
 </head>
 
 <body>
-	<?php
-	include '../menu/menu.php';
-	include '../connection.php';
-	?>
+
 	<main>
 		<div class="morph-wrap">
 			<svg class="morph" width="1400" height="770" viewBox="0 0 1400 770">

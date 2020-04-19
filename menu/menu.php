@@ -16,7 +16,7 @@ session_start(); ?>
             <div class="nav-content">
                 <div class="nav-list">
                     <ul>
-                        <li><a href="#" data-hover="Главная">Главная</a></li>
+                        <li><a href="../main/index.php" data-hover="Главная">Главная</a></li>
                         <li id="poster"><a href="../poster/poster.php" data-hover="Афиша">Афиша</a></li>
                         <li id="stock"><a href="../stock/stock.php" data-hover="Акции">Акции</a></li>
                         <li id="food"><a href="../food/food.php" data-hover="Еда и напитки">Еда и напитки</a></li>
@@ -72,6 +72,6 @@ else
             <span class="line"></span>
         </div>
     </header>
-        <script src="poster.js"></script>
+        <script src="../poster/poster.js"></script>
     <script src="../js/hamburger.js"></script>
     <script src="../js/header.js"></script>
