@@ -64,13 +64,6 @@ main {
   justify-content: flex-start;
 }
 
-.content-filter
-{
-  display: flex;
-  width: 85%;
-  justify-content: flex-start;
-}
-
 h1
 {
   font-family: Gilroy-Heavy;
@@ -89,7 +82,7 @@ h1
 }
 
 .film_item {
-  width: calc(90% / 4);
+  width: calc(92% / 4);
   margin: 0 1%;
 } 
 
@@ -112,6 +105,7 @@ h1
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+padding-top: 10px;
 }
 
 .film_name {
@@ -128,3 +122,62 @@ h1
   font-size: 20px;
   text-align: center;
 }
+
+.content-filter
+{
+  display: flex;
+  width: 85%;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.filter
+{
+    border-bottom: 1px solid #CCC;
+    overflow: hidden; 
+    /*height: 34px;*/
+    background: url(../image/select-arrow-open.png) no-repeat right;
+    width: 200px;
+
+}
+
+.filter:nth-child(2)
+{
+  margin-left: 20px;
+}
+
+.filter select
+{
+     border-radius: 0;
+    background: transparent;
+    /*height: 34px;*/
+    padding: 5px;
+    border: 0;
+    font-size: 16px;
+    line-height: 1;
+    -webkit-appearance: none;
+    width: 200px;
+     color: #C7CEEB;
+     font-family: Gilroy;
+}
+
+.filter-border
+{
+  background: url(../image/select-arrow-close.png) 98% center no-repeat, linear-gradient(180deg, #99DAFF00 0%, #4B409900 86%, #4B409900 87%, #4B4099 88%, #4B4099 100%);
+}
+
+.filter select option
+{
+  color: #000;
+}
+
+.filter select option:hover
+{
+  color:  #764098;
+  background: none;
+}
+
+.filter select option:checked {
+  color: #764098;
+}
+
