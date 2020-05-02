@@ -45,12 +45,16 @@ header nav .nav-content .nav-list ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  align-items: center
 }
 
 header nav .nav-content .nav-list ul li {
   list-style-type: none;
   margin-left: 15px;
   list-style: outside none none;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 header nav .nav-content .nav-list ul li a {
@@ -145,6 +149,10 @@ header nav .nav-content .nav-signIn a {
   transform: translateY(-13px) rotate(-45deg);
 }
 /*# sourceMappingURL=index.css.map */
+
+#search-form {
+  margin: 0;
+}
 
 .search-box {
   background: lightgrey;
