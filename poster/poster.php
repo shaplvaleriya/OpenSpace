@@ -71,7 +71,7 @@ include '../connection.php';
 					echo "<div class='film_item wow fadeInUp' data-wow-delay='" . $i * 0.1 . "s'>";
 					echo "<a  href=../filmPage/filmPage.php?" . $row[4] . ">";
 					echo "<div class='film_photo'>";
-					echo "<img src='$row[3]'>";
+					echo "<img src='../image/poster/$row[3].jpg'>";
 					echo "</div>";
 					echo "<p class='film_category'>";
 					echo $row[1], " / ", $row[2];

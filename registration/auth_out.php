@@ -4,7 +4,7 @@ if (session_id()=='');
 
      $_SESSION['role']="";
      $_SESSION['username']="";
-     $_SESSION['idu']="";
+     $_SESSION['ID_user']="";
 ?>
 <?php
 include("registration.php");

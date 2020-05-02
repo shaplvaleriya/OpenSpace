@@ -14,7 +14,7 @@ include '../../connection.php';
 	<main>
 		<div class="content-wrap">
 			<div class="title">
-				<h1>Афиша</h1>
+				<h1>Сеансы</h1>
 			</div>
 			<div>
 				<?php

@@ -8,6 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
     <link rel="stylesheet" href="../css/sessionPage.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Сеанс</title>
 </head>
 
@@ -22,22 +23,16 @@ session_start();
     $url = explode('?', $url);
     $url = $url[1];
 
-    $nm = "SELECT films.title, films.poster, date_format(sessions.date_session, '%d.%m.%Y'), time_format(sessions.date_session, '%H:%i'), sessions.date_session from sessions inner join films on sessions.ID_film=films.ID_film where sessions.ID_session='$url'";
+    $nm = "SELECT films.title, films.poster, date_format(sessions.date_session, '%d.%m.%Y'), time_format(sessions.date_session, '%H:%i') from sessions inner join films on sessions.ID_film=films.ID_film where sessions.ID_session='$url'";
     $result1 = mysqli_query($link, $nm) or die("Ошибка " . mysqli_error($link));
     echo "<div class='films_block'>";
     $row = mysqli_fetch_row($result1);
     echo "<div class='films' id='films''>";
-    echo "<div class='phhoto'><img  src='$row[1]' style='width:20%;'></div>";
+    echo "<div class='phhoto'><img  src='../image/poster/$row[1].jpg' style='width:20%;'></div>";
     echo "<div class='info'>";
     echo "<p class='name'>" . $row[0] . "</p>";
     echo "<div class='category'>";
-    echo "<div class='icon'><img src='cinema.png'></div><p class='txt'>" . $row[2] . " / Зал " . $row[3] . "</p><br>";
-    echo "</div>";
-    echo "<div class='category'>";
-    echo "<div class='icon'><img src='date.png'></div><p class='txt'>" . $row[4] . " / " . $row[5] . "</p><br>";
-    echo "</div>";
-    echo "<div class='category'>";
-    echo "<div class='icon'><img src='format.png'></div><p class='txt'>" . $row[6] . "</p><br>";
+    echo "<p class='txt'>" . $row[2] ." ". $row[3] . "</p><br>";
     echo "</div>";
     echo "</div>";
     echo "</div>";
@@ -52,11 +47,14 @@ session_start();
     }
     // echo $weather;
     ?>
-
+            Билеты типа пикник - 8 руб.
+            <br>
+            Билеты типа машина - 10 руб.
 
     <!-- стулья -->
     <form method="post">
         <div class='purchase'>
+
             <?php
 
 
@@ -74,8 +72,6 @@ session_start();
                 }
             }
 
-
-            // НАХОДИМ ПОГОДУ, КОТОРАЯ БУДЕТ ВО ВРЕМЯ ЭТОГО СЕАНСА
 
 
             $queryRow = "SELECT distinct places.row from places";
@@ -116,7 +112,7 @@ session_start();
                     }
                     else {
                         echo '<label class="checkbox-outer">';
-                        echo '<input type="checkbox" name="tickets[]" value=' . $seat[2] . '>';
+                        echo '<input type="checkbox" name="tickets[]" class="ticket-check" value=' . $seat[2] . '>';
                         if ($seat[1]=='picnic') {
                             echo '<span class="checkbox-image-picnic"></span></label>';
                         }
@@ -130,45 +126,16 @@ session_start();
                 echo "<p class='numr'>$r</p>";
                 echo "</div>";
             }
-            echo "<p class='screenn'>Экран</p>";
-            echo "<div class='screen'><img src='screen.png'></div>";
+            // echo "<p class='screenn'>Экран</p>";
+            // echo "<div class='screen'><img src='screen.png'></div>";
             echo "</div>";
 
 
-
-                    //    if (in_array($seat[2], $purchase, true)) {
-                    //     echo '<label class="checkbox-outer">';
-                    //     echo '<input type="checkbox" disabled="disabled" >';
-                    //     if ($seat[1]=='picnic') {
-                    //         echo '<span class="checkbox-image checkbox-image-picnic-disabled"></span></label>';
-                    //     }
-                    //     elseif ($seat[1]=='car') {
-                    //     echo '<span class="checkbox-image checkbox-image-car-disabled"></span></label>';
-                    //     }
-                    // }
-                    // elseif ($weather=='Snow' || $weather=='Rain' || $weather=='Drizzle' || $weather=='Thunderstorm' && $seat[1]=='picnic') {
-                    //     echo '<label class="checkbox-outer">';
-                    //     echo '<input type="checkbox" disabled="disabled" >';
-                    //     echo '<span class="checkbox-image checkbox-image-picnic-disabled"></span></label>';
-                    // }
-                    // else {
-                    //     echo '<label class="checkbox-outer">';
-                    //     echo '<input type="checkbox" name="tickets[]" value=' . $seat[2] . '>';
-                    //     if ($seat[1]=='picnic') {
-                    //         echo '<span class="checkbox-image checkbox-image-picnic"></span></label>';
-                    //     }
-                    //     elseif ($seat[1]=='car') {
-                    //         echo '<span class="checkbox-image checkbox-image-car"></span></label>';
-                    //     }
-                        
-                    // }
-            // $selpr="SELECT seances.price from seances where seances.IDS='$url'";
-            // $respr = mysqli_query($link, $selpr) or die("Ошибка " . mysqli_error($link));
-            // $price = mysqli_fetch_row($respr);
-
             echo "<div class='inform'>";
-            // echo "<img src='costt.png'>";
+            echo "<img src='costt.png'>";
             echo "<p class='cost'>Стоимость билета</p>";
+            echo "<div id='price'></div>";
+            // echo '<input type="submit" value="массив" id="mass"/>';
             echo '<input type="submit" value="Купить билет" name="sub" class="button" style="margin-right: 30px" />';
             echo "</div>";
             echo "</div>";
@@ -220,7 +187,7 @@ session_start();
                                 $queryDiscount = "UPDATE users SET discount=5 where users.ID_user=$ID_user";
                                 $resultDiscount = mysqli_query($link, $queryDiscount) or die("Ошибка " . mysqli_error($link));
                             }
-                            // echo "<script>;alert('Покупка успешно завершена');location.href='http://localhost:83/OpenSpace/registration/result_auth.php';</script>;"; 
+                            echo "<script>;alert('Покупка успешно завершена');location.href='http://localhost:83/OpenSpace/registration/result_auth.php';</script>;"; 
 
                         }
                     }
@@ -231,7 +198,26 @@ session_start();
             <?php
             include '../footer/footer.php';
             ?>
+     <script type="text/javascript">
+const checkboxList = document.getElementsByClassName('ticket-check');
+console.log(checkboxList);
+for (var i = checkboxList.length - 1; i >= 0; i--) {
+    checkboxList[i].addEventListener('click',(e)=>{
+          console.log(e.target.value);
+          const tickets=[];
+          for (var i = checkboxList.length - 1; i >= 0; i--) {
+              if (checkboxList[i].checked===true) {
+                tickets.push(checkboxList[i].value);
+              }
+          }
+        $.post('getPrice.php', {tickets})
+                 .done(res => {
+        document.getElementById("price").innerHTML = res;
+    })
+            })
 
+}
+</script>
 
      <script type="text/javascript">
     var expanded = false;

@@ -76,7 +76,7 @@ $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($lin
         $_SESSION['username']=$row[1];
         $_SESSION['role']=$row[2];
 if ($row[2]=='admin') {
-    include('adminMain.php');
+    include('../adminPanel/filmList/filmList.php');
 }
 else
 {include('result_auth.php');}

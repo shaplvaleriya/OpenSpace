@@ -14,11 +14,12 @@ include '../../connection.php';
 	<main>
 		<div class="content-wrap">
 			<div class="title">
+
 				<h1>Афиша</h1>
 			</div>
 			<div>
 				<?php
-				$select = "SELECT distinct films.title, films.rating, films.premiere, films.duration, films.age_limit, films.poster, films.description from films ";
+				$select = "SELECT films.title, films.rating, DATE_FORMAT(films.premiere, '%d.%m.%Y'), films.duration, films.age_limit, films.poster, films.description, group_concat(distinct genres.genre separator ', '), group_concat(distinct countries.country separator ', '), films.ID_film from films inner join film_genre on films.ID_film=film_genre.ID_film inner join genres on film_genre.ID_genre=genres.ID_genre inner join film_country on films.ID_film=film_country.ID_film inner join countries on film_country.ID_country=countries.ID_country group by films.ID_film";
 				$result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
 
 				echo "<div class='film_list'>";
@@ -26,21 +27,46 @@ include '../../connection.php';
 			
 				for ($i = 0; $i < $rows; ++$i) {
 					$row = mysqli_fetch_row($result1);
-					echo "<div>";
-					echo "<div class='film_photo'>";
-					echo "<img src='../$row[5]'>";
-					echo "</div>";
-					echo "<p class='film_category'>";
-					echo $row[1], " / ", $row[2];
-					echo "</p>";
-					echo "<p class='film_name'>";
-					echo $row[0];
-					echo $row[3];
-					echo $row[4];
-					echo $row[6];
-					echo "</p>";
-					echo "</a>";
-					echo "</div>";
+					echo "<div class='film-page'>";
+			echo "<div class='film-page-photo'>
+                    <img src='../../image/poster/$row[5].jpg'>
+                    </div>";
+
+			echo "<div class='film-page-about'>";
+			echo "<div class='film-page-name'>" . $row[0] . "<a href=../changeFilm/changeFilm.php?".$row[9]."><img src='../../image/edit.png'></a></div>";
+			echo "<div class='film-page-category'>";
+			echo "<p> Рейтинг: " . $row[1] . "</p>";
+			echo "<p> Премьера: " . $row[2] . "</p>";
+			echo "<p> Длительность: " . $row[3] . " мин" . "</p>";
+			echo "<p> Возрастное ограничение: " . $row[4] . "</p>";
+			echo "<p> Жанры: " . $row[7] . "</p>";
+			echo "<p> Страна: " . $row[8] . "</p>";
+			echo "</div>";
+
+			echo "<div class='film-page-description'>";
+			echo $row[6];
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+					// echo "<div>";
+					// echo "<div class='film_photo'>";
+
+					// echo "<img src='../../image/poster/$row[5].jpg' width='200px;'>";
+					// echo "</div>";
+					// echo "<p class='film_category'>";
+					// echo $row[1], " / ", $row[2];
+					// echo "</p>";
+					// echo "<a href=../changeFilm/changeFilm.php?".$row[7].">";
+					// echo "Редактировать";
+					// echo "</a>";
+					// echo "<p class='film_name'>";
+					// echo $row[0];
+					// echo $row[3];
+					// echo $row[4];
+					// echo $row[6];
+					// echo "</p>";
+					
+					// echo "</div>";
 				}
 				?>
 			</div>

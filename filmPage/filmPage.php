@@ -31,7 +31,7 @@ include '../connection.php';
 			$row = mysqli_fetch_row($result1);
 			echo "<div class='film-page'>";
 			echo "<div class='film-page-photo'>
-                    <img src='$row[5]'>
+                    <img src='../image/poster/$row[5].jpg'>
                     </div>";
 
 			echo "<div class='film-page-about'>";
@@ -60,7 +60,10 @@ include '../connection.php';
 			$rows = mysqli_num_rows($requestSession);
 			echo "<div class='session'>";
 			for ($i = 0; $i < $rows; ++$i) {
+				$date_now = date("Y-m-d H:i:s");
 				$row = mysqli_fetch_row($requestSession);
+				if ($date_now<$row[0]) {
+				
 				echo "<div class='session-block' date='$row[0]'>";
 				echo "<a href=../sessionPage/sessionPage.php?" . $row[1] . ">";
 				$date = explode(' ', $row[0]);
@@ -76,6 +79,7 @@ include '../connection.php';
 				echo "</div>";
 				echo "</a>";
 				echo "</div>";
+				}
 			}
 			echo "</div>";
 			?>

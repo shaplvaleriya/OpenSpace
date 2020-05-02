@@ -1,3 +1,5 @@
+<?php if (session_id()=='')
+session_start(); ?>
 <?php
 include '../menu/menu.php';
 include '../connection.php';
@@ -15,6 +17,12 @@ include '../connection.php';
 
         <div id="forum_list">
         	<?php 
+
+if ($_SESSION['username']=='') {
+    echo "Зарегистрируйтесь,чтобы общаться на форуме";
+}
+else{
+
 $selectMessage = "SELECT message.text_message, message.date_message, users.name from message inner join users on message.ID_user=users.ID_user Order by message.date_message";
 $resultMessage = mysqli_query($link, $selectMessage) or die("Ошибка " . mysqli_error($link));
 $rowsMessage = mysqli_num_rows($resultMessage);
@@ -25,14 +33,15 @@ for ($i=0; $i < $rowsMessage ; $i++) {
 	echo $rowMessage[0];
 	echo "<br>";
 }
-			
-        	 ?>	
-        	 	 </div>
+
+			?>	
+</div>
         	 <form id="forum-form" method="POST">
                 <input type="text" id="forum-input" name="search" placeholder="Поиск"/>
                 <input type="submit">
            
         </form>
+    <?php } ?>
         </div>
 	</main>
 

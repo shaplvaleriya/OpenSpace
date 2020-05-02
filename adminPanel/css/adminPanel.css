@@ -1,0 +1,151 @@
+@font-face {
+  font-family: Gilroy;
+  src: url(../../font/Gilroy-Light.ttf);
+}
+
+@font-face {
+  font-family: Gilroy-Bold;
+  src: url(../../font/Gilroy-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: Gilroy-Heavy;
+  src: url(../../font/Gilroy-Heavy.ttf);
+}
+
+body {
+  background-color: #000 !important;
+  color: #C7CEEB !important;
+  overflow-x: hidden;
+  font-family: Gilroy;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	margin-left: 25vw;
+	padding-top: 45px;
+}
+
+header
+{
+	position: fixed;
+	display: flex;
+	background-color: #202127;
+	height: 100vh;
+	width: 20vw;
+	z-index: 10;
+}
+
+header nav .nav-logo img {
+  width: 60px;
+  z-index: 1;
+  margin-bottom: 20px;
+}
+
+header nav .nav-content .nav-list ul li {
+  list-style-type: none;
+  list-style: outside none none;
+  margin: 15px 0; 
+
+}
+
+header nav .nav-content .nav-list ul li a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+header nav .nav-content .nav-list ul li a img {
+ width: 20px;
+ margin-bottom: -5px;
+}
+
+.out
+{
+	margin-top: 50px;
+}
+
+	input{
+	  color: rgb(228, 228, 228);
+	  border-bottom: 1px solid #764098;
+	  border-top: none;
+	  border-left: none;
+	  border-right: none;
+	  background: none;
+	  outline: none;
+	  margin-top: 10px;
+	  padding: 5px 10px;
+	}
+
+.button
+{ 
+  /*margin-top: 30px;*/
+  width: 200px;
+  height: 40px;
+  font-family: Gilroy;
+  border-radius: 25px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
+  background: linear-gradient(0.25turn, #764098, #21409A);
+}
+
+
+.film-page
+{
+  display: flex;
+  justify-content: center;
+  width: 75vw;
+  margin-bottom: 30px;
+}
+
+.film-page-photo
+{
+  flex-basis: 25%;
+}
+
+.film-page-photo img
+{
+  width: 100%;
+}
+
+.film-page-about
+{
+  flex-basis: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+/*  align-items: center;
+  text-align: center;*/
+  padding: 0 45px;
+}
+
+.film-page-name
+{
+  font-family:  Gilroy-Bold;
+  font-size: 30px;
+}
+
+.film-page-name img
+{
+	width: 4%;
+	margin-left: 20px;
+	margin-bottom: -2px;
+}
+
+.film-page-category
+{
+  opacity: 0.7;
+}
+
+.film-page-category p
+{
+  /*padding: 3px 0;*/
+  margin: 0;
+  font-size: 15px;
+}	

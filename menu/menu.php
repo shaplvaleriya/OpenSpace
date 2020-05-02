@@ -21,6 +21,7 @@ session_start(); ?>
                         <li id="stock"><a href="../stock/stock.php" data-hover="Акции">Акции</a></li>
                         <li id="food"><a href="../food/food.php" data-hover="Еда и напитки">Еда и напитки</a></li>
                         <li><a href="#" data-hover="Контакты">Контакты</a></li>
+                         <li><a href="../forum/forum.php" data-hover="Форум">Форум</a></li>
                         <li>
             <form id="search-form">
                 <div  class="search-box">

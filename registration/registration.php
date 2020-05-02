@@ -1,3 +1,6 @@
+<?php
+include '../menu/menu.php';
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
@@ -6,9 +9,7 @@
     <link rel="stylesheet" href="../css/registration.css">
 	</head>
 	<body>		
-		<?php
-		include '../menu/menu.php';
-		?>
+
 		<main>
 		<div class="content">
       <div class="left-part"> 

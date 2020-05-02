@@ -16,6 +16,7 @@ include '../../connection.php';
     <body>
         <main>
             <form action="" method="POST" >
+            <h2>Добавить сеанс</h2>
                 <select name="film">
 <?php 
     $queryFilm = "SELECT title, ID_film from films ORDER BY premiere DESC";
@@ -36,7 +37,7 @@ include '../../connection.php';
                 <input type="radio" name="time" value="21:00:00">21:00
                  <input type="radio" name="time" value="00:00:00">00:00
                 <br>
-                <input type="submit" value="Добавить сеанс" name="addSession">
+                <input type="submit" value="Добавить сеанс" name="addSession" class="button">
             </form>
         </main>
     </body>

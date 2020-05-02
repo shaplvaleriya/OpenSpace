@@ -16,7 +16,8 @@ include '../../connection.php';
     <body>
         <main>
 <form action="" method="post">
-    выберите 4 фильма
+                <h2>Добавить голосование</h2>
+    выберите фильмы для голосования
     <?php 
     $queryFilm = "SELECT title, ID_film from films where voting=1";
     $resultFilm = mysqli_query($link, $queryFilm) or die("Ошибка " . mysqli_error($link));
@@ -27,7 +28,7 @@ include '../../connection.php';
     echo "<br>";
 }
  ?>
-<input type="submit" value="добавить голосование" name="voting">
+<input type="submit" value="добавить голосование" name="voting" class="button">
 </form>
 
         </main>

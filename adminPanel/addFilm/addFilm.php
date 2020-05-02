@@ -1,4 +1,6 @@
-<?php
+<?php if (session_id()=='');
+    session_start();
+ ?><?php
 include '../adminMenu/adminMenu.php';
 include '../../connection.php';
 ?>
@@ -7,29 +9,24 @@ include '../../connection.php';
     <head>
     <meta charset="UTF-8" />
     <title>Добавить фильм</title>
-    <link rel="stylesheet" href="../css/registration.css">
     </head>
     <body>
         <main>
+            <h2>Добавить фильм</h2>
             <form action="" method="POST" enctype='multipart/form-data'>
-                <input type="text" name="title" placeholder="Название фильма">
+                <table>
+                <tr><td>Название фильма:</td> <td><input type="text" name="title" placeholder="Название фильма"></td></tr>
+                <tr><td>Рейтинг:</td> <td><input type="number" min="0" max="10" step="0.1" name="rating" value="5"></td></tr>
+                <tr><td>Дата премьеры:</td> <td><input type="date" name="premiere"></td></tr>
+                <tr><td>Длительность:</td> <td><input type="text" name="duration" placeholder="Длительность"></td></tr>
+                <tr><td>Возрастное ограничение:</td> <td><input type="text" name="age_limit" placeholder="Возрастное ограничение"></td></tr>
+                <tr><td>Постер:</td> <td><input type="file" name="poster"></td></tr>
+                <tr><td>Описание:</td> <td><textarea name="description" id="" cols="20" rows="5"></textarea></td></tr>
+                <tr><td>NotForVoting<input type="radio" name="voting" value="0" checked></td><td>ForVoting<input type="radio" name="voting" value="1"></td>
+                </tr>
+                </table>
                 <br>
-                <input type="number" min="0" max="10" step="0.1" name="rating" value="5">
-                <br>
-                <input type="date" name="premiere">
-                <br>
-                <input type="text" name="duration" placeholder="Длительность">
-                <br>
-                <input type="text" name="age_limit" placeholder="Возрастное ограничение">
-                <br>
-                <input type="file" name="poster">
-                <br>
-                <textarea name="description" id="" cols="20" rows="5"></textarea>
-                <br>
-                <input type="radio" name="voting" value="1">
-                <input type="radio" name="voting" value="0" checked>
-                <br>
-                <input type="submit" value="Добавить фильм" name="addFilm">
+                <input type="submit" value="Добавить фильм" name="addFilm" class="button">
             </form>
         </main>
     </body>
@@ -37,9 +34,6 @@ include '../../connection.php';
 
 
 <?php
-if (session_id()=='');
-    session_start();
-
 if(isset($_POST['addFilm']))
 {
 if (isset($_POST['title'])) { $title = $_POST['title']; if ($title == '') { unset($title);} }
@@ -123,7 +117,7 @@ if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || em
             $resultAdd = mysqli_query($link, $queryAdd) or die("Ошибка " . mysqli_error($link));
                 if ($resultAdd)
                 {             
-                echo "<script>alert('фильм добавлен'); location.href='http://localhost:83/OpenSpace/adminPanel/addFilm/addFilm.php';</script>";
+                echo "<script>alert('фильм добавлен'); location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
                 mysqli_close($link);
                 }
                 else {

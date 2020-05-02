@@ -9,6 +9,16 @@ include '../connection.php';
 		<title>OpenSpace</title>
 		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
 	</head>
+	<style>
+		.mod
+		{
+			display: none;
+		}
+		.active
+		{
+			display: block;
+		}
+	</style>
 	<body>
 		<main>
 			<div class="morph-wrap">
@@ -17,7 +27,10 @@ include '../connection.php';
 				</svg>
 			</div>
 			<div class="content-wrap">
-<div id="modal">
+				<?php 
+                if ($_SESSION['username']!=='') {
+                    ?>
+<div id="modal" class="mod">
 	<form action="" id="voting-form" method="POST">
 		<?php 
 	$select = "SELECT ID_film from voting";
@@ -45,6 +58,7 @@ include '../connection.php';
 	</form>
 
 </div>
+<?php } ?>
 			</div>
 			<!-- Related demos -->
 			<section class="content content--related">
@@ -60,6 +74,7 @@ include '../connection.php';
 		    }
 		  });
 		});
+
 
 		document.getElementById('voting').addEventListener('click',(e)=>{
 			e.preventDefault();

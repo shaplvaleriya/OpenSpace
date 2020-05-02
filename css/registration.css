@@ -88,6 +88,7 @@ main {
   /*justify-content: space-around;*/
   align-items: center;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .form-logo
