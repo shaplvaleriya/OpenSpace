@@ -1,0 +1,44 @@
+.forum
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#forum_list
+{
+  width: 70vw;
+  border-radius: 10px;
+  background-color: #202127;
+  padding: 20px 30px;
+}
+
+.forum-message1
+{
+  display: flex;
+align-items: self-end;
+flex-direction: column;
+}
+
+.forum-message2
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.forum-message-you
+{
+  background-color: #21409A;
+  width: 300px;
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+
+.forum-message-me
+{
+  background-color: #764098;
+  width: 300px;
+  border-radius: 10px;
+  padding: 5px 15px;
+
+}

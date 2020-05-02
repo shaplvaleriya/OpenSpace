@@ -10,6 +10,7 @@ include '../connection.php';
 	<title>OpenSpace</title>
 	<link rel="stylesheet" href="../css/animate.css">
 	<link rel="stylesheet" type="text/css" href="../css/poster.css" />
+	<link rel="stylesheet" href="../css/media-quaries.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
@@ -30,9 +31,10 @@ include '../connection.php';
 				</div>
 			</form> -->
 <div class="content-filter">
+	<div class="filter filter-genre">
 			<select id="genre-filter">
-			<option value="" selected disabled hidden>Choose genre</option>
-			<option value="">All</option>
+			<option value="" selected disabled hidden>Выберите жанр</option>
+			<option value="">Все жанры</option>
 			<?php
 				$select = "SELECT *  FROM `genres`";
 				$result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
@@ -43,10 +45,11 @@ include '../connection.php';
 				}
 				?>
 			</select>
-
+</div>
+<div  class="filter filter-country">
 			<select id="country-filter">
-			<option value="" selected disabled hidden>Choose country</option>
-			<option value="">All</option>
+			<option value="" selected disabled hidden>Выберите страну</option>
+			<option value="">Все страны</option>
 			<?php
 				$select = "SELECT *  FROM `countries`";
 				$result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
@@ -57,6 +60,7 @@ include '../connection.php';
 				}
 				?>
 			</select>
+		</div>
 </div>
 			<div id='film_list' class="film_list">
 				<?php
@@ -89,11 +93,21 @@ include '../connection.php';
 	<?php
 	include '../footer/footer.php';
 	?>
+
+<script>
+$( "#genre-filter" ).click(function() {
+  $('.filter-genre').toggleClass( "filter-border" );
+});
+$( "#country-filter" ).click(function() {
+  $('.filter-country').toggleClass( "filter-border" );
+});
+</script>
 	<script src="../js/wow.min.js"></script>
 	<script>
 		new WOW().init();
 	</script>
 	<script src="poster.js"></script>
+	<!-- <script src="../js/select.js"></script> -->
 	<script src="../js/imagesloaded.pkgd.min.js"></script>
 	<script src="../js/anime.min.js"></script>
 	<script src="../js/scrollMonitor.js"></script>

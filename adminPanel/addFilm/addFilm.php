@@ -24,6 +24,27 @@ include '../../connection.php';
                 <tr><td>Описание:</td> <td><textarea name="description" id="" cols="20" rows="5"></textarea></td></tr>
                 <tr><td>NotForVoting<input type="radio" name="voting" value="0" checked></td><td>ForVoting<input type="radio" name="voting" value="1"></td>
                 </tr>
+                <?php
+                $select = "SELECT `ID_genre`, `genre` FROM `genres`";
+                $result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
+                $rows = mysqli_num_rows($result1);
+            
+                for ($i = 0; $i < $rows; ++$i) {
+                    $row = mysqli_fetch_row($result1);
+                    echo '<input type="checkbox" name="genres[]" value=' . $row[0] . '>';
+                    echo $row[1];
+                }
+echo "<br>";
+                 $selectC = "SELECT `ID_country`, `country` FROM `countries`";
+                $resultC = mysqli_query($link, $selectC) or die("Ошибка " . mysqli_error($link));
+                $rowsC = mysqli_num_rows($resultC);
+            
+                for ($i = 0; $i < $rowsC; ++$i) {
+                    $rowC = mysqli_fetch_row($resultC);
+                    echo '<input type="checkbox" name="countries[]" value=' . $rowC[0] . '>';
+                    echo $rowC[1];
+                }
+                ?>
                 </table>
                 <br>
                 <input type="submit" value="Добавить фильм" name="addFilm" class="button">
@@ -49,6 +70,9 @@ if (isset($_POST['age_limit'])) { $age_limit=$_POST['age_limit']; if ($age_limit
 if (isset($_POST['description'])) { $description=$_POST['description']; if ($description =='') { unset($description);} }
 
 if (isset($_POST['voting'])) { $voting=$_POST['voting']; if ($voting =='') { unset($voting);} }
+if (isset($_POST['genres'])) { $genres=$_POST['genres']; if ($genres =='') { unset($genres);} }
+
+if (isset($_POST['countries'])) { $countries=$_POST['countries']; if ($countries =='') { unset($countries);} }
 
 if (isset($_FILES['poster'])) { $poster = $_FILES['poster']; if ($poster == '') { unset($poster);} }
 
@@ -70,17 +94,6 @@ imagecopyresampled($Tmp, $Image, 0, 0, 0, 0, 800, 1100, $Size[0], $Size[1]);
         $row = mysqli_fetch_row($result3);
         $id_new_post=$row[0];
     }
-
-    // $files=glob('../image/poster/*', GLOB_ONLYDIR);
-    // foreach ($files as $num => $Dir) {
-    //     $Num++;
-    //     $Count=sizeof(glob($Dir.'/*.*'));
-    //     if ($Count<250) {
-    //         $Download = $Dir.'/'.$id_new_post;
-    //         break;
-    //     }
-    // }
-    // echo "hk";
 $Download = '../../image/poster/'.$id_new_post;
 imagejpeg($Tmp, $Download.'.jpg');
 imagedestroy($Image);
@@ -89,7 +102,7 @@ imagedestroy($Tmp);
 
 
 
-if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || empty($age_limit) || empty($description)) {
+if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || empty($age_limit) || empty($description) || empty($genres) || empty($countries)) {
     echo "<script>;alert('Все поля должны быть заполнены'); location.href='http://localhost:83/OpenSpace/adminPanel/addFilm/addFilm.php';</script>;";
     mysqli_close($link);
     }
@@ -116,7 +129,20 @@ if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || em
             $queryAdd ="INSERT INTO films (title, rating, premiere, duration, age_limit, poster, description, voting) VALUES('$title', '$rating', '$premiere', '$duration', '$age_limit', '$id_new_post', '$description', '$voting')";
             $resultAdd = mysqli_query($link, $queryAdd) or die("Ошибка " . mysqli_error($link));
                 if ($resultAdd)
-                {             
+                {
+                $queryID ="SELECT ID_film FROM films WHERE title='$title'";
+                $resultID = mysqli_query($link, $queryID) or die("Ошибка " . mysqli_error($link));
+                $rowID = mysqli_fetch_row($resultID);   
+                foreach ($_POST['genres'] as $genreValue) {
+                $queryAddGenre ="INSERT INTO film_genre (ID_film, ID_genre) VALUES('$rowID[0]', '$genreValue')";
+                $resultAddGenre = mysqli_query($link, $queryAddGenre) or die("Ошибка " . mysqli_error($link));
+                }
+
+                foreach ($_POST['countries'] as $countryValue) {
+                $queryAddCountry ="INSERT INTO film_country (ID_film, ID_country) VALUES('$rowID[0]', '$countryValue')";
+                $resultAddCountry = mysqli_query($link, $queryAddCountry) or die("Ошибка " . mysqli_error($link));
+                }
+
                 echo "<script>alert('фильм добавлен'); location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
                 mysqli_close($link);
                 }
