@@ -16,7 +16,7 @@ session_start(); ?>
             <div class="nav-content">
                 <div class="nav-list">
                     <ul>
-                        <li><a href="../main/index.php" data-hover="Главная">Главная</a></li>
+                        <li id="index"><a href="../main/index.php" data-hover="Главная">Главная</a></li>
                         <li id="poster"><a href="../poster/poster.php" data-hover="Афиша">Афиша</a></li>
                         <li id="stock"><a href="../stock/stock.php" data-hover="Акции">Акции</a></li>
                         <li id="food"><a href="../food/food.php" data-hover="Еда и напитки">Еда и напитки</a></li>
