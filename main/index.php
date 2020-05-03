@@ -82,7 +82,7 @@ include '../connection.php';
 	<form method="POST">
         <div class="input">
           <div class="inputGroup">
-            <input type="radio" name="film" id="now" value="now"/>
+            <input type="radio" name="film" id="now" value="now" checked/>
             <label for="now">Сейчас в кино</label>
           </div>
           <div class="inputGroup">
@@ -94,10 +94,36 @@ include '../connection.php';
           <hr size="1" align="center">
         </div>
       </form>
-      <div class="owl-carousel owl-theme secondary-slider" id="owl-content">
+      <div class="owl-carousel owl-theme secondary-slider" id="now-content">
 					<?php 
-					include '../connection.php';
+					$selectSession="SELECT ID_film from sessions where date(sessions.date_session)>date(now())";
+					$resultSession = mysqli_query($link, $selectSession) or die("Ошибка " . mysqli_error($link));
+					$rowsSession = mysqli_num_rows($resultSession);
+					for ($k=0; $k < $rowsSession; $k++) { 
+					$rowSession = mysqli_fetch_row($resultSession);
+
 					$selectSoon = "SELECT films.title, films.rating,  films.age_limit, films.poster, group_concat(distinct genres.genre separator ', '), films.ID_film from films inner join film_genre on films.ID_film=film_genre.ID_film inner join genres on film_genre.ID_genre=genres.ID_genre group by films.ID_film";
+					$resultSoon = mysqli_query($link, $selectSoon) or die("Ошибка " . mysqli_error($link));
+					$rowsSoon = mysqli_num_rows($resultSoon);
+				for ($i = 0; $i < $rowsSoon; ++$i) {
+					$rowSoon = mysqli_fetch_row($resultSoon);
+					if ($rowSession[0]==$rowSoon[5]) {
+					echo "<div class='secondary-slider__slide'>";
+					echo "<img src='../image/poster/".$rowSoon[3].".jpg'>";
+					echo "<h2>".$rowSoon[0]."</h2>";
+					echo "<p>".$rowSoon[4]."</p>";
+					echo "<div class='owl-button'><button><a href='http://localhost:83/OpenSpace/filmPage/filmPage.php?".$rowSoon[5]."'>Купить билет</a></button></div>";
+					echo "</div>";
+					}
+					
+				}
+				}
+					 ?>
+
+		</div>
+			<div class="owl-carousel owl-theme secondary-slider" id="soon-content">
+					<?php 
+					$selectSoon = "SELECT distinct films.title, films.rating,  films.age_limit, films.poster from films left join (select * from (select * from sessions order by date_session desc) d group by ID_film) s on films.ID_film=s.ID_film where s.ID_session is null or date(s.date_session)<date(now())";
 					$resultSoon = mysqli_query($link, $selectSoon) or die("Ошибка " . mysqli_error($link));
 					$rowsSoon = mysqli_num_rows($resultSoon);
 				for ($i = 0; $i < $rowsSoon; ++$i) {
@@ -110,8 +136,8 @@ include '../connection.php';
 					echo "</div>";
 				}
 					 ?>
-
 		</div>
+		      
 	</div>
 		<div class="content-wrap">
 
@@ -125,25 +151,28 @@ include '../connection.php';
 		?>
 	</main>
 	<script type="text/javascript">
-    $('html').keydown(function(e){
-      if (e.keyCode == 116) {
-        e.preventDefault();
-      }
-    });
-    // $(() => {
-    //   $('#soon').removeAttr('checked');
-    //   $('#now').attr('checked', true);
-    //   $('#owl-content').load('../main/now.php');
+    // $('html').keydown(function(e){
+      // if (e.keyCode == 116) {
+        // e.preventDefault();
+      // }
     // });
+    $(() => {
+      $('#soon').removeAttr('checked');
+      $('#now').attr('checked', true);
+      $('#now-content').css({'display':'block'});
+      $('#soon-content').css({'display':'none'});
+    });
     $('#now').click(() => {
       $('#soon').removeAttr('checked');
       $('#now').attr('checked', true);
-      $('#owl-content').load('../main/now.php');
+      $('#now-content').css({'display':'block'});
+      $('#soon-content').css({'display':'none'});
     });
     $('#soon').click(() => {
       $('#now').removeAttr('checked');
       $('#soon').attr('checked', true);
-      $('#owl-content').load('../main/soon.php');
+      $('#now-content').css({'display':'none'});
+      $('#soon-content').css({'display':'block'});
     });
 
   </script>

@@ -16,7 +16,9 @@ include '../connection.php';
 <body>
 	<main>
 <div class="forum">
+	<div class="message">
         <div id="forum_list">
+        	
         	<?php 
 
 if ($_SESSION['username']=='') {
@@ -62,13 +64,16 @@ for ($i=0; $i < $rowsMessage ; $i++) {
 }
 
 			?>	
-</div>
-        	 <form id="forum-form" method="POST">
-                <input type="text" id="forum-input" name="search" placeholder="Поиск"/>
+			</div>
+			<div class="text-message">
+ 	 <form id="forum-form" method="POST">
+                <input type="text" id="forum-input" name="search" placeholder="Введите сообщение"/>
                 <input type="submit">
            
-        </form>
+        </form></div>
     <?php } ?>
+</div>
+       
         </div>
 	</main>
 <script>
