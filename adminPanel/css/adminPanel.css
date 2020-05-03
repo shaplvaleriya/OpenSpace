@@ -27,7 +27,7 @@ main {
 	width: 100%;
 	overflow: hidden;
 	margin-left: 25vw;
-	padding-top: 45px;
+	/*padding-top: 30px;*/
 }
 
 header
@@ -69,6 +69,12 @@ header nav .nav-content .nav-list ul li a img {
 	margin-top: 50px;
 }
 
+h1
+{
+  font-family: Gilroy-Heavy;
+  font-size: 45px;
+}
+
 	input{
 	  color: rgb(228, 228, 228);
 	  border-bottom: 1px solid #764098;
@@ -95,6 +101,16 @@ header nav .nav-content .nav-list ul li a img {
   background: linear-gradient(0.25turn, #764098, #21409A);
 }
 
+.but-delete
+{
+  text-indent: -99999px;
+white-space: nowrap;
+overflow: hidden;
+background: url(../../image/delete.png) no-repeat top left;
+border: none;
+width: 30px;
+height: 30px;
+}
 
 .film-page
 {
@@ -129,13 +145,14 @@ header nav .nav-content .nav-list ul li a img {
 {
   font-family:  Gilroy-Bold;
   font-size: 30px;
+  display: flex;
 }
 
 .film-page-name img
 {
 	width: 4%;
 	margin-left: 20px;
-	margin-bottom: -2px;
+	margin-bottom: -3px;
 }
 
 .film-page-category

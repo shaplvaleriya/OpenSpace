@@ -1,7 +1,7 @@
 .first-slider {
     width: 800px;
     height: 500px;
-    background-color: #fff;
+    /*background-color: #fff;*/
 }
 
 .main-slider__slide {
@@ -18,10 +18,53 @@
 }
 
 .poster-info {
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.poster-header
+{
+     font-family: Gilroy-Bold;
+     font-size: 70px;
+     margin-left: -80px;
+     text-shadow: 5px 5px 5px #00000096;
+}
+
+.poster-description
+{
+    font-size: 17px;
+    margin: 30px 0;
+}
+
+.poster-button, .poster-description
+{
+    padding-left: 20px;
+}
+
+.poster-button button
+{
+  width: 170px;
+  height: 40px;
+}
+
+button
+{
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
+  background: linear-gradient(0.25turn, #764098, #21409A);
+}
+
+a
+{
+  font-size: 16px;
+  font-family: Gilroy;
+  color: #C7CEEB;
+  text-decoration: none;
 }
 
 .owl-prev,
@@ -69,9 +112,25 @@
 }
 
 .secondary-slider__slide {
-    background-color: rgb(148, 131, 131);
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*background-color: rgb(148, 131, 131);*/
+    height: 500px;
+    align-items: center;
 }
+
+.secondary-slider__slide h2
+{
+    font-family: Gilroy-Bold;
+}
+
+.owl-button button
+{
+  width: 150px;
+  height: 30px;
+}
+
 
 .owl-dot {
     background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A)) !important;
@@ -85,4 +144,38 @@
 
 .owl-dots .active{
     opacity: 1;
+}
+
+form
+{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  width: 85vw;
+}
+.input
+{
+  display: flex;
+  justify-content: flex-start;
+}
+.inputGroup
+{
+  padding-right: 15px;
+  font-size: 20px;
+}
+.inputGroup input
+{
+  display: none;
+}
+
+.inputGroup input:checked ~ label 
+{
+  color: #fff;
+  border-bottom:4px solid #5562eb;
+  padding-bottom: 5px;
+}
+.form-line
+{
+  color: #707070;
+  width: 260px;
 }

@@ -15,36 +15,48 @@ include '../../connection.php';
             <h2>Добавить фильм</h2>
             <form action="" method="POST" enctype='multipart/form-data'>
                 <table>
-                <tr><td>Название фильма:</td> <td><input type="text" name="title" placeholder="Название фильма"></td></tr>
-                <tr><td>Рейтинг:</td> <td><input type="number" min="0" max="10" step="0.1" name="rating" value="5"></td></tr>
-                <tr><td>Дата премьеры:</td> <td><input type="date" name="premiere"></td></tr>
-                <tr><td>Длительность:</td> <td><input type="text" name="duration" placeholder="Длительность"></td></tr>
-                <tr><td>Возрастное ограничение:</td> <td><input type="text" name="age_limit" placeholder="Возрастное ограничение"></td></tr>
-                <tr><td>Постер:</td> <td><input type="file" name="poster"></td></tr>
-                <tr><td>Описание:</td> <td><textarea name="description" id="" cols="20" rows="5"></textarea></td></tr>
-                <tr><td>NotForVoting<input type="radio" name="voting" value="0" checked></td><td>ForVoting<input type="radio" name="voting" value="1"></td>
-                </tr>
-                <?php
+                <tr><td>Название фильма:</td> <td><input type="text" name="title" placeholder="Название фильма"></td>
+<td rowspan="5">Выберите жанры:
+     <?php
                 $select = "SELECT `ID_genre`, `genre` FROM `genres`";
                 $result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
                 $rows = mysqli_num_rows($result1);
             
                 for ($i = 0; $i < $rows; ++$i) {
                     $row = mysqli_fetch_row($result1);
+                    echo "<div>";
                     echo '<input type="checkbox" name="genres[]" value=' . $row[0] . '>';
                     echo $row[1];
+                    echo "</div>";
                 }
-echo "<br>";
+    ?>
+</td>
+<td rowspan="5">Выберите страны:
+    <?php
                  $selectC = "SELECT `ID_country`, `country` FROM `countries`";
                 $resultC = mysqli_query($link, $selectC) or die("Ошибка " . mysqli_error($link));
                 $rowsC = mysqli_num_rows($resultC);
             
                 for ($i = 0; $i < $rowsC; ++$i) {
                     $rowC = mysqli_fetch_row($resultC);
+                     echo "<div>";
                     echo '<input type="checkbox" name="countries[]" value=' . $rowC[0] . '>';
                     echo $rowC[1];
+                     echo "</div>";
                 }
                 ?>
+</td>
+                </tr>
+                <tr><td>Рейтинг:</td> <td><input type="number" min="0" max="10" step="0.1" name="rating" value="5"></td></tr>
+                <tr><td>Дата премьеры:</td> <td><input type="date" name="premiere"></td></tr>
+                <tr><td>Длительность:</td> <td><input type="text" name="duration" placeholder="Длительность"></td>
+                </tr>
+                <tr><td>Возрастное ограничение:</td> <td><input type="text" name="age_limit" placeholder="Возрастное ограничение"></td></tr>
+                <tr><td>Постер:</td> <td><input type="file" name="poster"></td></tr>
+                <tr><td>Описание:</td> <td><textarea name="description" id="" cols="20" rows="5"></textarea></td></tr>
+                <tr><td>NotForVoting<input type="radio" name="voting" value="0" checked></td><td>ForVoting<input type="radio" name="voting" value="1"></td>
+                </tr>
+               
                 </table>
                 <br>
                 <input type="submit" value="Добавить фильм" name="addFilm" class="button">

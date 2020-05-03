@@ -38,86 +38,81 @@ include '../connection.php';
 		<div class="content-wrap">
 			<div class="first-slider">
 				<div class="main-slider">
-					<div>
-						<div class="main-slider__slide">
-							<div class="poster-image">
-								<img src="../image/poster/2.jpg">
+				<?php 
+					$select = "SELECT films.title, films.rating,  films.age_limit, films.poster, group_concat(distinct genres.genre separator ', '), films.ID_film from films inner join film_genre on films.ID_film=film_genre.ID_film inner join genres on film_genre.ID_genre=genres.ID_genre group by films.ID_film";
+					$result = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
+					$rows = mysqli_num_rows($result);
+			
+				for ($i = 0; $i < $rows; ++$i) {
+					$row = mysqli_fetch_row($result);
+				?>
+				<div>
+					<div class="main-slider__slide">
+						<div class="poster-image">
+							<?php 
+							echo "<img src='../image/poster/".$row[3].".jpg'>";
+							 ?>
+						</div>
+						<div class="poster-info">
+							<div class="poster-header">
+								<?php echo $row[0] ?>
 							</div>
-							<div class="poster-info">
-								<div class="poster-header">Заголовок первый</div>
-								<div class="poster-description">Осание</div>
-								<div class="poster-button"><button>Заказать</button></div>
+							<div class="poster-description">
+								<?php echo $row[4]; echo "<br>";  echo $row[2]; echo "/"; echo $row[1]; ?>
+							</div>
+							<div class="poster-button">
+								<?php echo "<button><a href='http://localhost:83/OpenSpace/filmPage/filmPage.php?".$row[5]."'>Купить билет</a></button>"; 
+								?>
 							</div>
 						</div>
 					</div>
-					<div>
-						<div class="main-slider__slide">
-							<div class="poster-image">
-								<img src="../image/poster/1.jpg">
-							</div>
-							<div class="poster-info">
-								<div class="poster-header">Заголовок второй</div>
-								<div class="poster-description">Осание</div>
-								<div class="poster-button"><button>Заказать</button></div>
-							</div>
-						</div>
 					</div>
-					<div>
-						<div class="main-slider__slide">
-							<div class="poster-image">
-								<img src="../image/poster/3.jpg">
-							</div>
-							<div class="poster-info">
-								<div class="poster-header">Заголовок третий</div>
-								<div class="poster-description">Осание</div>
-								<div class="poster-button"><button>Заказать</button></div>
-							</div>
-						</div>
-					</div>
+
+				<?php
+				}
+				?>
+					
 				</div>
 			</div>
 		</div>
+
+
 
 		<div class="content-wrap">
-			<div class="owl-carousel owl-theme secondary-slider">
-				<div class="secondary-slider__slide">
-					<h2>Дамбо</h2>
-					<p>Семейный фильм, приключения, <br>фэнтези 6+</p>
-					<button><a href="http://localhost/cinema/filmPage/filmPage.php?4">Купить билет</a></button>
-				</div>
-				<div class="secondary-slider__slide">
-					<h2>Аладдин</h2>
-					<p>Семейный фильм, приключения, <br>фэнтези 6+</p>
-					<button>Купить билет</button>
-				</div>
-				<div class="secondary-slider__slide">
-					<h2>Мстители</h2>
-					<p>Фэнтези, боевик, фантастика, <br> приключения 16+</p>
-					<button> <a href="http://localhost/cinema/filmPage/filmPage.php?8">Купить билет</a></button>
-				</div>
-				<div class="secondary-slider__slide">
-					<h2>Как приручить дракона</h2>
-					<p>мультфильм, фэнтези, комедия,<br> приключения 6+</p>
-					<button><a href="http://localhost/cinema/filmPage/filmPage.php?1">Купить билет</a></button>
-				</div>
-				<div class="secondary-slider__slide">
-					<h2>Аладдин</h2>
-					<p>Семейный фильм, приключения, <br>фэнтези 6+</p>
-					<button>Купить билет</button>
-				</div>
-				<div class="secondary-slider__slide">
-					<h2>Мстители</h2>
-					<p>Фэнтези, боевик, фантастика, <br> приключения 16+</p>
-					<button> <a href="http://localhost/cinema/filmPage/filmPage.php?8">Купить билет</a></button>
-				</div>
-				<div class="secondary-slider__slide">
-					<h2>Аладдин</h2>
-					<p>Семейный фильм, приключения, <br>фэнтези 6+</p>
-					<button>Купить билет</button>
-				</div>
-			</div>
-		</div>
+	<form method="POST">
+        <div class="input">
+          <div class="inputGroup">
+            <input type="radio" name="film" id="now" value="now"/>
+            <label for="now">Сейчас в кино</label>
+          </div>
+          <div class="inputGroup">
+            <input type="radio" name="film" id="soon" value="soon" />
+            <label for="soon">Скоро в кино</label>
+          </div>
+        </div>
+        <div class="form-line">
+          <hr size="1" align="center">
+        </div>
+      </form>
+      <div class="owl-carousel owl-theme secondary-slider" id="owl-content">
+					<?php 
+					include '../connection.php';
+					$selectSoon = "SELECT films.title, films.rating,  films.age_limit, films.poster, group_concat(distinct genres.genre separator ', '), films.ID_film from films inner join film_genre on films.ID_film=film_genre.ID_film inner join genres on film_genre.ID_genre=genres.ID_genre group by films.ID_film";
+					$resultSoon = mysqli_query($link, $selectSoon) or die("Ошибка " . mysqli_error($link));
+					$rowsSoon = mysqli_num_rows($resultSoon);
+				for ($i = 0; $i < $rowsSoon; ++$i) {
+					$rowSoon = mysqli_fetch_row($resultSoon);
+					echo "<div class='secondary-slider__slide'>";
+					echo "<img src='../image/poster/".$rowSoon[3].".jpg'>";
+					echo "<h2>".$rowSoon[0]."</h2>";
+					echo "<p>".$rowSoon[4]."</p>";
+					echo "<div class='owl-button'><button><a href='http://localhost:83/OpenSpace/filmPage/filmPage.php?".$rowSoon[5]."'>Купить билет</a></button></div>";
+					echo "</div>";
+				}
+					 ?>
 
+		</div>
+	</div>
 		<div class="content-wrap">
 
 		</div>
@@ -129,6 +124,29 @@ include '../connection.php';
 		include '../footer/footer.php';
 		?>
 	</main>
+	<script type="text/javascript">
+    $('html').keydown(function(e){
+      if (e.keyCode == 116) {
+        e.preventDefault();
+      }
+    });
+    // $(() => {
+    //   $('#soon').removeAttr('checked');
+    //   $('#now').attr('checked', true);
+    //   $('#owl-content').load('../main/now.php');
+    // });
+    $('#now').click(() => {
+      $('#soon').removeAttr('checked');
+      $('#now').attr('checked', true);
+      $('#owl-content').load('../main/now.php');
+    });
+    $('#soon').click(() => {
+      $('#now').removeAttr('checked');
+      $('#soon').attr('checked', true);
+      $('#owl-content').load('../main/soon.php');
+    });
+
+  </script>
 	<script>
 		$(document).ready(function() {
 			$.ajax({

@@ -14,8 +14,7 @@ include '../../connection.php';
 	<main>
 		<div class="content-wrap">
 			<div class="title">
-
-				<h1>Афиша</h1>
+				<h1>Список фильмов</h1>
 			</div>
 			<div>
 				<?php
@@ -33,7 +32,7 @@ include '../../connection.php';
                     </div>";
 
 			echo "<div class='film-page-about'>";
-			echo "<div class='film-page-name'>" . $row[0] . "<a href=../changeFilm/changeFilm.php?".$row[9]."><img src='../../image/edit.png'></a></div>";
+			echo "<div class='film-page-name'><div>" . $row[0] . "<a href=../changeFilm/changeFilm.php?".$row[9]."><img src='../../image/edit.png'></a></div><div><input type='submit' name='deleteFilm' class='but-delete'></div></div>";
 			echo "<div class='film-page-category'>";
 			echo "<p> Рейтинг: " . $row[1] . "</p>";
 			echo "<p> Премьера: " . $row[2] . "</p>";
@@ -48,25 +47,6 @@ include '../../connection.php';
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
-					// echo "<div>";
-					// echo "<div class='film_photo'>";
-
-					// echo "<img src='../../image/poster/$row[5].jpg' width='200px;'>";
-					// echo "</div>";
-					// echo "<p class='film_category'>";
-					// echo $row[1], " / ", $row[2];
-					// echo "</p>";
-					// echo "<a href=../changeFilm/changeFilm.php?".$row[7].">";
-					// echo "Редактировать";
-					// echo "</a>";
-					// echo "<p class='film_name'>";
-					// echo $row[0];
-					// echo $row[3];
-					// echo $row[4];
-					// echo $row[6];
-					// echo "</p>";
-					
-					// echo "</div>";
 				}
 				?>
 			</div>
