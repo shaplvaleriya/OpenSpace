@@ -15,12 +15,12 @@ include '../connection.php';
 <body>
 
 	<main>
-		<div class="morph-wrap">
+		<div class="morph-wrap" style="z-index: -1;">
 			<svg class="morph" width="1400" height="770" viewBox="0 0 1400 770">
 				<path d="M 262.9,252.2 C 210.1,338.2 212.6,487.6 288.8,553.9 372.2,626.5 511.2,517.8 620.3,536.3 750.6,558.4 860.3,723 987.3,686.5 1089,657.3 1168,534.7 1173,429.2 1178,313.7 1096,189.1 995.1,130.7 852.1,47.07 658.8,78.95 498.1,119.2 410.7,141.1 322.6,154.8 262.9,252.2 Z" />
 			</svg>
 		</div>
-		<div class="content-wrap">
+		<div class="film-content">
 			<?php
 			$url = $_SERVER['REQUEST_URI'];
 			$url = explode('?', $url);
@@ -53,7 +53,9 @@ include '../connection.php';
 			echo "</div>";
 			?>
 		</div>
-		<section class="content content--related">
+		<!-- <section class="content content--related"> -->
+		<div class="film-session-content">
+
 			<?php
 			$querySession = "SELECT `date_session`, `ID_session` FROM `sessions` WHERE sessions.ID_film='$url'";
 			$requestSession = mysqli_query($link, $querySession) or die("Ошибка " . mysqli_error($link));
@@ -83,7 +85,9 @@ include '../connection.php';
 			}
 			echo "</div>";
 			?>
-		</section>
+		</div>
+
+		<!-- </section> -->
 		<a href=""></a>
 	</main>
 	<?php

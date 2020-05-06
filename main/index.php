@@ -14,7 +14,8 @@ include '../connection.php';
 	<link rel="stylesheet" type="text/css" href="../css/main.css" />
 	<link rel="stylesheet" type="text/css" href="../css/slick.css" />
 	<link rel="stylesheet" type="text/css" href="../css/slick-theme.css" />
-
+<link rel="stylesheet" href="../css/stock.css">
+<link rel="stylesheet" href="../css/media-quaries.css">
 	<link rel="stylesheet" href="../css/owl.carousel.css">
 	<link rel="stylesheet" href="../css/owl.theme.default.css">
 </head>
@@ -123,7 +124,8 @@ include '../connection.php';
 		</div>
 			<div class="owl-carousel owl-theme secondary-slider" id="soon-content">
 					<?php 
-					$selectSoon = "SELECT distinct films.title, films.rating,  films.age_limit, films.poster from films left join (select * from (select * from sessions order by date_session desc) d group by ID_film) s on films.ID_film=s.ID_film where s.ID_session is null or date(s.date_session)<date(now())";
+					$selectSoon = "SELECT distinct films.title, films.rating,  films.age_limit, films.poster, group_concat(distinct genres.genre separator ', '), films.ID_film from films inner join film_genre on films.ID_film=film_genre.ID_film inner join genres on film_genre.ID_genre=genres.ID_genre left join (select * from (select * from sessions order by date_session desc) d group by ID_film) s on films.ID_film=s.ID_film where s.ID_session is null or date(s.date_session)<date(now())
+group by films.ID_film;";
 					$resultSoon = mysqli_query($link, $selectSoon) or die("Ошибка " . mysqli_error($link));
 					$rowsSoon = mysqli_num_rows($resultSoon);
 				for ($i = 0; $i < $rowsSoon; ++$i) {
@@ -140,7 +142,24 @@ include '../connection.php';
 		      
 	</div>
 		<div class="content-wrap">
-
+<div class="title"><h1>Акции</h1></div> 
+				<div class="stock">
+					<div class="stock-image">
+						<img src="../image/stock-popcorn.png" alt="">
+					</div>
+					<div class="stock-text">
+						<div class="stock-title">Попкорн в подарок</div>
+						<div class="stock-content">
+							<p>Какой хороший фильм без вкусного попкорна. А самый вкусный попкорн - это бесплатный попкорн.</p>
+							<p>Для того, чтобы получить бесплатный попкорн, забронируйте билеты онлайн на сумму более 40 рублей.</p>
+							<p>Таким образом при получении билета на кассе Вам предоставят попкорн в подарок. </p>
+							<div class="poster-button">
+								<button><a href='../stock/stock.php'>Подробнее</a></button> 
+								
+							</div>
+						</div>
+					</div>
+				</div>
 		</div>
 
 		<section class="content content--related">

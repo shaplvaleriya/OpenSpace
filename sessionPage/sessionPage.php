@@ -23,7 +23,7 @@ session_start();
     $url = explode('?', $url);
     $url = $url[1];
 
-    $nm = "SELECT films.title, films.poster, date_format(sessions.date_session, '%d.%m.%Y'), time_format(sessions.date_session, '%H:%i') from sessions inner join films on sessions.ID_film=films.ID_film where sessions.ID_session='$url'";
+    $nm = "SELECT films.title, films.poster, date_format(sessions.date_session, '%d.%m.%Y'), time_format(sessions.date_session, '%H:%i'), sessions.date_session from sessions inner join films on sessions.ID_film=films.ID_film where sessions.ID_session='$url'";
     $result1 = mysqli_query($link, $nm) or die("Ошибка " . mysqli_error($link));
     echo "<div class='films_block'>";
     $row = mysqli_fetch_row($result1);
@@ -99,7 +99,7 @@ session_start();
                         }
 
                     }
-                    elseif ($weather=='Snow' || $weather=='Rain' || $weather=='Drizzle' || $weather=='Thunderstorm' && $seat[1]=='picnic') {
+                    elseif (($weather=='Snow' || $weather=='Rain' || $weather=='Drizzle' || $weather=='Thunderstorm') && $seat[1]=='picnic') {
                         echo '<label class="checkbox-outer">';
                         echo '<input type="checkbox" disabled="disabled" >';
                         if ($seat[1]=='picnic') {
@@ -198,6 +198,7 @@ session_start();
             <?php
             include '../footer/footer.php';
             ?>
+
      <script type="text/javascript">
 const checkboxList = document.getElementsByClassName('ticket-check');
 console.log(checkboxList);

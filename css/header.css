@@ -122,11 +122,11 @@ header nav .nav-content .nav-signIn a {
 }
 
 .hamburger .line {
-  width: 50px;
-  height: 5px;
-  background-color: #363636;
+  width: 35px;
+  height: 3px;
+  background-color: #c7ceeb;;
   display: block;
-  margin: 8px auto;
+  margin: 10px auto;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }

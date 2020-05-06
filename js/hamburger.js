@@ -2,7 +2,7 @@ $(document).ready(function () {
     var viewportWidth = $(window).width();
     if (viewportWidth <= 768) {
         $('#signInModal').removeClass('pater');
-        $('.nav-content').css('margin-left','-270px');
+        $('.nav-content').css('margin-left','-320px');
         $('#signInModal').append("ВОЙТИ")
     }else if (viewportWidth >= 768){
         $('#signInModal').addClass('pater')
@@ -17,7 +17,7 @@ $(document).ready(function () {
             }, 400, () => {})
         } else {
             $('.nav-content').animate({
-                marginLeft: '-270px'
+                marginLeft: '-320px'
             }, 400, () => {})
         }
     });
@@ -27,7 +27,7 @@ $(window).resize(function () {
     var viewportWidth = $(window).width();
     if (viewportWidth <= 768) {
         $('#signInModal').removeClass('pater');
-        $('.nav-content').css('margin-left','-270px');
+        $('.nav-content').css('margin-left','-320px');
         if(!$('#signInModal').children().prevObject['0'].innerText){
             $('#signInModal').append("ВОЙТИ")
         }

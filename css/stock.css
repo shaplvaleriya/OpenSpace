@@ -86,10 +86,10 @@ h1
 @media (max-width: 480px) {
   .content-wrap {
   height: 80vh;
-  min-height: 400px;
+  min-height: 500px;
   }
   .content--related {
   height: 80vh;
-  min-height: 400px;
+  min-height: 500px;
   }
   }

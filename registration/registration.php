@@ -25,7 +25,7 @@ include '../menu/menu.php';
           </div>
           <div class="inputGroup">
             <input type="radio" name="f" id="authorization" value="authorization" checked onchange="changeLogin(this)"/>
-            <label for="authorization">Вход</label>
+            <label for="authorization">Авторизация</label>
           </div>
         </div>
         <div class="form-line">
@@ -60,10 +60,10 @@ include '../menu/menu.php';
               Присоединяйтесь
               к OpenSpace
             </h2>
-            <p>Получайте скидки на билеты, попкорн и
+            <div class="info">Получайте скидки на билеты, попкорн и
               напитки, особые акции и предложения,
               эксклюзивные презентации и даже
-              подарки ко дню Рождения!</p>        
+              подарки ко дню Рождения!</div>        
         </div>
      
       </div>

@@ -1,3 +1,18 @@
+.film-content
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.film-session-content
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
 .film-page
 {
   display: flex;
@@ -46,8 +61,13 @@
 .session
 {
   display: flex;
-  width: 700px;
-  justify-content: space-between;
+width: 90vw;
+
+justify-content: center;
+
+flex-wrap: wrap;
+
+align-items: start;
 }
 
 .session-block
@@ -61,6 +81,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0px 10px 20px 10px;
 }
 
 .session-block a
@@ -79,3 +100,57 @@
 {
   text-align: center;
 }
+
+.content--related {
+  justify-content: flex-start;
+}
+
+.content-wrap {
+    min-height: 500px;
+  }
+@media (max-width: 992px)
+{
+  .content-wrap {
+  height: 40vh;
+  min-height: 400px;
+  }
+  .content--related {
+  height: 40vh;
+  min-height: 400px;
+  }
+}
+
+@media (max-width: 768px)
+{
+  .content-wrap {
+  height: 40vh;
+  min-height: 700px;
+  }
+  .content--related {
+  height: 40vh;
+  min-height: 600px;
+  }
+}
+
+@media (max-width: 576px)
+{
+  .content-wrap {
+  height: 50vh;
+  min-height: 700px;
+  }
+  .content--related {
+  height: 50vh;
+  min-height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrap {
+  height: 80vh;
+  min-height: 800px;
+  }
+  .content--related {
+  height: 80vh;
+  min-height: 400px;
+  }
+  }
