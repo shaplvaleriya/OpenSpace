@@ -155,7 +155,6 @@ group by films.ID_film;";
 							<p>Таким образом при получении билета на кассе Вам предоставят попкорн в подарок. </p>
 							<div class="poster-button">
 								<button><a href='../stock/stock.php'>Подробнее</a></button> 
-								
 							</div>
 						</div>
 					</div>
@@ -163,7 +162,13 @@ group by films.ID_film;";
 		</div>
 
 		<section class="content content--related">
-
+<div class="title"><h1>Визуализация кинотеатра</h1></div> 
+<div class="visual-block">
+	<p>Вы можете ощутить себя в кинотеатре с помощью нашего визуализатора 3D. Управляя клавишами стрелок, вы можете передвигаться по пространству и определиться с понравившимся сетом кинотеатра.</p>
+	<div class="poster-button">
+		<button><a href='../stock/stock.php'>Подробнее</a></button>
+	</div>
+</div>
 		</section>
 		<?php
 		include '../footer/footer.php';

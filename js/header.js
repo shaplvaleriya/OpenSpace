@@ -13,6 +13,7 @@
 var url = location.pathname;
 var urlPage = url.substr(url.lastIndexOf('/') + 1);
 urlPage = urlPage.substr(0, urlPage.indexOf('.'))
+console.log(urlPage)
 
 if (urlPage == 'reg') {
    document.getElementById('signInModal').style.display = "none";

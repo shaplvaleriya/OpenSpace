@@ -13,10 +13,22 @@ include '../../connection.php';
     <body>
         <main>
             <h2>Добавить фильм</h2>
-            <form action="" method="POST" enctype='multipart/form-data'>
-                <table>
-                <tr><td>Название фильма:</td> <td><input type="text" name="title" placeholder="Название фильма"></td>
-<td rowspan="5">Выберите жанры:
+            <div class="form-add-film">
+            <form action="" method="POST" enctype='multipart/form-data' class="add-film">
+            <p>Название фильма:</p><input type="text" name="title">
+            <div class="film-figures">
+            <div>
+            <p>Рейтинг:</p><input type="number" min="0" max="10" step="0.1" name="rating" value="5"></div>
+            <div><p>Длительность:</p><input type="text" name="duration" placeholder="120"></div>
+            <div><p>Возраст:</p><input type="text" name="age_limit" placeholder="14+"></div>
+            <div><p>Дата премьеры:</p><input type="date" name="premiere"></div>
+            </div>
+<div class="film-figures">
+           <div> <p>Постер:</p><input type="file" name="poster">
+        </div></div>
+<div class="genre-country">
+    <div>
+                <p>Выберите жанры:</p>
      <?php
                 $select = "SELECT `ID_genre`, `genre` FROM `genres`";
                 $result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
@@ -30,8 +42,9 @@ include '../../connection.php';
                     echo "</div>";
                 }
     ?>
-</td>
-<td rowspan="5">Выберите страны:
+    </div>
+    <div>
+<p>Выберите страны:</p>
     <?php
                  $selectC = "SELECT `ID_country`, `country` FROM `countries`";
                 $resultC = mysqli_query($link, $selectC) or die("Ошибка " . mysqli_error($link));
@@ -45,22 +58,21 @@ include '../../connection.php';
                      echo "</div>";
                 }
                 ?>
-</td>
-                </tr>
-                <tr><td>Рейтинг:</td> <td><input type="number" min="0" max="10" step="0.1" name="rating" value="5"></td></tr>
-                <tr><td>Дата премьеры:</td> <td><input type="date" name="premiere"></td></tr>
-                <tr><td>Длительность:</td> <td><input type="text" name="duration" placeholder="Длительность"></td>
-                </tr>
-                <tr><td>Возрастное ограничение:</td> <td><input type="text" name="age_limit" placeholder="Возрастное ограничение"></td></tr>
-                <tr><td>Постер:</td> <td><input type="file" name="poster"></td></tr>
-                <tr><td>Описание:</td> <td><textarea name="description" id="" cols="20" rows="5"></textarea></td></tr>
-                <tr><td>NotForVoting<input type="radio" name="voting" value="0" checked></td><td>ForVoting<input type="radio" name="voting" value="1"></td>
-                </tr>
-               
-                </table>
+                </div>
+                </div>
+
+        <div class="description">
+            <p>Описание:</p><textarea name="description" id="" cols="20" rows="4"></textarea>
+        </div>
+        <div class="voting">
+        <div>
+        <p>Для сеансов</p><input type="radio" name="voting" value="0" checked></div>
+        <div><p>Для голосования</p><input type="radio" name="voting" value="1"></div></div>
                 <br>
-                <input type="submit" value="Добавить фильм" name="addFilm" class="button">
+                <div class="add-button">
+        <input type="submit" value="Добавить фильм" name="addFilm" class="button"></div>
             </form>
+            </div>
         </main>
     </body>
 </html>

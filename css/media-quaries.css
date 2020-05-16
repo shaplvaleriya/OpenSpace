@@ -20,6 +20,10 @@
   {
     font-size: 1em;
   }
+  .phhoto
+  {
+    flex-basis: 12%;
+  }
 }
 
 @media (max-width: 992px)
@@ -68,6 +72,10 @@
     width: calc(92% / 3);
     margin: 0 1%;
   }
+  .phhoto
+  {
+    flex-basis: 14%;
+  }
 }
 
 @media (max-width: 900px)
@@ -91,6 +99,10 @@
   .pater
   {
     font-size: 12px;
+  }
+  .phhoto
+  {
+    flex-basis: 16%;
   }
 }
 
@@ -181,19 +193,19 @@
             align-items: center;
   }
   header nav .nav-content {
-    position: absolute;
+    position: fixed;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
     width: 200px;
-    height: 130vh;
+    height: 500%;
     padding: 80px 0 0 40px;
     margin: -20px 0 0 -320px;
     background: #000;
   }
   header nav .nav-content .nav-list {
-    margin-top: 320px;
+    margin-top: 1360px;
   }
   header nav .nav-content .nav-list ul {
     display: -webkit-box;
@@ -212,10 +224,6 @@
  header nav .nav-content .nav-list ul li a
   {
     font-size: 15px;
-  }
-
-  header nav .nav-content .nav-list ul li a:after {
-    top: -1px;
   }
   header nav .nav-signIn {
     margin-top: 17px;
@@ -242,7 +250,6 @@
   }
   header nav .nav-signIn a:after {
     left: 0;
-    top: -1px;
     padding: 0 0;
     position: absolute;
     content: attr(data-hover);
@@ -270,6 +277,43 @@
   }
   .pater__desc {
     display: none;
+  }
+
+  .message
+  {
+    width: 75vw;
+    background-color: #000;
+  }
+  .phhoto
+  {
+    flex-basis: 20%;
+  }
+  .weather
+  {
+    flex-basis: 20%;
+  }
+  .places
+  {
+    width: 80%;
+  }
+  .purchase
+  {
+    flex-direction: column;
+  }
+  .inform
+  {
+   align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  }
+  #price
+  {
+    display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+margin-bottom: 20px;
   }
 }
 
@@ -312,6 +356,30 @@
   .form-line
   {
     width: 180px;
+  }
+  .message
+  {
+    width: 85vw;
+  }
+  .film_info
+  {
+  font-size: 14px;
+  }
+  .session-name
+  {
+    font-size: 20px;
+  }
+  .phhoto
+  {
+    flex-basis: 25%;
+  }
+  .weather
+  {
+    flex-basis: 30%;
+  }
+  .places-duration
+  {
+    font-size: 14px;
   }
 }
 
@@ -363,6 +431,44 @@
   .film_item {
     width: 100%;
     margin: 0 0;
+  }
+  .message
+  {
+    width: 100vw;
+  }
+  .films
+  {
+    flex-direction: column;
+  }
+  .phhoto
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .phhoto img
+  {
+    width: 30%;
+  }
+  .info
+  {
+    align-items: center;
+  }
+  .places
+  {
+    width: 95%;
+  }
+  .places-photo
+  {
+    flex-basis: 7%;
+  }
+  .places-name, .places-price
+  {
+    font-size: 15px;
+  }
+  .places-duration
+  {
+    font-size: 13px;
   }
 }
 

@@ -35,10 +35,14 @@ if (empty($row[1]))
         $_SESSION['username']=$row[1];
         $_SESSION['role']=$row[3];
 
-        if ($row[3]=='admin') {
+if ($row[3]=='admin') {
     echo "<script>location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
         mysqli_close($link);
 }
+elseif ($row[3]=='cashier') {
+      echo "<script>location.href='http://localhost:83/OpenSpace/cashierPanel/cashierBought/cashierBought.php';</script>";
+        mysqli_close($link);
+    }
 else
 {
     include('result_auth.php');

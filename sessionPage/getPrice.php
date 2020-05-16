@@ -7,9 +7,9 @@ if ($_SESSION['ID_user']!=='') {
 $ID_user = $_SESSION['ID_user'];
 $tickets = $_POST['tickets'];
 $count = count($tickets);
-echo "Выбрано ";
+echo "<p>Выбрано:</p> ";
 echo $count;
-echo " билет(ов)";
+echo " билет(ов);";
 echo "<br>";
 
 $price=0;
@@ -20,9 +20,9 @@ for ($i=0; $i < $count; $i++) {
     $price+=$seat[0];
 }
 
-echo "Сумма заказа: ";
+echo "<p>Сумма заказа:</p> ";
 echo $price;
-echo " руб.";
+echo " руб.;";
 echo "<br>";
 
  $queryUser = "SELECT users.discount from users where users.ID_user=$ID_user";
@@ -30,13 +30,13 @@ $resultUser = mysqli_query($link, $queryUser) or die("Ошибка " . mysqli_er
 $rowUser = mysqli_fetch_row($resultUser);
 $price = $price - ($price * $rowUser[0] / 100);
 
-echo "Ваша скидка: ";
+echo "<p>Ваша скидка:</p> ";
 echo $rowUser[0];
-echo "%";
+echo "%;";
 echo "<br>";
 
 
-echo "Сумма заказа учитывая скидку: ";
+echo "<p>Сумма заказа учитывая скидку:</p> ";
 echo $price;
 echo " руб.";
 echo "<br>";

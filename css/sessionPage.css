@@ -39,18 +39,115 @@
 
 
 
+.session-content
+{
+display: flex;
+    flex-direction: column;
+    align-items: center;
 
+}
 
-.category {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.films
+{
   display: flex;
-  height: 40px;
+  width: 90vw;
+}
+
+.phhoto
+{
+flex-basis: 10%;
+}
+
+.phhoto img
+{
+width: 100%;
+}
+
+.info
+{
+flex-basis: 75%;
+padding-left: 15px;
+display: flex;
+flex-direction: column;
+font-size: 16px;
+}
+
+.session-name
+{
+  font-family:  Gilroy-Bold;
+  font-size: 24px;
+  /*margin-bottom: 10px;*/
+}
+
+.film_date
+{
+  margin: 5px 0;
+  font-family:  Gilroy-Bold;
+  font-size: 20px;
+}
+
+.weather
+{
+  flex-basis: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(0.25turn, #764098, #21409A);
+  flex-direction: column;
+}
+
+.degree
+{
+  font-family: Gilroy-Heavy;
+  font-size: 50px;
+}
+
+.session-line
+{
+  width: 90%;
+  margin-top: 10px
+}
+
+.places
+{
+  display: flex;
+  width: 60%;
+}
+
+.places-photo
+{
+  padding: 10px;
+  flex-basis: 5%;
+}
+
+
+.places-photo img
+{
+  width: 100%;
+}
+
+.places-info
+{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+}
+
+.places-name, .places-price
+{
+  font-family: Gilroy-Bold;
+  font-size: 18px;
+}
+
+.places-price
+{
+  flex-basis: 20%;
 }
 
 .purchase
 {
   display: flex;
+  margin-bottom: 25px;
 }
 
 .seats {
@@ -75,6 +172,12 @@
           align-items: center;
   width: 650px;
   margin-left: 0px;
+  flex-basis: 60%;
+}
+
+.inform
+{
+  flex-basis: 40%;
 }
 
 .checkbox-outer {
@@ -92,31 +195,31 @@
 
 .checkbox-image-picnic-dis {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: block;
   background: url("../sessionPage/picnic-disabled.png") no-repeat;
-  background-size: 30px 30px;
+  background-size: 40px 40px;
 }
 
 .checkbox-image-picnic {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: block;
   background: url("../sessionPage/picnic-unchecked.png") no-repeat;
-  background-size: 30px 30px;
+  background-size: 40px 40px;
 }
 
 .checkbox-image-picnic:before {
   content: " ";
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: block;
   position: absolute;
   background: url("../sessionPage/picnic-checked.png") no-repeat;
-  background-size: 30px 30px;
+  background-size:40px 40px;
   opacity: 0;
 }
 
@@ -156,4 +259,29 @@
 
 .checkbox-outer input[type="checkbox"]:checked + .checkbox-image-car:before {
   opacity: 1;
+}
+
+.button
+{
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
+  background: linear-gradient(0.25turn, #764098, #21409A);
+  color: #C7CEEB;
+  font-family: Gilroy;
+  width: 170px;
+height: 40px;
+}
+
+.inform img
+{
+  width: 50%;
+}
+
+#price p
+{
+  font-family: Gilroy-Bold;
+  font-size: 18px;
+  margin-top: 5px;
 }

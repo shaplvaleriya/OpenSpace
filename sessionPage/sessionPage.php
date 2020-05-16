@@ -8,6 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
     <link rel="stylesheet" href="../css/sessionPage.css">
+    <link rel="stylesheet" href="../css/media-quaries.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Сеанс</title>
 </head>
@@ -17,26 +18,90 @@ session_start();
     include '../menu/menu.php';
     include("../connection.php");
     ?>
-
+<div class="session-content">
     <?php
     $url = $_SERVER['REQUEST_URI'];
     $url = explode('?', $url);
     $url = $url[1];
 
-    $nm = "SELECT films.title, films.poster, date_format(sessions.date_session, '%d.%m.%Y'), time_format(sessions.date_session, '%H:%i'), sessions.date_session from sessions inner join films on sessions.ID_film=films.ID_film where sessions.ID_session='$url'";
+    $nm = "SELECT films.title, films.poster, date_format(sessions.date_session, '%d.%m.%Y'), time_format(sessions.date_session, '%H:%i'), sessions.date_session, films.age_limit,films.rating, group_concat(distinct genres.genre separator ', '), group_concat(distinct countries.country separator ', ') from films inner join sessions on sessions.ID_film=films.ID_film  inner join film_genre on films.ID_film=film_genre.ID_film inner join genres on film_genre.ID_genre=genres.ID_genre inner join film_country on films.ID_film=film_country.ID_film inner join countries on film_country.ID_country=countries.ID_country where sessions.ID_session='$url'";
     $result1 = mysqli_query($link, $nm) or die("Ошибка " . mysqli_error($link));
-    echo "<div class='films_block'>";
+    // echo "<div class='films_block'>";
     $row = mysqli_fetch_row($result1);
     echo "<div class='films' id='films''>";
-    echo "<div class='phhoto'><img  src='../image/poster/$row[1].jpg' style='width:20%;'></div>";
+    echo "<div class='phhoto'><img  src='../image/poster/$row[1].jpg'></div>";
+
     echo "<div class='info'>";
-    echo "<p class='name'>" . $row[0] . "</p>";
-    echo "<div class='category'>";
-    echo "<p class='txt'>" . $row[2] ." ". $row[3] . "</p><br>";
+        echo "<div class='session-name'>";
+                    echo $row[0];
+        echo "</div>";
+        echo "<div class='film_info'>";
+                    echo "".$row[5]."/".$row[6]."";
+        echo "</div>";
+        echo "<div class='film_info'>";
+                    echo $row[7];
+        echo "</div>";
+        echo "<div class='film_info'>";
+                    echo $row[8];
+        echo "</div>";
+        echo "<div class='film_date'>";
+                    echo $row[2];
+        echo "</div>";
+        echo "<div class='film_date'>";
+                    echo $row[3];
+        echo "</div>";
     echo "</div>";
+
+echo "<div class='weather'>";
+
+    $urlforcast = "https://api.openweathermap.org/data/2.5/forecast?q=Minsk&units=metric&appid=afbbe64f43e833ea7ae6cf1e17ca1b9c";
+    $json = file_get_contents($urlforcast);
+    $data = json_decode($json, true);
+    foreach ($data['list'] as $day => $value) {
+        if ($value['dt_txt'] === $row[4]) {
+            $degree = round($value['main']['temp'],0 );
+        }
+    }
+
+     $urlforcast = "https://api.openweathermap.org/data/2.5/forecast?q=Minsk&appid=afbbe64f43e833ea7ae6cf1e17ca1b9c";
+    $json = file_get_contents($urlforcast);
+    $data = json_decode($json, true);
+    foreach ($data['list'] as $day => $value) {
+        if ($value['dt_txt'] === $row[4]) {
+            $weather = $value['weather'][0]['main'];
+        }
+    }
+ switch ($weather) {
+                case 'Clouds':
+                    echo "Облачно";
+                    break;
+                case 'Clear':
+                    echo "Ясно";  
+                    break;
+                case 'Atmosphere':
+                    echo "Атмосферно";
+                    break;
+                case 'Snow':
+                    echo "Снег";
+                    break;
+                case 'Rain':
+                    echo "Дожждь";
+                    break;
+                case 'Drizzle':
+                    echo "Изморось";
+                    break;
+                case 'Thunderstorm':
+                    echo "Гроза";
+                    break;
+                default:
+                    break;
+            }
+echo "<div class='degree'>";
+echo "".$degree."°";
+echo "</div>";
+echo "</div>";
     echo "</div>";
-    echo "</div>";
-    echo "</div>";
+    // echo "</div>";
     $urlforcast = "https://api.openweathermap.org/data/2.5/forecast?q=Minsk&appid=afbbe64f43e833ea7ae6cf1e17ca1b9c";
     $json = file_get_contents($urlforcast);
     $data = json_decode($json, true);
@@ -45,20 +110,40 @@ session_start();
             $weather = $value['weather'][0]['main'];
         }
     }
-    // echo $weather;
     ?>
-            Билеты типа пикник - 8 руб.
-            <br>
-            Билеты типа машина - 10 руб.
+<hr size='1' class="session-line">
+<h2>Типы мест</h2>
+<div class="places">
+    <div class="places-photo">
+        <img src="picnic-unchecked.png" alt="">
+    </div>
+    <div class="places-info">
+        <div class="places-name">Пикник</div>
+        <div class="places-duration">Удобное место для небольшой компании. Обустроено неяркими лампами, мягкими пуфами и теплыми пледами.</div>
+    </div>
+    <div class="places-price">
+        8,00 BYN
+    </div>
+</div>
+
+<div class="places">
+    <div class="places-photo places-photo-car">
+        <img src="car-unchecked.png" alt="">
+    </div>
+    <div class="places-info">
+        <div class="places-name">Машина</div>
+        <div class="places-duration">Удобные места для двоих. Оснащены мягкими подушками и пледами. Можно использовать как багажник пикапа, так и салон автомобиля при плохих погодных условиях.</div>
+    </div>
+    <div class="places-price">
+        10,00 BYN
+    </div>
+</div>
+<hr size='1' class="session-line">
 
     <!-- стулья -->
     <form method="post">
         <div class='purchase'>
-
             <?php
-
-
-
             $spur = "SELECT distinct `ID_place` from `purchases` where `ID_session`='$url'";
             $purres = mysqli_query($link, $spur) or die("Ошибка " . mysqli_error($link));
             $rowsp = mysqli_num_rows($purres);
@@ -71,8 +156,6 @@ session_start();
                     $purchase[] = $pu[$p];
                 }
             }
-
-
 
             $queryRow = "SELECT distinct places.row from places";
             $resultRow = mysqli_query($link, $queryRow) or die("Ошибка " . mysqli_error($link));
@@ -126,17 +209,13 @@ session_start();
                 echo "<p class='numr'>$r</p>";
                 echo "</div>";
             }
-            // echo "<p class='screenn'>Экран</p>";
-            // echo "<div class='screen'><img src='screen.png'></div>";
             echo "</div>";
 
 
             echo "<div class='inform'>";
-            echo "<img src='costt.png'>";
-            echo "<p class='cost'>Стоимость билета</p>";
-            echo "<div id='price'></div>";
-            // echo '<input type="submit" value="массив" id="mass"/>';
-            echo '<input type="submit" value="Купить билет" name="sub" class="button" style="margin-right: 30px" />';
+            echo "<h2>Стоимость билета</h2>";
+            echo "<div id='price'><img src='../image/load.gif'></div>";
+            echo '<input type="submit" value="Купить билет" name="sub" class="button"/>';
             echo "</div>";
             echo "</div>";
             echo "</form>";
@@ -195,10 +274,32 @@ session_start();
             }
 
             ?>
+<hr size='1' class="session-line">
+<div class="places">
+    <div class="places-photo">
+        <img src="picnic-checked.png" alt="">
+    </div>
+    <div class="places-info">
+        <div class="places-duration">Мест выбрано</div>
+    </div>
+</div>
+
+<div class="places">
+    <div class="places-photo places-photo-car">
+        <img src="picnic-disabled.png" alt="">
+    </div>
+    <div class="places-info">
+        <div class="places-duration">Место забронирвоано, куплено или недоступно из-за погодных условий.</div>
+    </div>
+</div>
+<hr size='1' class="session-line">
+
+</div>
+
+
             <?php
             include '../footer/footer.php';
             ?>
-
      <script type="text/javascript">
 const checkboxList = document.getElementsByClassName('ticket-check');
 console.log(checkboxList);

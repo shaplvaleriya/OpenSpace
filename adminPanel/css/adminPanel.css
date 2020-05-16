@@ -75,32 +75,74 @@ h1
   font-size: 45px;
 }
 
-	input{
-	  color: rgb(228, 228, 228);
-	  border-bottom: 1px solid #764098;
-	  border-top: none;
-	  border-left: none;
-	  border-right: none;
-	  background: none;
-	  outline: none;
-	  margin-top: 10px;
-	  padding: 5px 10px;
-	}
-
-.button
-{ 
-  /*margin-top: 30px;*/
-  width: 200px;
-  height: 40px;
-  font-family: Gilroy;
-  border-radius: 25px;
-  border: none;
-  color: white;
-  cursor: pointer;
-  background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
-  background: linear-gradient(0.25turn, #764098, #21409A);
+/*MAIN*/
+.main-info
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70vw;
+  margin-top: 40px;
 }
 
+.count-session, .count-film, .count-users
+{
+width: 200px;
+padding: 5px 25px 5px 15px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.info
+{
+  margin-top: 5px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+}
+
+.count
+{
+  font-family: Gilroy-Heavy;
+  font-size: 40px;
+  display: flex;
+}
+
+.count-film
+{
+  background: linear-gradient(0.45turn, #0EA7F2, #21409A);
+}
+
+.count-session
+{
+  background: linear-gradient(0.45turn, #f06511, #C6064E);
+}
+
+.count-users
+{
+  background: linear-gradient(0.45turn, #eb00ff, #57058a);
+}
+
+.session-slider
+{
+  width: 150px;
+  display: flex;
+}
+
+.busy-place
+{
+background: #000279;
+color: #000279;
+}
+
+.free-place
+{
+  background: gray;
+}
+
+/*FILMLIST*/
 .but-delete
 {
   text-indent: -99999px;
@@ -167,3 +209,219 @@ cursor: pointer;
   margin: 0;
   font-size: 15px;
 }	
+
+/*SESSIONLIST*/
+.session-list
+{
+  display: flex;
+width: 75vw;
+flex-wrap: wrap;
+}
+
+.session-page
+{
+  display: flex;
+  flex-basis: 50%;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.session-page-photo
+{
+  flex-basis: 25%;
+}
+
+.session-page-photo img
+{
+  width: 50%;
+}
+
+.session-page-about
+{
+  flex-basis: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.session-name
+{
+  font-family:  Gilroy-Bold;
+  font-size: 20px;
+}
+
+/*FORFORM*/
+.form-add-film, .form-add-session
+{
+  display: flex;
+  width: 70vw;
+  justify-content: center;
+}
+
+.add-film
+{
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+}
+
+.add-film p
+{
+  font-size: 11px;
+  margin:0;
+}
+
+.add-button
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.film-figures
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.film-figures div input
+{
+  font-size: 13px;
+  width: 70px;
+}
+
+.film-figures div input[type=date]
+{
+  width: 130px;
+}
+
+.film-figures div input[type=file]
+{
+  font-size: 12px;
+  width: 200px;
+}
+
+.description
+{
+  margin-top: 10px;
+}
+
+.description textarea
+{
+  width: 100%;
+}
+
+.genre-country
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.genre-country p
+{
+  margin-left: -40px;
+  margin-bottom: 5px;
+}
+
+.voting
+{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.voting div
+{
+  margin: 0 20px;
+}
+
+.voting div input
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.form-add-session p
+{
+  font-size: 11px;
+  margin: 15px 0 0 0;
+}
+
+input{
+  font-size: 14px;
+    color: rgb(228, 228, 228);
+    border-bottom: 1px solid #764098;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: none;
+    outline: none;
+    padding: 5px 10px;
+  }
+
+.button
+{ 
+  /*margin-top: 30px;*/
+  width: 200px;
+  height: 40px;
+  font-family: Gilroy;
+  border-radius: 25px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
+  background: linear-gradient(0.25turn, #764098, #21409A);
+}
+
+.filter
+{
+    border-bottom: 1px solid #CCC;
+    overflow: hidden; 
+    /*height: 34px;*/
+    background: url(../../image/select-arrow-open.png) no-repeat right;
+    width: 200px;
+
+}
+
+.filter select
+{
+     border-radius: 0;
+    background: transparent;
+    /*height: 34px;*/
+    padding: 5px;
+    border: 0;
+    font-size: 14px;
+    line-height: 1;
+    -webkit-appearance: none;
+    width: 200px;
+     color: #C7CEEB;
+     font-family: Gilroy;
+}
+
+.filter-border
+{
+  background: url(../../image/select-arrow-close.png) 98% center no-repeat, linear-gradient(180deg, #99DAFF00 0%, #4B409900 86%, #4B409900 87%, #4B4099 88%, #4B4099 100%);
+}
+
+.filter select option
+{
+  color: #000;
+}
+
+.filter select option:hover
+{
+  color:  #764098;
+  background: none;
+}
+
+.filter select option:checked {
+  color: #764098;
+}

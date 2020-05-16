@@ -14,9 +14,12 @@ include '../../connection.php';
     <link rel="stylesheet" href="../css/registration.css">
     </head>
     <body>
-        <main>
-            <form action="" method="POST" >
-            <h2>Добавить сеанс</h2>
+        <main>  <h2>Добавить сеанс</h2>
+             <div class="form-add-session">
+            <form action="" method="POST">
+          
+            <div class="filter">
+
                 <select name="film">
 <?php 
     $queryFilm = "SELECT title, ID_film from films ORDER BY premiere DESC";
@@ -27,18 +30,23 @@ include '../../connection.php';
     echo "<option value=".$rowFilm[1].">".$rowFilm[0]."</optin>";
 }
  ?>
-                </select>
+                </select></div>
                 <br>
+                <p>Дата сеанса:</p>
                 <?php 
                 echo " <input type='date' name='date' min=".date('Y-m-d').">";
                  ?>
                 <br>
+                <p>Время сеанса:</p>
                 <input type="radio" name="time" value="18:00:00">18:00
                 <input type="radio" name="time" value="21:00:00">21:00
                  <input type="radio" name="time" value="00:00:00">00:00
                 <br>
+                <div class="add-button">
                 <input type="submit" value="Добавить сеанс" name="addSession" class="button">
+            </div>
             </form>
+        </div>
         </main>
     </body>
 </html>

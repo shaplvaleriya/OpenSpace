@@ -9,10 +9,11 @@ include '../../connection.php';
     <head>
     <meta charset="UTF-8" />
     <title>Добавить фильм</title>
-    <link rel="stylesheet" href="../css/registration.css">
+    <link rel="stylesheet" href="../css/adminPanel.css">
     </head>
     <body>
         <main>
+             <h2>Редактирование фильма</h2>
             <?php 
     $url = $_SERVER['REQUEST_URI'];
     $url = explode('?', $url);
@@ -21,25 +22,37 @@ $select = "SELECT distinct films.title, films.rating, films.premiere, films.dura
 $result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
 $row = mysqli_fetch_row($result1);
              ?>
-            <form action="" method="POST" enctype='multipart/form-data'>
+            <div class="form-add-film" >
+
+            <form action="" method="POST" enctype='multipart/form-data' class="add-film">
+                 <p>Название фильма:</p>
                 <?php echo '<input type="text" name="title" value="'.$row[0].'">' ?>
-                <br>
+                <div class="film-figures">
+                <div>
+                <p>Рейтинг:</p>
                 <?php echo '<input type="number" min="0" max="10" step="0.1" name="rating" value="'.$row[1].'">'?>
-                <br>
-                <?php echo ' <input type="date" name="premiere" value="'.$row[2].'">' ?>
-                <br>
-                Длительность
+                </div>
+                <div><p>Длительность:</p>
                 <?php echo '<input type="text" name="duration" value="'.$row[3].'">' ?>
-                <br>
-                Возрастное ограничение
+                </div>
+            <div><p>Возраст:</p> 
                 <?php echo '<input type="text" name="age_limit" value="'.$row[4].'">' ?>
-                <br>
+                </div>
+            <div><p>Дата премьеры:</p>
+                <?php echo ' <input type="date" name="premiere" value="'.$row[2].'">' ?>
+               </div>
+            </div>
+            <div class="description">
+            <p>Описание:</p>   
                 <textarea name="description" id="" cols="20" rows="5" >
                     <?php 
                     echo $row[6]; ?>
                 </textarea>
+                </div>
                 <br>
-                <input type="submit" value="Редактировать фильм" name="changeFilm">
+                <div class="add-button">
+
+                <input type="submit" value="Редактировать фильм" name="changeFilm" class="button"></div>
             </form>
         </main>
     </body>

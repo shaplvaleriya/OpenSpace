@@ -14,7 +14,7 @@
             <div class="nav-content">
                 <div class="nav-list">
                     <ul>
-                        <li><a href="#" data-hover="Главная">Главная</a></li>
+                        <li><a href="../main/main.php" data-hover="Главная">Главная</a></li>
                         <li><a href="../filmList/filmList.php">Список фильмов</a></li>
                         <li><a href="../sessionList/sessionList.php">Список сеансов</a></li>
                         <li><a href="../resultVoting/resultVoting.php">Результат голосования</a></li>

@@ -18,24 +18,26 @@ include '../../connection.php';
 			</div>
 			<div>
 				<?php
-				$select = "SELECT distinct sessions.date_session, films.title from sessions inner join films on sessions.ID_film=films.ID_film where date(date_session)>=date(now())";
+				$select = "SELECT distinct  DATE_FORMAT(sessions.date_session, '%d.%m.%Y'), time_format(sessions.date_session, '%H:%i'), films.title, films.poster from sessions inner join films on sessions.ID_film=films.ID_film where date(date_session)>=date(now()) ORDER BY sessions.date_session";
 				$result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
-
-				echo "<div class='film_list'>";
+				echo "<div class='session-list'>";
 				$rows = mysqli_num_rows($result1);
 			
 				for ($i = 0; $i < $rows; ++$i) {
 					$row = mysqli_fetch_row($result1);
-					echo "<div>";
-					echo "<div class='film_photo'>";
+					echo "<div class='session-page'>";
+					echo "<div class='session-page-photo'><img src='../../image/poster/".$row[3].".jpg'></div>";
+					echo "<div class='session-page-about'>";
+					echo "<div class='session-name'>";
+					echo $row[2];
 					echo "</div>";
-					echo "<p class='film_category'>";
-					echo $row[1], " / ", $row[2];
-					echo "</p>";
-					echo "<p class='film_name'>";
+					echo "<div class='film_date'>";
 					echo $row[0];
-					echo "</p>";
-					echo "</a>";
+					echo "</div>";
+					echo "<div class='film_date'>";
+					echo $row[1];
+					echo "</div>";
+					echo "</div>";
 					echo "</div>";
 				}
 				?>

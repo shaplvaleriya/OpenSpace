@@ -30,7 +30,7 @@ async function getWeather(sessionTime){
             }
         }
         else {
-            return "../image/stock-popcorn.png"
+            return "../image/weather/none-weather.jpg"
         }
     })
 }

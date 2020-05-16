@@ -179,3 +179,20 @@ form
   color: #707070;
   width: 260px;
 }
+
+.visual-block
+{
+  width: 85vw;
+  height: 300px;
+  background-image: url(../image/stock-sale.png);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.visual-block p
+{
+  width: 60vw;
+  text-align: center;
+} 

@@ -11,6 +11,7 @@ include '../connection.php';
 	<title>Форум</title>
 	<link rel="stylesheet" href="../css/demo.css">
 	<link rel="stylesheet" href="../css/forum.css">
+	<link rel="stylesheet" href="../css/media-quaries.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
@@ -38,9 +39,9 @@ for ($i=0; $i < $rowsMessage ; $i++) {
 		$date.=$rowMessage[4];
 	}
 	if ($rowMessage[3]==$ID_user) {
-	echo "<div class='forum-message1'><p class='forum-name'>";
-	echo $rowMessage[2];
-	echo "</p><div class='forum-time'><p>";
+	echo "<div class='forum-message1'>";
+	// echo $rowMessage[2];
+	echo "<div class='forum-time'><p>";
 	echo $rowMessage[5];
 	echo "</p><div class='forum-message-me'>";
 	echo $rowMessage[0];

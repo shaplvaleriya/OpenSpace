@@ -57,7 +57,7 @@ include '../connection.php';
 		<div class="film-session-content">
 
 			<?php
-			$querySession = "SELECT `date_session`, `ID_session` FROM `sessions` WHERE sessions.ID_film='$url'";
+			$querySession = "SELECT `date_session`, `ID_session` FROM `sessions` WHERE sessions.ID_film='$url' ORDER BY sessions.date_session";
 			$requestSession = mysqli_query($link, $querySession) or die("Ошибка " . mysqli_error($link));
 			$rows = mysqli_num_rows($requestSession);
 			echo "<div class='session'>";
@@ -66,6 +66,25 @@ include '../connection.php';
 				$row = mysqli_fetch_row($requestSession);
 				if ($date_now<$row[0]) {
 				
+				$queryCount = "SELECT count(*) from places";
+				$requestCount= mysqli_query($link, $queryCount) or die("Ошибка " . mysqli_error($link));
+				$count = mysqli_fetch_row($requestCount);
+
+				$spur = "SELECT distinct `ID_place` from `purchases` where `ID_session`='$row[1]'";
+            	$purres = mysqli_query($link, $spur) or die("Ошибка " . mysqli_error($link));
+            	$rowsp = mysqli_num_rows($purres);
+            	$purchase = array();
+            	for ($k = 0; $k < $rowsp; ++$k) {
+                $pur = mysqli_fetch_row($purres);
+                $pu = explode(',', $pur[0]);
+                $countPu = count($pu);
+                for ($p = 0; $p < $countPu - 1; $p++) {
+                    $purchase[] = $pu[$p];
+                }
+           		}
+           		$countBusy = count($purchase);
+           		$busy=(($countBusy*100)/$count[0]);
+           		$free=100-$busy;
 				echo "<div class='session-block' date='$row[0]'>";
 				echo "<a href=../sessionPage/sessionPage.php?" . $row[1] . ">";
 				$date = explode(' ', $row[0]);
@@ -78,6 +97,10 @@ include '../connection.php';
 				echo "<p>";
 				echo $date[1];
 				echo "</p>";
+				echo "<div class='session-slider'>";
+				echo "<hr size='3' width='".$busy."%' class='busy-place'>";
+				echo "<hr size='3' width='".$free."%' class='free-place'>";
+				echo "</div>";
 				echo "</div>";
 				echo "</a>";
 				echo "</div>";

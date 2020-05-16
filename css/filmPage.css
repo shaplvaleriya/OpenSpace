@@ -73,7 +73,7 @@ align-items: start;
 .session-block
 {
   border-radius: 35px;
-  background-image: url(../image/stock-popcorn.png);
+  background-image: url(../image/weather/none-weather.jpg);
   background-size: contain;
   width: 200px;
   height: 120px;
@@ -99,6 +99,23 @@ align-items: start;
 .session-date
 {
   text-align: center;
+}
+
+.session-slider
+{
+  width: 150px;
+  display: flex;
+}
+
+.busy-place
+{
+background: #000279;
+color: #000279;
+}
+
+.free-place
+{
+  background: gray;
 }
 
 .content--related {

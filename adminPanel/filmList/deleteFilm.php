@@ -1,5 +1,5 @@
 <?php
-require "../connection.php";
+require "../../connection.php";
 $film_ID= $_POST['filmString'];
 
 $delete = "DELETE from films where ID_film=$film_ID";
@@ -45,4 +45,3 @@ $select = "SELECT films.title, films.rating, DATE_FORMAT(films.premiere, '%d.%m.
             echo "</div>";
             echo "</form>";
                 }
-}

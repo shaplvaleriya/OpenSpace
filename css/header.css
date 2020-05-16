@@ -135,6 +135,10 @@ header nav .nav-content .nav-signIn a {
   cursor: pointer;
 }
 
+.is-active {
+  position: fixed !important;
+}
+
 #hamburger-1.is-active .line:nth-child(2) {
   opacity: 0;
 }

@@ -18,7 +18,7 @@
 #forum_list
 {  
   padding: 20px 30px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .text-message
@@ -110,3 +110,9 @@ input[type="text"] {
     background: #4f566f;
     color: #C7CEEB;
 }
+@media (max-width: 480px) {
+  #forum-form input[type="text"]
+  {
+    width: 70vw;
+  }
+  }

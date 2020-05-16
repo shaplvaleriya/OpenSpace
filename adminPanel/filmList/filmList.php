@@ -36,7 +36,7 @@ include '../../connection.php';
                     </div>";
 
 			echo "<div class='film-page-about'>";
-			echo "<div class='film-page-name'><div>" . $row[0] . "<a href=../changeFilm/changeFilm.php?".$row[9]."><img src='../../image/edit.png'></a></div><div><input type='submit' name='deleteFilm' value='".$row[9]."' class='but-delete' id='film-delete' ></div></div>";
+			echo "<div class='film-page-name'><div>" . $row[0] . "<a href=../changeFilm/changeFilm.php?".$row[9]."><img src='../../image/edit.png'></a></div><div><input type='button' name='deleteFilm' value='".$row[9]."' class='but-delete film-delete' ></div></div>";
 			echo "<div class='film-page-category'>";
 			echo "<p> Рейтинг: " . $row[1] . "</p>";
 			echo "<p> Премьера: " . $row[2] . "</p>";
@@ -60,14 +60,14 @@ include '../../connection.php';
 </body>
 </html>
 <script>
-	$('#film-delete').submit((e) => {
-		console.log('dff');
-    e.preventDefault();
-    const filmValue = $('#film-delete').val();
-    console.log(filmValue);
-    $.post('deleteFilm.php', {filmString: filmValue})
+	const filmDelete = $('.film-delete');
+	 for (let i = 0; i < filmDelete.length; i++) {
+   	filmDelete[i].addEventListener('click', (e) => {
+   		console.log(filmDelete[i].getAttribute('value'))
+   		$.post('deleteFilm.php', {filmString: filmDelete[i].getAttribute('value')})
     .done(res => {
         document.getElementById("film-list").innerHTML = res;
     })
 })
+}
 </script>

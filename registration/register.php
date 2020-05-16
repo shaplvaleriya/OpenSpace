@@ -78,6 +78,9 @@ $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($lin
 if ($row[2]=='admin') {
     include('../adminPanel/filmList/filmList.php');
 }
+elseif ($row[2]=='cashier') {
+     include('../cashierPanel/cashierBought/cashierBought.php');
+}
 else
 {include('result_auth.php');}
         
