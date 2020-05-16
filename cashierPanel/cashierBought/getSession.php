@@ -73,7 +73,7 @@ $sessionId = $_POST['sessionId'];
             echo "<div class='inform'>";
             echo "<h2>Стоимость билета</h2>";
             echo "<div id='price'><img src='../image/load.gif'></div>";
-            echo '<input type="submit" value="Купить билет" name="sub" class="button"/>';
+            echo '<input type="button" value="Купить билет" id="bought-tickets" name="sub" class="button"/>';
             echo "</div>";
             echo "</div>";
             echo "</form>";
