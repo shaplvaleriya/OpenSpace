@@ -201,7 +201,7 @@ group by films.ID_film;";
 <div class="visual-block">
 	<p>Вы можете ощутить себя в кинотеатре с помощью нашего визуализатора 3D. Управляя клавишами стрелок, вы можете передвигаться по пространству и определиться с понравившимся местом кинотеатра.</p>
 	<div class="poster-button">
-		<button><a href='../stock/stock.php'>Подробнее</a></button>
+		<button><a href='../visualizer3D/index.html'>Подробнее</a></button>
 	</div>
 </div>
 		</section>
