@@ -66,6 +66,9 @@ echo "<ul>";
             if ($rows[3]=='booked') {
                 echo "забронировано";
             }
+            elseif ($rows[3]=='expired') {
+                echo "просрочено. Ваша бронь не действительна.";
+            }
             else
             {
                 echo "куплено";

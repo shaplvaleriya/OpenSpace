@@ -16,7 +16,6 @@ include '../../connection.php';
 	<main>
 		<!-- <div class="content-cashier"> -->
 
-
 		<div class="date">
 			<?php
 			$session_date = '';
@@ -25,14 +24,17 @@ include '../../connection.php';
 			echo "<div class='session-list'>";
 			echo "<div class='session-list-date'>";
 			$rows = mysqli_num_rows($result1);
-
 			for ($i = 0; $i < $rows; ++$i) {
 				$row = mysqli_fetch_row($result1);
 				if ($session_date !== $row[0]) {
 					$session_date = '';
+					// $time_now=date("H:i");
+     				// $date_now=date("d.m.Y");  
+					// if (($time_now<$row[1]&& $date_now==$row[0]) || $date_now<$row[0]) {
 					echo "<div class='session-date' id_session='" . $row[0] . "'>";
 					echo $row[0];
 					echo "</div>";
+					// }
 					$session_date .= $row[0];
 				}
 			}
@@ -41,7 +43,7 @@ include '../../connection.php';
 		</div>
 		<div class="cashier-out">
 			<a href="../cashierBought/cashierBought.php">Купить билеты</a>
-
+<br>
 			<a href="../../registration/auth_out.php">Выйти</a>
 		</div>
 		</div>
@@ -52,23 +54,68 @@ include '../../connection.php';
 		<div id="purchase">
 
 		</div>
-		<!-- </div> -->
+		</div>
+		<div id="modal">
+			<button id="close">X</button>
+			На ближайший сеанс выявлены билеты с просроченной брони. Их статус обновлен, а билеты снова доступны к покупке.
+		</div>
 	</main>
 </body>
 
 </html>
 <script>
+	$(function(){
+    $('button').bind('click', function(){
+	$('#modal').removeClass('active');
+	    });
+});
+</script>
+<script>
+			$(document).ready(function() {
+			$.ajax({
+				url: 'expired.php',
+				success: function(data) {
+					console.log(data);
+					$('#modal').addClass(data);
+				}
+			});
+		});
+</script>
+<script>
+	function addEventOnButton(sessionFilm){
+		const ticketList = $('.ticketList');
+		const ticketListForms = ticketList[0].children;
+			console.log(ticketListForms)
+
+		for (let j = 1; j < ticketListForms.length; j+=2) {
+			const form = ticketListForms[j].children[0];
+			console.log(form)
+			form && form.addEventListener('click', (e) => {
+				console.log(form.getAttribute('purches_id'));
+				$.post('changePurchase.php', {
+					purchaseId: form.getAttribute('purches_id'),
+					sessionId: sessionFilm.getAttribute('session')
+
+				}).done(res => {
+					document.getElementById("purchase").innerHTML = res;
+					addEventOnButton(sessionFilm)
+				})
+			})
+
+		}
+	}
+
 	const sessionDate = $('.session-date');
-	for (let i = 0; i < sessionDate.length; i++) {
-		sessionDate[i].addEventListener('click', () => {
+	for (let l = 0; l < sessionDate.length; l++) {
+		sessionDate[l].addEventListener('click', () => {
 
 			const sessionDateB = $('.session-date');
 			for (let y = 0; y < sessionDateB.length; y++) {
 				sessionDateB[y].style.background = "#202127";
 			}
-			sessionDate[i].style.background = "#16161a";
+			sessionDate[l].style.background = "#16161a";
 			$.post('getSessionFilm.php', {
-					sessionId: sessionDate[i].getAttribute('id_session')
+					sessionId: sessionDate[l].getAttribute('id_session')
 				})
 				.done(res => {
 					document.getElementById("film-name").innerHTML = res;
@@ -87,20 +134,7 @@ include '../../connection.php';
 								})
 								.done(res => {
 									document.getElementById("purchase").innerHTML = res;
-									const ticketList = $('.ticketList');
-									const ticketListForms = ticketList[0].children;
-									for (let i = 0; i < ticketListForms.length / 2; i++) {
-										const form = ticketListForms[i + 1];
-										form.addEventListener('click', (e) => {
-											$.post('changePurchase.php', {
-												purchaseId: form.getAttribute('purches_id'),
-												sessionId: sessionFilm[i].getAttribute('session')
-											}).done(res => {
-												document.getElementById("purchase").innerHTML = res;
-											})
-										})
-
-									}
+									addEventOnButton(sessionFilm[i])
 								})
 						})
 					}

@@ -1,0 +1,46 @@
+.banner-video {
+  position: absolute; /* Абсолютное позиционирование */
+  top: 0;
+  right: 0;
+  width: 90vw;
+  z-index: -10;
+   }
+
+.banner-video video
+{
+width: 100vw;
+}
+
+.banner
+{
+  padding-left: 70px;
+  font-size: 18px;
+  width: 50vw;
+  line-height: 1.5;
+}
+
+.banner-title
+{
+  font-size: 60px;
+  font-family: Gilroy-Bold;
+}
+
+.contact
+{
+display: flex;
+flex-direction: row;
+margin-left: 70px;
+margin-top: 400px;
+width: 90vw;
+justify-content: center;
+}
+
+.contact-info
+{
+  padding: 0 30px 0 0px;
+}
+
+.contact-advertising video 
+{
+  width: 40vw;
+}

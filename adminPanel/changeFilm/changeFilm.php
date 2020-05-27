@@ -42,6 +42,65 @@ $row = mysqli_fetch_row($result1);
                 <?php echo ' <input type="date" name="premiere" value="'.$row[2].'">' ?>
                </div>
             </div>
+            <div class="genre-country">
+            <div>
+                <p>Выберите жанры:</p>
+<?php
+                $selectG = "SELECT `ID_genre`, `genre` FROM `genres`";
+                $resultG = mysqli_query($link, $selectG) or die("Ошибка " . mysqli_error($link));
+                $rowsG = mysqli_num_rows($resultG);
+            
+                for ($i = 0; $i < $rowsG; ++$i) {
+                    $rowG = mysqli_fetch_row($resultG);
+
+                    $selectFG = "SELECT ID_genre from film_genre where ID_film='$url' and ID_genre='$rowG[0]'";
+                    $resultFG = mysqli_query($link, $selectFG) or die("Ошибка " . mysqli_error($link));
+                    $rowFG = mysqli_fetch_row($resultFG);
+                    if (!empty($rowFG)) {
+                    echo "<div>";
+                    echo '<input type="checkbox" name="genres[]" value=' . $rowG[0] . ' checked>';
+                    echo $rowG[1];
+                    echo "</div>";
+                    }
+                    else{
+                        echo "<div>";
+                    echo '<input type="checkbox" name="genres[]" value=' . $rowG[0] . '>';
+                    echo $rowG[1];
+                    echo "</div>";
+                    }
+                    
+                }
+?>
+    </div>
+     <div>
+<p>Выберите страны:</p>
+    <?php
+                 $selectC = "SELECT `ID_country`, `country` FROM `countries`";
+                $resultC = mysqli_query($link, $selectC) or die("Ошибка " . mysqli_error($link));
+                $rowsC = mysqli_num_rows($resultC);
+            
+                for ($i = 0; $i < $rowsC; ++$i) {
+                    $rowC = mysqli_fetch_row($resultC);
+                    $selectFC = "SELECT ID_country from film_country where ID_film='$url' and ID_country='$rowC[0]'";
+                    $resultFC = mysqli_query($link, $selectFC) or die("Ошибка " . mysqli_error($link));
+                    $rowFC = mysqli_fetch_row($resultFC);
+                    if (!empty($rowFC)) {
+                     echo "<div>";
+                    echo '<input type="checkbox" name="countries[]" value=' . $rowC[0] . ' checked>';
+                    echo $rowC[1];
+                     echo "</div>";
+                }
+                else
+                {
+                    echo "<div>";
+                    echo '<input type="checkbox" name="countries[]" value=' . $rowC[0] . '>';
+                    echo $rowC[1];
+                     echo "</div>";     
+                }
+}
+                ?>
+                </div>
+        </div>
             <div class="description">
             <p>Описание:</p>   
                 <textarea name="description" id="" cols="20" rows="5" >
@@ -75,44 +134,50 @@ if (isset($_POST['duration'])) { $duration=$_POST['duration']; if ($duration =='
 if (isset($_POST['age_limit'])) { $age_limit=$_POST['age_limit']; if ($age_limit =='') { unset($age_limit);} }
 
 if (isset($_POST['description'])) { $description=$_POST['description']; if ($description =='') { unset($description);} }
+if (isset($_POST['genres'])) { $genres=$_POST['genres']; if ($genres =='') { unset($genres);} }
+
+if (isset($_POST['countries'])) { $countries=$_POST['countries']; if ($countries =='') { unset($countries);} }
 
 
-if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || empty($age_limit) || empty($description)) {
-    echo "<script>;alert('Все поля должны быть заполнены'); location.href='http://localhost:83/OpenSpace/adminPanel/addFilm/addFilm.php';</script>;";
+if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || empty($age_limit) || empty($description) || empty($genres) || empty($countries)) {
+    echo "<script>;alert('Все поля должны быть заполнены'); location.href='http://localhost:83/OpenSpace/adminPanel/changeFilm/changeFilm.php?".$url."';</script>;";
     mysqli_close($link);
     }
     elseif(!preg_match("/^[\d]{1,3}$/", $duration)) {
-        echo "<script>alert('Некорректная длительность.'); location.href='http://localhost:83/OpenSpace/adminPanel/addFilm/addFilm.php';</script>";
+        echo "<script>alert('Некорректная длительность.'); location.href='http://localhost:83/OpenSpace/adminPanel/changeFilm/changeFilm.php?".$url."';</script>";
         mysqli_close($link);
     }
         elseif(!preg_match("/^[\d]{1,2}\+$/", $age_limit)) {
-        echo "<script>alert('Некорректное возрастное ограничение.'); location.href='http://localhost:83/OpenSpace/adminPanel/addFilm/addFilm.php';</script>";
+        echo "<script>alert('Некорректное возрастное ограничение.'); location.href='http://localhost:83/OpenSpace/adminPanel/changeFilm/changeFilm.php?".$url."';</script>";
         mysqli_close($link);
     }
     else
     {
-        $queryTitle ="SELECT ID_film FROM films WHERE title='$title'";
-        $resultTitle = mysqli_query($link, $queryTitle) or die("Ошибка " . mysqli_error($link));
-        $rowTitle = mysqli_fetch_row($resultTitle);
-        if (!empty($rowTitle[0]))
-        {
-            echo "<script>alert('Такой название уже существует'); location.href='http://localhost:83/OpenSpace/adminPanel/addFilm/addFilm.php';</script>";
-            mysqli_close($link);
-        }
-        else
-        {
             $queryChange ="UPDATE films SET title='$title', rating='$rating', premiere='$premiere', duration='$duration', age_limit='$age_limit', description='$description' where ID_film=$url";
             
             $resultChange = mysqli_query($link, $queryChange) or die("Ошибка " . mysqli_error($link));
                 if ($resultChange)
-                {             
-                echo "<script>alert('фильм изменен'); location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
+                {
+                $delete = "DELETE from film_genre where ID_film=$url";
+                $resultDelete = mysqli_query($link, $delete) or die("Ошибка " . mysqli_error($link));
+                $deleteC = "DELETE from film_country where ID_film=$url";
+                $resultDeleteC = mysqli_query($link, $deleteC) or die("Ошибка " . mysqli_error($link));
+
+                foreach ($_POST['genres'] as $genreValue) {
+                $queryAddGenre ="INSERT INTO film_genre (ID_film, ID_genre) VALUES('$url', '$genreValue')";
+                $resultAddGenre = mysqli_query($link, $queryAddGenre) or die("Ошибка " . mysqli_error($link));
+                }
+
+                foreach ($_POST['countries'] as $countryValue) {
+                $queryAddCountry ="INSERT INTO film_country (ID_film, ID_country) VALUES('$url', '$countryValue')";
+                $resultAddCountry = mysqli_query($link, $queryAddCountry) or die("Ошибка " . mysqli_error($link));
+                }
+                echo "<script>alert('Фильм изменен'); location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
                 mysqli_close($link);
                 }
                 else {
-                echo "<script>alert('Ошибка, фильм не изменен'); location.href='http://localhost:83/OpenSpace/adminPanel/addFilm/addFilm.php';</script>";
+                echo "<script>alert('Ошибка, фильм не изменен'); location.href='http://localhost:83/OpenSpace/adminPanel/changeFilm/changeFilm.php?".$url."';</script>";
                 mysqli_close($link);
-            } 
         }
     }
 

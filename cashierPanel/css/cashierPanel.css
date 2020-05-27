@@ -76,6 +76,7 @@ overflow-y: auto;
 {
   width: 150px;
   display: flex;
+  margin: 15px 0;
 }
 
 .busy-place
@@ -164,6 +165,13 @@ h2 {
   cursor: pointer;
 }
 
+h2 img
+{
+  width: 32px;
+  margin-bottom: -7px;
+  margin-left: 10px
+}
+
 p {
   font-size: 14px;
   line-height: 26px;
@@ -191,7 +199,6 @@ ul li {
 {
     padding-bottom: 4px;
   padding-top: 18px;
-  border-bottom: 1px dotted #dce7eb;
 }
 ul li:last-of-type {
   padding-bottom: 0;
@@ -258,4 +265,86 @@ ul li input[type=checkbox]:checked ~ i:after {
     transform-origin: top center;
     transform: rotateX(0deg);
   }
+}
+
+#modal
+{
+  display: none
+}
+
+.active
+{
+  display: block !important;
+  width: calc(100%/3);
+  left: calc(100%/3);
+  position: absolute;
+  height: calc(100%/5);
+  top: calc((100%/5)*2);
+  background-color: #161B31;
+  border-radius: 10px;
+  padding: 10px;
+}
+#close {
+  float: right;
+  background: linear-gradient(0.25turn, #764098, #21409A);
+  border: none;
+  color: #C7CEEB;
+  padding: 3px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.booked-bought
+{
+  border-bottom: 1px dotted #dce7eb;
+}
+
+.bought
+{
+  width: 100px;
+cursor: pointer;
+background: linear-gradient(0.25turn, #764098, #21409A);
+display: flex;
+justify-content: center;
+border-radius: 25px;
+padding: 4px;
+margin-bottom: 10px;
+}
+
+#session-page
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.inform
+{
+  margin-top: 40px;
+}
+
+.session-block
+{
+   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.session-block:hover
+{
+  background: #000;
+}
+
+.session-time
+{
+  text-align: center;
+  font-size: 25px;
+  font-family:  Gilroy-Bold;
+  font-size: 18px;
+}
+
+.date-session
+{
+  text-align: center;
 }

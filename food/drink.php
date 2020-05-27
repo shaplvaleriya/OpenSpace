@@ -9,39 +9,44 @@
 			<div class="content-wrap">
 				<div class="stock">
 					<div class="stock-image">
-						<img src="../image/stock-popcorn.png" alt="">
+						<video preload="auto" autoplay="true" loop="true" muted="muted">
+						    <source src="../video/hot_drink.mp4" type="video/mp4">
+						</video>
 					</div>
 					<div class="stock-text">
-						<div class="stock-title">Напитки</div>
+						<div class="stock-title">Горячие напитки</div>
 						<div class="stock-content">
-							<p>Классический попкорн понравится каждому посетителю нашего кинотеатра. В кинобаре можно приобрести теплый, свежий и очень хрустящий. У нас есть такие вкусы как соленый, сырный и карамелизированный.</p>
+							<p>Попробуйте наши горячие напитки.  В кафе у бара можно найти самые разные вкусы чая, а также самое вкусное кофе. Такие напитки обязательно Вас согреют в любую погоду и сделают просмотр фильма комфортным. А в жаркий летний день Вас освежит и взбодрит Ice Latte. Добавьте по своему выбору сироп с любимым ароматом и получите восхитительный напиток, который поднимет настроение перед киносеансом.</p>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="content-wrap">
-				<div class="stock">
-					<div class="stock-image">
-						<img src="../image/stock-popcorn.png" alt="">
-					</div>
-					<div class="stock-text">
-						<div class="stock-title">Bubble Gum попкорн</div>
-						<div class="stock-content">
-							<p>Необычный попкорн со вкусом Bubble Gum. Он придется по вкусу как взрослым, так и детям. Фирменный попкорн высшего качества сделает ваш поход в кино особенно вкусным!</p>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- 			<div class="content-wrap">
+				
+			</div> -->
 
 			<section class="content content--related">
-				<div class="stock">
+				<!-- <div class="stock">
 					<div class="stock-image">
 						<img src="../image/stock-sale.png" alt="">
 					</div>
 					<div class="stock-text">
-						<div class="stock-title">Mix попкорн</div>
-						<div class="stock-content">	<p>Не можете определиться какой попкорн взять? Сладкий или соленый? Возьмите оба! Для Вас отлично подойдет Mix попкорн. В нем Вы можете сочетать любые вкусы попкорна, которые только пожелаете.</p>
+						<div class="stock-title">Газированные напитки</div>
+						<div class="stock-content">	<p>И конечно кафе не обходится без привычных и всеми любимых газировок. Кока-кола всех видов: вишневая, ванильная, zero, с лимоном. Pepsi, fanta, sprite. Каждый посетитель сможет найти напиток на свой вкус.</p>
+					</div>
+				</div> -->
+				<div class="stock">
+					<div class="stock-image">
+						<video preload="auto" autoplay="true" loop="true" muted="muted">
+						    <source src="../video/Juice.mp4" type="video/mp4">
+						</video>
+					</div>
+					<div class="stock-text">
+						<div class="stock-title">Соки, коктейли, слаши</div>
+						<div class="stock-content">
+							<p>Кафе предоставляет свежевыжатые соки со льдом, которые помогут в жаркий день наслаждаться просмотром фильма. Помимо соков обязательно попробуйте коктейли и смузи, которые точно не оставят Вас равнодушными. Банановые, клубничные, апельсиновые, ягодные, шоколадные и многие другие. Для любителей похолоднее отлично подойдут слаши. Этот десерт, в который добавляется концентрированный сок и сиропы, побалует вас насыщенным вкусом летних фруктов.</p>
+						</div>
 					</div>
 				</div>
 			</section>

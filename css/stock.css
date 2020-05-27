@@ -15,6 +15,11 @@
   width: 100%;
 }
 
+.stock-image video
+{
+  width: 100%;
+}
+
 .stock-text
 {
   flex-basis: 50%;

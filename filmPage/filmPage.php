@@ -62,7 +62,10 @@ include '../connection.php';
 			$rows = mysqli_num_rows($requestSession);
 			echo "<div class='session'>";
 			for ($i = 0; $i < $rows; ++$i) {
-				$date_now = date("Y-m-d H:i:s");
+				$date_h=date("H")+1;
+				$date_i=date("i:s");
+				$date_d=date("Y-m-d");
+				$date_now=$date_d." ".$date_h.":".$date_i;
 				$row = mysqli_fetch_row($requestSession);
 				if ($date_now<$row[0]) {
 				

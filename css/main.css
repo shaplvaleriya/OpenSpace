@@ -183,16 +183,53 @@ form
 .visual-block
 {
   width: 85vw;
-  height: 300px;
-  background-image: url(../image/stock-sale.png);
+  height: 400px;
+  background-image: url(../image/3d.jpg);
+    background-size: contain;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border-radius: 40px;
 }
 
 .visual-block p
 {
   width: 60vw;
   text-align: center;
+  font-size: 18px;
 } 
+
+.active-voting
+{
+  display: block !important;
+  position: absolute;
+  top: 5%;
+  left: calc(100%/2.5);
+  background: linear-gradient(0.25turn,#3B1455,#0B1945);
+  z-index: 20;
+  width: 20%;
+  border-radius: 10px;
+padding: 10px;
+box-shadow: 5px 5px 10px black;
+}
+
+#voting-form
+{
+  width: 100%;
+    margin-bottom: 0px;
+}
+
+#voting-form input[type='submit']
+{
+  margin-top: 10px;
+  width: 50%;
+border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
+  background: linear-gradient(0.25turn, #764098, #21409A);
+  color: #C7CEEB;
+  padding: 10px;
+  margin: 10px auto;
+}

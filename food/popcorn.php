@@ -9,7 +9,7 @@
 			<div class="content-wrap">
 				<div class="stock">
 					<div class="stock-image">
-						<img src="../image/stock-popcorn.png" alt="">
+						<img src="../image/popcorn.png" alt="">
 					</div>
 					<div class="stock-text">
 						<div class="stock-title">Classic попкорн</div>
@@ -23,7 +23,7 @@
 			<div class="content-wrap">
 				<div class="stock">
 					<div class="stock-image">
-						<img src="../image/stock-popcorn.png" alt="">
+						<img src="../image/bubble-popcorn.png" alt="">
 					</div>
 					<div class="stock-text">
 						<div class="stock-title">Bubble Gum попкорн</div>
@@ -37,7 +37,7 @@
 			<section class="content content--related">
 				<div class="stock">
 					<div class="stock-image">
-						<img src="../image/stock-sale.png" alt="">
+						<img src="../image/mix-popcorn.png" alt="">
 					</div>
 					<div class="stock-text">
 						<div class="stock-title">Mix попкорн</div>

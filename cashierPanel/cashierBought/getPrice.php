@@ -23,28 +23,28 @@ for ($i=0; $i < $count; $i++) {
 echo "<p>Сумма заказа:</p> ";
 echo $price;
 echo " руб.;";
-echo "<br>";
+echo "<br><br>";
 
  $queryUser = "SELECT users.discount from users where users.ID_user=$ID_user";
 $resultUser = mysqli_query($link, $queryUser) or die("Ошибка " . mysqli_error($link));
 $rowUser = mysqli_fetch_row($resultUser);
 $price = $price - ($price * $rowUser[0] / 100);
 
-echo "<p>Ваша скидка:</p> ";
-echo $rowUser[0];
-echo "%;";
-echo "<br>";
+// echo "<p>Ваша скидка:</p> ";
+// echo $rowUser[0];
+// echo "%;";
+// echo "<br>";
 
 
-echo "<p>Сумма заказа учитывая скидку:</p> ";
-echo $price;
-echo " руб.";
-echo "<br>";
-echo "<br>";
+// echo "<p>Сумма заказа учитывая скидку:</p> ";
+// echo $price;
+// echo " руб.";
+// echo "<br>";
+// echo "<br>";
 
- if ($price >= 40) {
-        echo "Вы получите в подарок попкорн";
-    }
+ // if ($price >= 40) {
+ //        echo "Вы получите в подарок попкорн";
+ //    }
 
 }
 

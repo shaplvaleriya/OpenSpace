@@ -36,7 +36,7 @@ if (empty($row[1]))
         $_SESSION['role']=$row[3];
 
 if ($row[3]=='admin') {
-    echo "<script>location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
+    echo "<script>location.href='http://localhost:83/OpenSpace/adminPanel/main/main.php';</script>";
         mysqli_close($link);
 }
 elseif ($row[3]=='cashier') {

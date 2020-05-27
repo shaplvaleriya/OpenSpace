@@ -1,12 +1,24 @@
 <?php
 require "../../connection.php";
 $purchaseId = $_POST['purchaseId'];
+
 $queryChange = "UPDATE purchases SET status_purchase='bought' where ID_purchase=$purchaseId";
 $resultChange = mysqli_query($link, $queryChange) or die("Ошибка " . mysqli_error($link));
 
+$select = "SELECT ID_user from purchases where ID_purchase=$purchaseId";
+$result = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
+$rowSelect = mysqli_fetch_row($result);
+$queryCount = "SELECT count(distinct purchases.ID_session) from purchases where purchases.ID_user=$rowSelect[0] and purchases.status_purchase='bought' group BY purchases.ID_user";
+$resultCount = mysqli_query($link, $queryCount) or die("Ошибка " . mysqli_error($link));
+$rowCount = mysqli_fetch_row($resultCount);
+if ($rowCount[0] == 5) {
+    $queryDiscount = "UPDATE users SET discount=5 where users.ID_user=$rowSelect[0]";
+    $resultDiscount = mysqli_query($link, $queryDiscount) or die("Ошибка " . mysqli_error($link));
+}
+
 $sessionId = $_POST['sessionId'];
 
-$query = "SELECT purchases.ID_place, purchases.date_purchase, purchases.price_purchase, purchases.status_purchase, purchases.present, users.name, purchases.ID_purchase from purchases inner join users on purchases.ID_user=users.ID_user where purchases.ID_session=$sessionId";
+$query = "SELECT purchases.ID_place, purchases.date_purchase, purchases.price_purchase, purchases.status_purchase, purchases.present, users.name, purchases.ID_purchase from purchases inner join users on purchases.ID_user=users.ID_user where purchases.ID_session=$sessionId and users.role='user'";
 $request = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 $rows = mysqli_num_rows($request);
 
@@ -19,9 +31,9 @@ for ($i = 0; $i < $rows; ++$i) {
     echo "<input type='checkbox' checked>";
     echo "<i></i>";
     if ($column[3] == 'bought') {
-        echo "<h2>" . $column[5] . " Типа галочка</h2>";
+        echo "<h2>" . $column[5] . " <img src='../../image/checkmark.svg' width='32px'></h2>";
     } elseif ($column[3] == 'booked') {
-        echo "<h2>" . $column[5] . " Типа крестик</h2>";
+        echo "<h2>" . $column[5] . " <img src='../../image/cross.svg'></h2>";
     }
     echo "<p>";
 
@@ -59,11 +71,44 @@ for ($i = 0; $i < $rows; ++$i) {
     echo "</p>";
     echo "</li>";
     if ($column[3] == 'booked') {
-        echo "<div purches_id=" . $column[6] . ">";
-        echo "Куплено";
+        echo "<div class='booked-bought'>";
+        echo "<div purches_id='". $column[6] ."' class='bought'>";
+        echo "Купить";
+        echo "</div>";
+
+        echo "</div>";
+    }
+    else
+    {
+        echo "<div class='booked-bought'>";
         echo "</div>";
     }
 }
 
 echo "</ul>";
 echo '</div>';
+?>
+<script>$(document).ready(function() {
+    console.log(123)
+}
+    const ticketList = $('.ticketList');
+    const ticketListForms = ticketList[0].children;
+        console.log(ticketListForms)
+
+    for (let j = 1; j < ticketListForms.length; j+=2) {
+        const form = ticketListForms[j].children[0];
+        console.log(form)
+        form.addEventListener('click', (e) => {
+            console.log( sessionFilm[i].getAttribute('session'));
+            console.log(form.getAttribute('purches_id'));
+            $.post('changePurchase.php', {
+                purchaseId: form.getAttribute('purches_id'),
+                sessionId: sessionFilm[i].getAttribute('session')
+
+            }).done(res => {
+                document.getElementById("purchase").innerHTML = res;
+            })
+        })
+
+    }
+</script>

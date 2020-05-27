@@ -8,6 +8,9 @@ $rows = mysqli_num_rows($request);
 for ($i = 0; $i < $rows; ++$i) {
     $column = mysqli_fetch_row($request);
     if ($column[5]==$sessionId) {
+        $time_now=date("H:i");
+        $date_now=date("d.m.Y");  
+        if (($time_now<$column[6]&& $date_now==$column[5]) || $date_now<$column[5]) {
         echo "<div class='session-film' session='".$column[7]."'>";
         echo "<div class='session-film-photo'>";
         echo "<img src='../../image/poster/".$column[3].".jpg'>";
@@ -24,6 +27,7 @@ for ($i = 0; $i < $rows; ++$i) {
         echo "</div>";
         echo "</div>";
         echo "</div>";
+    }
     }
     
 }

@@ -11,11 +11,10 @@ include '../../connection.php';
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
-
 <body>
 	<main>
 		<div class="content-wrap">
-			<div class="main-info">
+			<div class="main-static">
 				<div class="count-film">
 					Количество фильмов:
 					<div class="info">
@@ -32,6 +31,7 @@ include '../../connection.php';
 					</div>
 					</div>
 				</div>
+
 				<div class="count-session">
 					Количество сеансов:
 					<div class="info">
@@ -66,12 +66,15 @@ include '../../connection.php';
  </div>
 					</div>
 			</div>
+			<div class="main-static">
 			<div class="main-chart">
-				
+			<?php 
+				include 'diagr.html';
+			 ?>
 			</div>
 			<div class="main-info">
-				<div class="main-voting">
-					<?php 
+			<div class="main-voting">
+			<?php 
 				$queryCount = "SELECT count(*) from places";
 				$requestCount= mysqli_query($link, $queryCount) or die("Ошибка " . mysqli_error($link));
 				$count = mysqli_fetch_row($requestCount);
@@ -98,33 +101,47 @@ include '../../connection.php';
            		$countBusy = count($purchase);
            		$busy=(($countBusy*100)/$count[0]);
            		$free=100-$busy;
+           		echo "<div class='main-info-time'>";
            		echo $rowNow[2];
+           		echo "</div>";
            		echo "<div class='session-slider'>";
 				echo "<hr size='3' width='".$busy."%' class='busy-place'>";
-				echo "<hr size='3' width='".$free."%' class='free-place'>";
-				echo $busy."%";
+				// echo "<hr size='3' width='".$free."%' class='free-place'>";
+				echo "<p>";
+				echo round($busy)."%";
+				echo "</p>";
+
 				echo "</div>";
 				}
 				}
 					 ?>
-				</div>
+		</div>
 				<div class="main-weather">
 					<?php 
-						$dateNow=date("Y-m-d H:i:s");
-						$urlforcast = "https://api.openweathermap.org/data/2.5/weather?q=Minsk&appid=afbbe64f43e833ea7ae6cf1e17ca1b9c&units=metric";
-    $json = file_get_contents($urlforcast);
-    $data = json_decode($json, true);
+			$dateNow=date("Y-m-d H:i:s");
+			$urlforcast = "https://api.openweathermap.org/data/2.5/weather?q=Minsk&appid=afbbe64f43e833ea7ae6cf1e17ca1b9c&units=metric";
+    				$json = file_get_contents($urlforcast);
+    		$data = json_decode($json, true);
             $degree = round($data['main']['temp'],0 );
             $icon=$data['weather'][0]['icon'];
             $weather=$data['weather'][0]['main'];
 
             echo "<img src='http://openweathermap.org/img/w/".$icon.".png'>";
-			echo "".$degree."°";
+echo "<div class='weather-info'>";
+			echo "<div class='weather'>";
 			echo $weather;
-    		
+			echo "</div>";
+			echo "<div class='degree'>";
+			echo "".$degree."°";
+			echo "</div>";
+			echo "</div>";
+
 					 ?>
 				</div>
+					
 			</div>
+				
+			
 		</div>
 	</main>
 </body>

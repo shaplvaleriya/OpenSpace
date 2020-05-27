@@ -76,7 +76,7 @@ h1
 }
 
 /*MAIN*/
-.main-info
+.main-static
 {
   display: flex;
   flex-direction: row;
@@ -125,21 +125,83 @@ align-items: center;
   background: linear-gradient(0.45turn, #eb00ff, #57058a);
 }
 
+.main-info-time
+{
+  font-family: Gilroy-Bold;
+}
+
 .session-slider
 {
   width: 150px;
   display: flex;
 }
 
+.session-slider p
+{
+  margin: 10px 5px;
+  opacity: 0.6;
+  font-size: 12px;
+}
+
 .busy-place
 {
-background: #000279;
-color: #000279;
+background: #21409A;
+color: #21409A;
+margin: auto 0;
 }
 
 .free-place
 {
   background: gray;
+}
+
+.main-chart
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #202127;
+}
+
+.main-voting
+{
+  width: 200px;
+  background-color: #202127;
+  height: 65%;
+  padding: 10px;
+}
+
+.main-weather
+{
+  background-color: #21409A85;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.weather-info
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.weather
+{
+  font-size: 11px;
+}
+
+.degree
+{
+  font-family: Gilroy-Bold;
+  font-size: 25px;
+}
+
+.main-info
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /*FILMLIST*/
@@ -251,7 +313,7 @@ flex-wrap: wrap;
 }
 
 /*FORFORM*/
-.form-add-film, .form-add-session
+.form-add-film, .form-add-session, .form-add-voting
 {
   display: flex;
   width: 70vw;
@@ -425,3 +487,21 @@ input{
 .filter select option:checked {
   color: #764098;
 }
+
+
+.addvoting-result
+{
+  margin-left: 25vw;
+}
+
+.rules-voting
+{
+  width: 65vw;
+}
+
+.rules-voting p
+{
+  font-family: Gilroy-Bold;
+  font-size: 20px;
+}
+

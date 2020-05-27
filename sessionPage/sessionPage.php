@@ -85,7 +85,7 @@ echo "<div class='weather'>";
                     echo "Снег";
                     break;
                 case 'Rain':
-                    echo "Дожждь";
+                    echo "Дождь";
                     break;
                 case 'Drizzle':
                     echo "Изморось";
@@ -214,7 +214,7 @@ echo "</div>";
 
             echo "<div class='inform'>";
             echo "<h2>Стоимость билета</h2>";
-            echo "<div id='price'><img src='../image/load.gif'></div>";
+            echo "<div id='price'><p>Выбрано:</p> 0 билетов<br><p>Сумма заказа:</p>0 руб.;<br><br></div>";
             echo '<input type="submit" value="Купить билет" name="sub" class="button"/>';
             echo "</div>";
             echo "</div>";
@@ -259,13 +259,6 @@ echo "</div>";
                         $queryBooked = "INSERT INTO purchases (ID_user, ID_session, ID_place, date_purchase, price_purchase, present) values('$ID_user', '$url', '$place', now(), '$price', '$present')";
                         $resultBooked = mysqli_query($link, $queryBooked) or die("Ошибка " . mysqli_error($link));
                         if ($resultBooked) {
-                            $queryCount = "SELECT count(distinct purchases.ID_session) from purchases where purchases.ID_user=$ID_user";
-                            $resultCount = mysqli_query($link, $queryCount) or die("Ошибка " . mysqli_error($link));
-                            $rowCount = mysqli_fetch_row($resultCount);
-                            if ($rowCount[0] == 5) {
-                                $queryDiscount = "UPDATE users SET discount=5 where users.ID_user=$ID_user";
-                                $resultDiscount = mysqli_query($link, $queryDiscount) or die("Ошибка " . mysqli_error($link));
-                            }
                             echo "<script>;alert('Покупка успешно завершена');location.href='http://localhost:83/OpenSpace/registration/result_auth.php';</script>;"; 
 
                         }

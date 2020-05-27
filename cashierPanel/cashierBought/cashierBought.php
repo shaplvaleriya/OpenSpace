@@ -53,13 +53,13 @@ include '../../connection.php';
 					$free = 100 - $busy;
 					echo "<div class='session-block' id_session='" . $row[1] . "'>";
 					$date = explode(' ', $row[0]);
-					echo "<div class='session-date'>";
+					echo "<div class='date-session'>";
 					echo "<p>";
 					echo $date[0];
 					echo "</p>";
-					echo "<p>";
+					echo "<div class='session-time'>";
 					echo $date[1];
-					echo "</p>";
+					echo "</div>";
 					echo "<div class='session-slider'>";
 					echo "<hr size='3' width='" . $busy . "%' class='busy-place'>";
 					echo "<hr size='3' width='" . $free . "%' class='free-place'>";
@@ -72,19 +72,42 @@ include '../../connection.php';
 			?>
 		</div>
 		<div class="cashier-out">
-			<a href="../cashierBought/cashierBought.php">Купить билеты</a>
+			<a href="../cashierBooked/cashierList.php">Бронированные билеты</a>
+			<br>
 			<a href="../../registration/auth_out.php">Выйти</a>
 		</div>
 		</div>
 
-		<div id="film-name">
+		<div id="session-page">
 
 		</div>
-
+		<div id="modal">
+			<button id="close">X</button>
+			На ближайший сеанс выявлены билеты с просроченной брони. Их статус обновлен, а билеты снова доступны к покупке.
+		</div>
 	</main>
 </body>
 
 </html>
+
+<script>
+	$(function(){
+    $('button').bind('click', function(){
+	$('#modal').removeClass('active');
+	    });
+});
+</script>
+<script>
+			$(document).ready(function() {
+			$.ajax({
+				url: '../cashierBooked/expired.php',
+				success: function(data) {
+					console.log(data);
+					$('#modal').addClass(data);
+				}
+			});
+		});
+</script>
 <script>
 	const sessionDate = $('.session-block');
 	for (let i = 0; i < sessionDate.length; i++) {
@@ -94,12 +117,12 @@ include '../../connection.php';
 			for (let y = 0; y < sessionDateB.length; y++) {
 				sessionDateB[y].style.background = "#202127";
 			}
-			sessionDate[i].style.background = "#16161a";
+			sessionDate[i].style.background = "#000";
 			$.post('getSession.php', {
 					sessionId: sessionDate[i].getAttribute('id_session')
 				})
 				.done(res => {
-					document.getElementById("film-name").innerHTML = res;
+					document.getElementById("session-page").innerHTML = res;
 					const checkboxList = document.getElementsByClassName('ticket-check');
 					console.log(checkboxList);
 					let tickets = [];
@@ -128,7 +151,7 @@ include '../../connection.php';
 								sessionId: sessionDate[i].getAttribute('id_session')
 							})
 							.done(res => {
-								document.getElementById("film-name").innerHTML = res;
+								document.getElementById("session-page").innerHTML = res;
 								
 							})
 					})

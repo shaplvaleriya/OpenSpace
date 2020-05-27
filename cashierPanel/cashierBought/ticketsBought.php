@@ -109,7 +109,7 @@ $spur = "SELECT distinct `ID_place` from `purchases` where `ID_session`='$sessio
 
             echo "<div class='inform'>";
             echo "<h2>Стоимость билета</h2>";
-            echo "<div id='price'><img src='../image/load.gif'></div>";
+            echo "<div id='price'><p>Выбрано:</p> 0 билетов<br><p>Сумма заказа:</p>0 руб.;<br><br></div>";
             echo '<input type="button" value="Купить билет" id="bought-tickets" name="sub" class="button"/>';
             echo "</div>";
             echo "</div>";

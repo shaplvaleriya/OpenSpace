@@ -27,7 +27,7 @@ if ($_SESSION['username']=='') {
 }
 else{
 $ID_user=$_SESSION['ID_user'];
-$selectMessage = "SELECT message.text_message, message.date_message, users.name, message.ID_user, date_format(message.date_message, '%d %M, %Y'), time_format(message.date_message, '%H:%i') from message inner join users on message.ID_user=users.ID_user Order by message.date_message";
+$selectMessage = "SELECT * from (SELECT message.text_message, message.date_message, users.name, message.ID_user, date_format(message.date_message, '%d %M, %Y'), time_format(message.date_message, '%H:%i') from message inner join users on message.ID_user=users.ID_user Order by message.date_message  desc limit 100) a Order by a.date_message";
 $resultMessage = mysqli_query($link, $selectMessage) or die("Ошибка " . mysqli_error($link));
 $rowsMessage = mysqli_num_rows($resultMessage);
 $date='';
@@ -82,6 +82,17 @@ var objDiv = document.getElementById("forum_list");
 objDiv.scrollTop = objDiv.scrollHeight;
 </script>
 	<script src="forum.js"></script>
+	<script type="text/javascript" src="../js/slick.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.main-slider').slick({
+				autoplay: true,
+				autoplaySpeed: 5000,
+				arrows: false,
+				dots: true,
+				fade: true,
+			});
+		</script>
 </body>
 </html>
 

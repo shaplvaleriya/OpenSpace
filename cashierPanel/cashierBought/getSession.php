@@ -2,7 +2,7 @@
 require "../../connection.php";
 $sessionId = $_POST['sessionId'];
 
-            $spur = "SELECT distinct `ID_place` from `purchases` where `ID_session`='$sessionId'";
+            $spur = "SELECT distinct `ID_place` from `purchases` where `ID_session`='$sessionId' and `status_purchase`!='expired'";
             $purres = mysqli_query($link, $spur) or die("Ошибка " . mysqli_error($link));
             $rowsp = mysqli_num_rows($purres);
             $purchase = array();
@@ -30,7 +30,8 @@ $sessionId = $_POST['sessionId'];
                     $seat = mysqli_fetch_row($resultNumber);
                     if (in_array($seat[2], $purchase, true)) {
                         echo '<label class="checkbox-outer">';
-                        echo '<input type="checkbox" disabled="disabled" >';
+                        echo '<input type="checkbox" disabled="disabled">';
+                        echo $seat[0];
                          if ($seat[1]=='picnic') {
                         echo '<span class="checkbox-image-picnic-dis"></span></label>';
                         }
@@ -43,6 +44,7 @@ $sessionId = $_POST['sessionId'];
                     elseif (($weather=='Snow' || $weather=='Rain' || $weather=='Drizzle' || $weather=='Thunderstorm') && $seat[1]=='picnic') {
                         echo '<label class="checkbox-outer">';
                         echo '<input type="checkbox" disabled="disabled" >';
+                        echo $seat[0];
                         if ($seat[1]=='picnic') {
                         echo '<span class="checkbox-image-picnic-dis"></span></label>';
                         }
@@ -54,6 +56,7 @@ $sessionId = $_POST['sessionId'];
                     else {
                         echo '<label class="checkbox-outer">';
                         echo '<input type="checkbox" name="tickets[]" class="ticket-check" value=' . $seat[2] . '>';
+                        echo $seat[0];
                         if ($seat[1]=='picnic') {
                             echo '<span class="checkbox-image-picnic"></span></label>';
                         }
@@ -72,7 +75,7 @@ $sessionId = $_POST['sessionId'];
 
             echo "<div class='inform'>";
             echo "<h2>Стоимость билета</h2>";
-            echo "<div id='price'><img src='../image/load.gif'></div>";
+            echo "<div id='price'><p>Выбрано:</p> 0 билетов<br><p>Сумма заказа:</p>0 руб.;<br><br></div>";
             echo '<input type="button" value="Купить билет" id="bought-tickets" name="sub" class="button"/>';
             echo "</div>";
             echo "</div>";

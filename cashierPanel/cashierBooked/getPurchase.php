@@ -2,7 +2,7 @@
 require "../../connection.php";
 $sessionId = $_POST['sessionId'];
 
-$query = "SELECT purchases.ID_place, purchases.date_purchase, purchases.price_purchase, purchases.status_purchase, purchases.present, users.name, purchases.ID_purchase from purchases inner join users on purchases.ID_user=users.ID_user where purchases.ID_session=$sessionId";
+$query = "SELECT purchases.ID_place, purchases.date_purchase, purchases.price_purchase, purchases.status_purchase, purchases.present, users.name, purchases.ID_purchase from purchases inner join users on purchases.ID_user=users.ID_user where purchases.ID_session=$sessionId and users.role='user'";
 $request = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 $rows = mysqli_num_rows($request);
 
@@ -15,9 +15,9 @@ for ($i = 0; $i < $rows; ++$i) {
     echo "<input type='checkbox' checked>";
     echo "<i></i>";
     if ($column[3] == 'bought') {
-        echo "<h2>" . $column[5] . " Типа галочка</h2>";
+        echo "<h2>" . $column[5] . " <img src='../../image/checkmark.svg' width='32px'></h2>";
     } elseif ($column[3] == 'booked') {
-        echo "<h2>" . $column[5] . " Типа крестик</h2>";
+        echo "<h2>" . $column[5] . " <img src='../../image/cross.svg'></h2>";
     }
     echo "<p>";
 
@@ -55,8 +55,16 @@ for ($i = 0; $i < $rows; ++$i) {
     echo "</p>";
     echo "</li>";
     if ($column[3] == 'booked') {
-        echo "<div purches_id=" . $column[6] . ">";
-        echo "Куплено";
+        echo "<div class='booked-bought' >";
+        echo "<div class='bought' purches_id='". $column[6] ."'>";
+        echo "Купить";
+        echo "</div>";
+
+        echo "</div>";
+    }
+    else
+    {
+        echo "<div class='booked-bought'>";
         echo "</div>";
     }
 }

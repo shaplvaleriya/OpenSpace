@@ -20,8 +20,9 @@ session_start(); ?>
                         <li id="poster"><a href="../poster/poster.php" data-hover="Афиша">Афиша</a></li>
                         <li id="stock"><a href="../stock/stock.php" data-hover="Акции">Акции</a></li>
                         <li id="food"><a href="../food/food.php" data-hover="Еда и напитки">Еда и напитки</a></li>
-                        <li id="contacts"><a href="#" data-hover="Контакты">Контакты</a></li>
-                         <li id="forum"><a href="../forum/forum.php" data-hover="Форум">Форум</a></li>
+                        <li id="forum"><a href="../forum/forum.php" data-hover="Форум">Форум</a></li>
+                        <li id="contact"><a href="../contact/contact.php" data-hover="Контакты">Контакты</a></li>
+                         
                         <li>
             <form id="search-form">
                 <div  class="search-box">
