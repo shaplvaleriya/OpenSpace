@@ -42,14 +42,13 @@ include '../../connection.php';
 <?php 
 if (isset($_POST['voting'])) {
 
- $query = "SELECT ID_voting from voting";
+$query = "SELECT ID_voting from voting";
 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 $row= mysqli_fetch_row($result);
 if (!empty($row[0])) {
     echo "<div class='addvoting-result'>";
     echo "Голосование в этом месяце уже добавлено, попробуйте в следующем.";
     echo "</div>";
-
 }
 else
 {
@@ -79,17 +78,12 @@ else
     {
         $dateM=$dateM+1;
         $date_start = $dateY."-".$dateM."-01";
-        // echo $date_start;
     }
 }
-// echo $date_start;
-// echo "<br>";
 $date_w = date("w", strtotime($date_start));
 $date_d = date("d", strtotime($date_start));
 $date_m = date("m", strtotime($date_start));
 $date_Y = date("Y", strtotime($date_start));
-// echo $date_w;
-// echo "<br>";
 switch ($date_w) {
     case 1:
         $date_d=$date_d+21;
@@ -114,7 +108,6 @@ switch ($date_w) {
     break;
 }
 $date_end=$date_Y."-".$date_m."-".$date_d;
-// echo "$date_end";
 $date_session_d=$date_d+5;
 $date_session=$date_Y."-".$date_m."-".$date_session_d. " 21:00:00";
 echo "$date_session";
@@ -122,15 +115,11 @@ foreach ($_POST['filmVoting'] as $films) {
    $filmVoting.=$films;
    $filmVoting.=",";
 }
-
-
      $queryVoting = "INSERT INTO voting (date_start, date_end, date_session, ID_film) values('$date_start', '$date_end', '$date_session', '$filmVoting')";
     $resultVoting = mysqli_query($link, $queryVoting) or die("Ошибка " . mysqli_error($link));
     if ($resultVoting) {
       echo "<div class='addvoting-result'>";
-        echo "Голосование добавлено. Оно начинается ".$date_start.". Результаты бдут подводиться ".$date_end.". Сеанс с фильмом победителем будет ".$date_session.".";
-  echo "</div>";
-
+        echo "Голосование добавлено. Оно начинается ".$date_start.". Результаты бдут подводиться ".$date_end.". Сеанс с фильмом победителем будет ".$date_session."."; echo "</div>";
     }
 }
 else
@@ -138,7 +127,6 @@ else
     echo "<div class='addvoting-result'>";
     echo "Выберите фильмы для голосования.";
     echo "</div>";
-
 }
 }
 }

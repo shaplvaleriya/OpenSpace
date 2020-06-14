@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Not found</title>
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<style>
+		.loaderArea {
+  background-color: #000 ;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right:0;
+  bottom:0;
+  z-index: 100000;
+}
+.loader {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+}
+
+	</style>
+</head>
+<body style="margin: 0; padding: 0; overflow-y: hidden;">
+	<div class="loaderArea">
+   <div class="loader">
+   	<!-- <img src="../video/logo.gif" alt=""> -->
+		<video width="100%" height="auto" autoplay="true" muted="muted" loop>
+	   		<source src="../video/preloader.mp4" type='video/mp4'>
+	   		Тег video не поддерживается вашим браузером. 
+	  	</video>
+	</div>
+</div>
+	<section style="display: flex; justify-content: flex-end;">
+			<video width="100%" height="auto" autoplay="true" muted="muted" loop>
+		   		<source src="../video/космос 2_1.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+		   		Тег video не поддерживается вашим браузером. 
+		  	</video>
+		</section>
+		<script>
+  $(window).on('load', function () {
+    $preloader = $('.loaderArea'),
+      $loader = $preloader.find('.loader');
+      setTimeout(function(){
+		$loader.fadeOut();
+    	$preloader.delay(350).fadeOut('slow');
+      }, 2000)
+    
+  });
+</script>
+</body>
+</html>

@@ -2,10 +2,7 @@
 if (session_id()=='');
     session_start();
 ?>
-<?php
-include '../adminMenu/adminMenu.php';
-include '../../connection.php';
-?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +11,30 @@ include '../../connection.php';
     <link rel="stylesheet" href="../css/registration.css">
     </head>
     <body>
+<div class="modal" id="modal">
+    <div class="modal-result">
+        <button id="out">X</button>
+        <div class="modal-text">
+            Дата сеанса уже занята
+        </div>
+        <button id="ok">OK</button>
+    </div>
+</div>
+
+<div class="modal" id="modal-ok">
+    <div class="modal-result">
+        <button id="out1">X</button>
+        <div class="modal-text">
+            Сеанс добавлен
+        </div>
+        <button id="ok1">OK</button>
+    </div>
+</div>
+
+    <?php
+include '../adminMenu/adminMenu.php';
+include '../../connection.php';
+?>
         <main>  <h2>Добавить сеанс</h2>
              <div class="form-add-session">
             <form action="" method="POST">
@@ -79,7 +100,9 @@ $date_session = $date." ".$time;
     $resultSession = mysqli_query($link, $querySession) or die("Ошибка " . mysqli_error($link));
     $rowSession = mysqli_fetch_row($resultSession);
     if (!empty($rowSession[0])) {
-         echo "<script>alert('Дата сеанса уже занята'); location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';;</script>";
+        echo "<script>;
+                            $('#modal').css('display', 'flex');
+                           </script>;"; 
         mysqli_close($link);
     }
     else{
@@ -87,7 +110,9 @@ $date_session = $date." ".$time;
         $resultAdd = mysqli_query($link, $queryAdd) or die("Ошибка " . mysqli_error($link));
                 if ($resultAdd)
                 {             
-                echo "<script>alert('сеанс добавлен'); location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';</script>";
+        echo "<script>;
+                            $('#modal-ok').css('display', 'flex');
+        </script>;"; 
                 mysqli_close($link);
                 }
                 else {
@@ -99,3 +124,22 @@ $date_session = $date." ".$time;
 }
 
 ?>
+
+     <script type="text/javascript">
+document.getElementById('out').addEventListener('click', ()=>{
+   location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';
+})
+document.getElementById('ok').addEventListener('click', ()=>{
+    location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';
+})
+document.getElementById('out1').addEventListener('click', ()=>{
+   location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';
+})
+document.getElementById('ok1').addEventListener('click', ()=>{
+    location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';
+})
+document.getElementById('modal').addEventListener('click', ()=>{
+   location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';
+})
+
+</script>

@@ -44,7 +44,7 @@ include '../connection.php';
 	</div>
 	<div class="contact-advertising">
             <video  controls >
-                <source src="../video/advertising.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                <source src="../video/advertising.mp4">
                 Тег video не поддерживается вашим браузером. 
             </video>
 	</div>

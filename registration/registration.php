@@ -9,8 +9,17 @@ include '../menu/menu.php';
     <link rel="stylesheet" href="../css/registration.css">
 	</head>
 	<body>		
-
+    <div class="modal" id="modal">
+    <div class="modal-result">
+        <button id="out">X</button>
+        <div class="modal-text">
+            Пароли не совпадают
+        </div>
+        <button id="ok">OK</button>
+    </div>
+</div>
 		<main>
+
 		<div class="content">
       <div class="left-part"> 
             <div class="form-logo">

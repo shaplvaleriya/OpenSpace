@@ -1,9 +1,6 @@
 <?php if (session_id()=='');
     session_start();
- ?><?php
-include '../adminMenu/adminMenu.php';
-include '../../connection.php';
-?>
+ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +8,19 @@ include '../../connection.php';
     <title>Добавить фильм</title>
     </head>
     <body>
+        <div class="modal" id="modal-ok">
+    <div class="modal-result">
+        <button id="out1">X</button>
+        <div class="modal-text">
+            Фильм добавлен
+        </div>
+        <button id="ok1">OK</button>
+    </div>
+</div>
+<?php
+include '../adminMenu/adminMenu.php';
+include '../../connection.php';
+?>
         <main>
             <h2>Добавить фильм</h2>
             <div class="form-add-film">
@@ -75,6 +85,24 @@ include '../../connection.php';
             </div>
         </main>
     </body>
+         <script type="text/javascript">
+document.getElementById('out').addEventListener('click', ()=>{
+   location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';
+})
+document.getElementById('ok').addEventListener('click', ()=>{
+    location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';
+})
+document.getElementById('out1').addEventListener('click', ()=>{
+   location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';
+})
+document.getElementById('ok1').addEventListener('click', ()=>{
+    location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';
+})
+document.getElementById('modal').addEventListener('click', ()=>{
+   location.href='http://localhost:83/OpenSpace/adminPanel/addSession/addSession.php';
+})
+
+</script>
 </html>
 
 
@@ -166,8 +194,10 @@ if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || em
                 $queryAddCountry ="INSERT INTO film_country (ID_film, ID_country) VALUES('$rowID[0]', '$countryValue')";
                 $resultAddCountry = mysqli_query($link, $queryAddCountry) or die("Ошибка " . mysqli_error($link));
                 }
-
-                echo "<script>alert('фильм добавлен'); location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
+        echo "<script>;
+            $('#modal-ok').css('display', 'flex');
+        </script>;";
+                // echo "<script>alert('фильм добавлен'); location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
                 mysqli_close($link);
                 }
                 else {
@@ -180,3 +210,4 @@ if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || em
 }
 
 ?>
+

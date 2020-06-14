@@ -285,3 +285,65 @@ height: 40px;
   font-size: 18px;
   margin-top: 5px;
 }
+
+.modal
+{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(50,50,50,0.5);
+  z-index: 15;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.modal-result
+{
+  background: linear-gradient(0.25turn,#3B1455,#0B1945);
+  box-shadow: 5px 5px 10px black;
+  border-radius: 10px;
+  padding: 0 10px 10px 10px;
+  display: flex;
+flex-direction: column;
+align-items: self-end;
+}
+
+#modal
+{
+  display: none;
+  /*display: flex;*/
+}
+
+#out
+{
+  background: none;
+  color: #C7CEEB;
+border: none;
+border-radius: 0 10px 0 0;
+padding: 5px 10px;
+margin-right: -10px;
+}
+
+#out:hover
+{
+  background-color: rgba(0,0,0,0.5);
+}
+
+#ok
+{
+width: 30%;
+border-radius: 25px;
+border: none;
+cursor: pointer;
+background: -webkit-gradient(linear, left top, right top, from(#764098), to(#21409A));
+background: linear-gradient(0.25turn, #764098, #21409A);
+color: #C7CEEB;
+padding: 5px;
+margin: 10px auto;
+}
+
+.modal-text
+{
+  margin-top: 10px;
+}

@@ -25,6 +25,7 @@ include '../connection.php';
 	$row = mysqli_fetch_row($resultt);
 	$ro = explode(',', $row[0]);
 	$count = count($ro);
+	echo "Результаты голосования на сегодняшний день:<br>";
 
 for ($p = 0; $p < $count - 1; $p++) 
 {
@@ -36,6 +37,7 @@ $select = "SELECT count(*) as c from voting_film  where ID_film='$ro[$p]'";
 $result1 = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));
     $roww = mysqli_fetch_row($result1);
     	echo $rowTitle[0];
+    	echo " ";
 		echo $roww[0];
 		echo "<br>";
 }

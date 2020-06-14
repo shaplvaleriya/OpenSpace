@@ -12,6 +12,19 @@ include '../../connection.php';
     <link rel="stylesheet" href="../css/adminPanel.css">
     </head>
     <body>
+<div class="modal" id="modal-ok">
+    <div class="modal-result">
+        <button id="out1">X</button>
+        <div class="modal-text">
+            Фильм изменен
+        </div>
+        <button id="ok1">OK</button>
+    </div>
+</div>
+<?php
+include '../adminMenu/adminMenu.php';
+include '../../connection.php';
+?>
         <main>
              <h2>Редактирование фильма</h2>
             <?php 
@@ -115,6 +128,18 @@ $row = mysqli_fetch_row($result1);
             </form>
         </main>
     </body>
+         <script type="text/javascript">
+document.getElementById('out1').addEventListener('click', ()=>{
+  location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';;
+})
+document.getElementById('ok1').addEventListener('click', ()=>{
+   location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';;
+})
+document.getElementById('modal').addEventListener('click', ()=>{
+location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';;
+})
+
+</script>
 </html>
 
 
@@ -172,8 +197,9 @@ if(empty($title) || empty($rating) || empty($premiere) || empty($duration) || em
                 $queryAddCountry ="INSERT INTO film_country (ID_film, ID_country) VALUES('$url', '$countryValue')";
                 $resultAddCountry = mysqli_query($link, $queryAddCountry) or die("Ошибка " . mysqli_error($link));
                 }
-                echo "<script>alert('Фильм изменен'); location.href='http://localhost:83/OpenSpace/adminPanel/filmList/filmList.php';</script>";
-                mysqli_close($link);
+        echo "<script>;
+            $('#modal-ok').css('display', 'flex');
+        </script>;";
                 }
                 else {
                 echo "<script>alert('Ошибка, фильм не изменен'); location.href='http://localhost:83/OpenSpace/adminPanel/changeFilm/changeFilm.php?".$url."';</script>";

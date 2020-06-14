@@ -14,6 +14,16 @@ session_start();
 </head>
 
 <body>
+
+<div class="modal" id="modal">
+    <div class="modal-result">
+        <button id="out">X</button>
+        <div class="modal-text">
+            Билет успешно забронирован
+        </div>
+        <button id="ok">OK</button>
+    </div>
+</div>
     <?php
     include '../menu/menu.php';
     include("../connection.php");
@@ -259,7 +269,9 @@ echo "</div>";
                         $queryBooked = "INSERT INTO purchases (ID_user, ID_session, ID_place, date_purchase, price_purchase, present) values('$ID_user', '$url', '$place', now(), '$price', '$present')";
                         $resultBooked = mysqli_query($link, $queryBooked) or die("Ошибка " . mysqli_error($link));
                         if ($resultBooked) {
-                            echo "<script>;alert('Покупка успешно завершена');location.href='http://localhost:83/OpenSpace/registration/result_auth.php';</script>;"; 
+                            echo "<script>;
+                            $('#modal').css('display', 'flex');
+                           </script>;"; 
 
                         }
                     }
@@ -267,6 +279,7 @@ echo "</div>";
             }
 
             ?>
+
 <hr size='1' class="session-line">
 <div class="places">
     <div class="places-photo">
@@ -293,7 +306,18 @@ echo "</div>";
             <?php
             include '../footer/footer.php';
             ?>
+
+
      <script type="text/javascript">
+document.getElementById('out').addEventListener('click', ()=>{
+    location.href='http://localhost:83/OpenSpace/registration/result_auth.php';
+})
+document.getElementById('ok').addEventListener('click', ()=>{
+    location.href='http://localhost:83/OpenSpace/registration/result_auth.php';
+})
+document.getElementById('modal').addEventListener('click', ()=>{
+    location.href='http://localhost:83/OpenSpace/registration/result_auth.php';
+})
 const checkboxList = document.getElementsByClassName('ticket-check');
 console.log(checkboxList);
 for (var i = checkboxList.length - 1; i >= 0; i--) {

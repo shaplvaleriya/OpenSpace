@@ -41,6 +41,8 @@ include '../connection.php';
 			?>
 				<div id="modal" class="mod">
 					<form action="" id="voting-form" method="POST">
+						Проголосуйте за фильм, который Вы хотите посмотреть у нас в кинотеатре:
+						
 						<?php
 						$select = "SELECT ID_film from voting";
 						$result = mysqli_query($link, $select) or die("Ошибка " . mysqli_error($link));

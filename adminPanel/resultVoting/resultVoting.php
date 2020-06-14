@@ -23,7 +23,7 @@ include '../../connection.php';
 				$row = mysqli_fetch_row($resultt);
 				
 				if (!empty($row[0])) {
-				echo "Голосование началось ".$date_start.".<br> Результаты бдут подводиться ".$date_end.".<br> Сеанс с фильмом победителем будет ".$date_session.".";
+				echo "Голосование началось ".$row[1].".<br> Результаты будут подводиться ".$row[2].".<br> Сеанс с фильмом победителем будет ".$row[3].".<br><br>";
 				$ro = explode(',', $row[0]);
 				$count = count($ro);
 
